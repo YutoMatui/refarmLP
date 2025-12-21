@@ -1,0 +1,127 @@
+/**
+ * VegeKobe Sticky Header Component
+ * Design: Neo-Corporate Trust style with emerald green brand color
+ * Features: Logo with leaf icon, navigation, and CTA buttons
+ */
+
+import { useState, useEffect } from "react";
+import { Leaf, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const navItems = [
+  { label: "選ばれる理由", href: "#pain-points" },
+  { label: "機能", href: "#features" },
+  { label: "料金プラン", href: "#pricing" },
+  { label: "よくある質問", href: "#faq" },
+];
+
+export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-md"
+          : "bg-white"
+      }`}
+    >
+      <div className="container">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <a
+            href="#"
+            className="flex items-center gap-2 text-emerald font-black text-xl md:text-2xl tracking-tight"
+          >
+            <Leaf className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />
+            <span>VegeKobe</span>
+          </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className="text-slate-600 hover:text-emerald font-medium transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Desktop CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Button
+              variant="outline"
+              className="border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl px-5"
+            >
+              LINEで相談する
+            </Button>
+            <Button className="bg-orange hover:bg-orange-dark text-white font-bold rounded-xl px-5">
+              資料請求
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2 text-slate-600"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="メニューを開く"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-slate-100">
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.href}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-left py-3 px-4 text-slate-600 hover:text-emerald hover:bg-slate-50 rounded-lg font-medium transition-colors"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+            <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-100">
+              <Button
+                variant="outline"
+                className="w-full border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl"
+              >
+                LINEで相談する
+              </Button>
+              <Button className="w-full bg-orange hover:bg-orange-dark text-white font-bold rounded-xl">
+                資料請求
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
