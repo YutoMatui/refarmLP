@@ -37,21 +37,27 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-white/95 backdrop-blur-sm shadow-md"
           : "bg-white"
-      }`}
+        }`}
     >
       <div className="container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a
             href="#"
-            className="flex items-center gap-2 text-emerald font-black text-xl md:text-2xl tracking-tight"
+            className="flex items-center gap-2"
           >
-            <Leaf className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />
-            <span>VegeKobe</span>
+            {/* 
+              【ロゴ画像の変更方法】
+              1. 使用したいロゴ画像を「public/images」フォルダにアップロードしてください（例: logo.png）。
+              2. 以下のコードのコメントアウトを外し、下の<Leaf>と<span>の行を削除またはコメントアウトしてください。
+            */}
+            {/* <img src="/images/logo.png" alt="VegeKobe" className="h-8 md:h-10 w-auto" /> */}
+
+            <Leaf className="w-6 h-6 md:w-7 md:h-7 text-emerald" strokeWidth={2.5} />
+            <span className="text-emerald font-black text-xl md:text-2xl tracking-tight">VegeKobe</span>
           </a>
 
           {/* Desktop Navigation */}

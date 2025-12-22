@@ -30,14 +30,14 @@ const plans: Plan[] = [
     price: "¥15,000",
     description: "まず試したい店舗向け",
     features: [
-      { text: "野菜配送(週2回、14-18時)" },
+      { text: "野菜配送" },
       { text: "簡単注文システム(1分で完結)" },
       { text: "独自検品(規格品+規格外選択可)" },
-      { text: "農家紹介カード(A5、月2農家)" },
-      { text: "卓上QRコードPOP(15秒動画)" },
+      { text: "農家紹介カード(月2農家)" },
+      { text: "メニュー表作成" },
+      { text: "卓上QRコードポップ(15秒動画)" },
       { text: "農家との直接チャット" },
       { text: "効果測定シート" },
-      { text: "来月の野菜予告" },
     ],
     buttonVariant: "secondary",
   },
@@ -49,10 +49,11 @@ const plans: Plan[] = [
     isPopular: true,
     features: [
       { text: "ベーシックの全機能", highlighted: true },
-      { text: "配送頻度アップ(週3回)", highlighted: true },
-      { text: "店内ポスター「今月の農家」(A2、月1回)" },
+      { text: "配送頻度アップ", highlighted: true },
+      { text: "今月の農家ポスター(月1回)" },
       { text: "季節限定メニュー企画支援" },
-      { text: "価格設定・POP制作サポート" },
+      { text: "こだわりショート動画(月1回)" },
+      { text: "来月の野菜予告" },
       { text: "月次レポート(詳細分析)" },
       { text: "スタッフ教育資料提供" },
       { text: "LINE公式アカウント運用支援" },
@@ -83,11 +84,10 @@ function PricingCard({ plan }: { plan: Plan }) {
 
   return (
     <div
-      className={`relative bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl ${
-        plan.isPopular
+      className={`relative bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl ${plan.isPopular
           ? "border-2 border-emerald ring-4 ring-emerald/10 scale-105 z-10"
           : "border border-slate-200"
-      }`}
+        }`}
     >
       {/* Popular Badge */}
       {plan.isPopular && (
@@ -143,25 +143,22 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         {/* Features List (Expandable) */}
         <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isExpanded ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
-          }`}
+          className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="pt-4 border-t border-slate-100">
             <ul className="space-y-3">
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <Check
-                    className={`w-5 h-5 shrink-0 mt-0.5 ${
-                      feature.highlighted ? "text-emerald" : "text-emerald/70"
-                    }`}
+                    className={`w-5 h-5 shrink-0 mt-0.5 ${feature.highlighted ? "text-emerald" : "text-emerald/70"
+                      }`}
                   />
                   <span
-                    className={`text-sm ${
-                      feature.highlighted
+                    className={`text-sm ${feature.highlighted
                         ? "font-bold text-slate-800"
                         : "text-slate-600"
-                    }`}
+                      }`}
                   >
                     {feature.text}
                   </span>

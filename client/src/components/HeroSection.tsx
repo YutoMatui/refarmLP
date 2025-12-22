@@ -47,7 +47,7 @@ export default function HeroSection() {
               {/* Main CTA */}
               <div className="flex flex-col">
                 <Button className="bg-orange hover:bg-orange-dark text-white font-bold text-lg py-6 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
-                  「客単価アップ」について相談する
+                  客単価アップを相談する
                 </Button>
                 <span className="text-xs text-slate-500 mt-2 text-center sm:text-left">
                   ※LINEで30秒で登録完了。営業電話はしません。
@@ -60,7 +60,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="border-2 border-emerald text-emerald hover:bg-emerald hover:text-white font-bold text-lg py-6 px-8 rounded-xl transition-all duration-200"
                 >
-                  「リピート率アップ」について相談する
+                  リピート率アップを相談する
                 </Button>
                 <span className="text-xs text-slate-500 mt-2 text-center sm:text-left">
                   ※まずは事例を見るだけでもOKです。
@@ -78,19 +78,6 @@ export default function HeroSection() {
                 alt="スマホを持ち、自信に満ちた笑顔のシェフと新鮮な野菜"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
-              
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white rounded-xl shadow-lg p-4 md:p-5">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-emerald/10 rounded-full flex items-center justify-center">
-                    <Check className="w-6 h-6 text-emerald" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500">導入店舗</p>
-                    <p className="text-xl font-black text-slate-800">150店舗+</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

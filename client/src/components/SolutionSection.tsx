@@ -34,7 +34,22 @@ export default function SolutionSection() {
                   BEFORE
                 </span>
               </div>
-              
+
+              {/* Added Image for Before */}
+              <div className="mb-4 aspect-video bg-slate-100 rounded-lg overflow-hidden relative group">
+                {/* 画像を変更するには public/images/before-service.jpg を配置してください */}
+                <img
+                  src="/images/before-service.jpg"
+                  alt="通常の接客の様子"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement?.classList.add('flex', 'items-center', 'justify-center', 'text-slate-400', 'text-sm');
+                    if (e.currentTarget.parentElement) e.currentTarget.parentElement.innerText = '画像: 通常の接客';
+                  }}
+                />
+              </div>
+
               <div className="bg-slate-50 rounded-xl p-5 mb-5">
                 <p className="text-lg font-bold text-slate-700 mb-1">
                   トマトパスタ
@@ -67,13 +82,28 @@ export default function SolutionSection() {
               <div className="absolute -top-3 -right-3 bg-emerald text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
                 おすすめ
               </div>
-              
+
               <div className="flex items-center gap-2 mb-4">
                 <span className="bg-emerald text-white text-xs font-bold px-3 py-1 rounded-full">
                   AFTER
                 </span>
               </div>
-              
+
+              {/* Added Image for After */}
+              <div className="mb-4 aspect-video bg-emerald/5 rounded-lg overflow-hidden relative">
+                {/* 画像を変更するには public/images/after-service.jpg を配置してください */}
+                <img
+                  src="/images/after-service.jpg"
+                  alt="スタッフがメニュー表を見せて説明し、お客様が喜んでいる様子"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement?.classList.add('flex', 'items-center', 'justify-center', 'text-emerald', 'text-sm', 'text-center', 'p-2');
+                    if (e.currentTarget.parentElement) e.currentTarget.parentElement.innerText = '画像: こだわりを説明するスタッフと喜ぶお客様';
+                  }}
+                />
+              </div>
+
               <div className="bg-emerald/5 rounded-xl p-5 mb-5 border border-emerald/20">
                 <p className="text-lg font-bold text-emerald mb-1">
                   <span className="text-orange">ヤスオさんの王様トマト</span>のパスタ

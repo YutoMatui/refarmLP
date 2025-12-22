@@ -21,18 +21,18 @@ const features = [
   {
     id: "same-day",
     icon: Truck,
-    title: "朝採れ当日配送",
+    title: "集荷後即日配送",
     shortTitle: "当日配送",
     description:
-      "神戸市内の提携農家が朝収穫した野菜を、その日の14:00-18:00にお店へお届けします。市場経由とは「香り」が違います。",
+      "神戸市内の提携農家が集荷した野菜を、その日のうちにお店へお届けします。市場経由とは「香り」が違います。",
     image: "/images/delivery-truck.png",
     imageAlt: "野菜を運ぶ配送トラック",
   },
   {
     id: "promotion",
     icon: Megaphone,
-    title: "販促ツールもセット",
-    shortTitle: "販促ツール",
+    title: "価値を伝えるストーリー素材",
+    shortTitle: "ストーリー素材",
     description:
       "「この野菜は誰が作ったの？」を伝える卓上POP、15秒動画、ホールスタッフ用スクリプトまで提供。自信を持っておすすめできます。",
     image: "/images/farmer-portrait.png",
@@ -41,8 +41,8 @@ const features = [
   {
     id: "irregular",
     icon: Tag,
-    title: "規格外で原価抑制",
-    shortTitle: "規格外野菜",
+    title: "【数量限定】訳あり・掘り出し物",
+    shortTitle: "訳あり野菜",
     description:
       "出荷の際に「規格外」が出れば、アプリに通知。農家さんが決めた手頃な価格で購入可能です。スープやソース用に最適です。",
     image: "/images/fresh-vegetables.png",
@@ -77,23 +77,20 @@ export default function FeaturesSection() {
                 <button
                   key={feature.id}
                   onClick={() => setActiveTab(feature.id)}
-                  className={`flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all duration-200 whitespace-nowrap lg:whitespace-normal min-w-fit lg:min-w-0 ${
-                    activeTab === feature.id
+                  className={`flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all duration-200 whitespace-nowrap lg:whitespace-normal min-w-fit lg:min-w-0 ${activeTab === feature.id
                       ? "bg-emerald text-white shadow-lg"
                       : "bg-slate-50 text-slate-600 hover:bg-slate-100"
-                  }`}
+                    }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
-                      activeTab === feature.id
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${activeTab === feature.id
                         ? "bg-white/20"
                         : "bg-emerald/10"
-                    }`}
+                      }`}
                   >
                     <feature.icon
-                      className={`w-5 h-5 ${
-                        activeTab === feature.id ? "text-white" : "text-emerald"
-                      }`}
+                      className={`w-5 h-5 ${activeTab === feature.id ? "text-white" : "text-emerald"
+                        }`}
                     />
                   </div>
                   <span className="font-bold text-sm lg:text-base">
