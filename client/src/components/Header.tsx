@@ -54,10 +54,12 @@ export default function Header() {
               1. 使用したいロゴ画像を「public/images」フォルダにアップロードしてください（例: logo.png）。
               2. 以下のコードのコメントアウトを外し、下の<Leaf>と<span>の行を削除またはコメントアウトしてください。
             */}
-            {/* <img src="/images/logo.png" alt="VegeKobe" className="h-8 md:h-10 w-auto" /> */}
+            {/* ロゴ画像がある場合はこちらを使用 */}
+            <img src="/images/logo.png" alt="VegeKobe" className="h-8 md:h-10 w-auto" />
 
-            <Leaf className="w-6 h-6 md:w-7 md:h-7 text-emerald" strokeWidth={2.5} />
-            <span className="text-emerald font-black text-xl md:text-2xl tracking-tight">VegeKobe</span>
+            {/* テキストロゴ（画像がない場合のフォールバックとして残しておくか、不要なら削除） */}
+            {/* <Leaf className="w-6 h-6 md:w-7 md:h-7 text-emerald" strokeWidth={2.5} />
+            <span className="text-emerald font-black text-xl md:text-2xl tracking-tight">VegeKobe</span> */}
           </a>
 
           {/* Desktop Navigation */}

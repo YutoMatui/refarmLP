@@ -37,9 +37,9 @@ export default function SolutionSection() {
 
               {/* Added Image for Before */}
               <div className="mb-4 aspect-video bg-slate-100 rounded-lg overflow-hidden relative group">
-                {/* 画像を変更するには public/images/before-service.jpg を配置してください */}
+                {/* 画像を変更するには public/images/before-service.png を配置してください */}
                 <img
-                  src="/images/before-service.jpg"
+                  src="/images/before-service.png"
                   alt="通常の接客の様子"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -91,9 +91,9 @@ export default function SolutionSection() {
 
               {/* Added Image for After */}
               <div className="mb-4 aspect-video bg-emerald/5 rounded-lg overflow-hidden relative">
-                {/* 画像を変更するには public/images/after-service.jpg を配置してください */}
+                {/* 画像を変更するには public/images/after-service.png を配置してください */}
                 <img
-                  src="/images/after-service.jpg"
+                  src="/images/after-service.png"
                   alt="スタッフがメニュー表を見せて説明し、お客様が喜んでいる様子"
                   className="w-full h-full object-cover"
                   onError={(e) => {
