@@ -80,10 +80,14 @@ export default function Header() {
             <Button
               variant="outline"
               className="border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl px-5"
+              onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
             >
               LINEで相談する
             </Button>
-            <Button className="bg-orange hover:bg-orange-dark text-white font-bold rounded-xl px-5">
+            <Button
+              className="bg-orange hover:bg-orange-dark text-white font-bold rounded-xl px-5"
+              onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+            >
               資料請求
             </Button>
           </div>
@@ -120,10 +124,14 @@ export default function Header() {
               <Button
                 variant="outline"
                 className="w-full border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl"
+                onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
               >
                 LINEで相談する
               </Button>
-              <Button className="w-full bg-orange hover:bg-orange-dark text-white font-bold rounded-xl">
+              <Button
+                className="w-full bg-orange hover:bg-orange-dark text-white font-bold rounded-xl"
+                onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+              >
                 資料請求
               </Button>
             </div>

@@ -46,7 +46,9 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               {/* Main CTA */}
               <div className="flex flex-col">
-                <Button className="bg-orange hover:bg-orange-dark text-white font-bold text-lg py-6 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5">
+                <Button className="bg-orange hover:bg-orange-dark text-white font-bold text-lg py-6 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+                  onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+                >
                   客単価アップを相談する
                 </Button>
                 <span className="text-xs text-slate-500 mt-2 text-center sm:text-left">
@@ -59,6 +61,7 @@ export default function HeroSection() {
                 <Button
                   variant="outline"
                   className="border-2 border-emerald text-emerald hover:bg-emerald hover:text-white font-bold text-lg py-6 px-8 rounded-xl transition-all duration-200"
+                  onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
                 >
                   リピート率アップを相談する
                 </Button>

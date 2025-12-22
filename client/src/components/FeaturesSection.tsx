@@ -72,28 +72,28 @@ export default function FeaturesSection() {
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Left: Tab Buttons */}
           <div className="lg:col-span-4">
-            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+            <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2 lg:gap-2">
               {features.map((feature) => (
                 <button
                   key={feature.id}
                   onClick={() => setActiveTab(feature.id)}
-                  className={`flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all duration-200 whitespace-nowrap lg:whitespace-normal min-w-fit lg:min-w-0 ${activeTab === feature.id
+                  className={`flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-3 px-2 lg:px-4 py-3 lg:py-4 rounded-xl text-center lg:text-left transition-all duration-200 ${activeTab === feature.id
                       ? "bg-emerald text-white shadow-lg"
                       : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                     }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${activeTab === feature.id
+                    className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center shrink-0 ${activeTab === feature.id
                         ? "bg-white/20"
                         : "bg-emerald/10"
                       }`}
                   >
                     <feature.icon
-                      className={`w-5 h-5 ${activeTab === feature.id ? "text-white" : "text-emerald"
+                      className={`w-4 h-4 lg:w-5 lg:h-5 ${activeTab === feature.id ? "text-white" : "text-emerald"
                         }`}
                     />
                   </div>
-                  <span className="font-bold text-sm lg:text-base">
+                  <span className="font-bold text-xs lg:text-base">
                     <span className="lg:hidden">{feature.shortTitle}</span>
                     <span className="hidden lg:inline">{feature.title}</span>
                   </span>

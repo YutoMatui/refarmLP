@@ -116,13 +116,16 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         {/* CTA Button */}
         {plan.buttonVariant === "primary" ? (
-          <Button className="w-full bg-orange hover:bg-orange-dark text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all">
+          <Button className="w-full bg-orange hover:bg-orange-dark text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+            onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+          >
             このプランで始める
           </Button>
         ) : (
           <Button
             variant="outline"
             className="w-full border-2 border-emerald text-emerald hover:bg-emerald hover:text-white font-bold py-6 rounded-xl transition-all"
+            onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
           >
             このプランで始める
           </Button>
