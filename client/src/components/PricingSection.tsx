@@ -1,12 +1,7 @@
-/**
- * VegeKobe Pricing Section Component
- * Design: 3-column pricing cards with Standard highlighted
- * Features: Accordion/expandable details for each plan
- */
-
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackLineRegistration, trackCTAClick, trackSectionScroll, event } from "@/lib/gtag";
 
 interface PlanFeature {
   text: string;
@@ -82,17 +77,33 @@ const plans: Plan[] = [
 function PricingCard({ plan }: { plan: Plan }) {
   const [isExpanded, setIsExpanded] = useState(plan.isPopular);
 
+  const handleLineClick = () => {
+    trackLineRegistration("Pricing Section");
+    trackCTAClick(`${plan.name}プラン選択`, "Pricing");
+    window.open("https://lin.ee/qMfjf66", "_blank");
+  };
+
+  const handleExpandToggle = () => {
+    const newState = !isExpanded;
+    setIsExpanded(newState);
+    event({
+      action: "pricing_expand",
+      category: "engagement",
+      label: `${plan.name} - ${newState ? "open" : "close"}`,
+    });
+  };
+
   return (
     <div
       className={`relative bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl ${plan.isPopular
-          ? "border-2 border-emerald ring-4 ring-emerald/10 scale-105 z-10"
-          : "border border-slate-200"
+        ? "border-2 border-emerald-600 ring-4 ring-emerald-600/10 scale-105 z-10"
+        : "border border-slate-200"
         }`}
     >
       {/* Popular Badge */}
       {plan.isPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span className="inline-flex items-center gap-1.5 bg-emerald text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
+          <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
             <Star className="w-4 h-4 fill-current" />
             人気No.1
           </span>
@@ -116,16 +127,21 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         {/* CTA Button */}
         {plan.buttonVariant === "primary" ? (
-          <Button className="w-full bg-orange hover:bg-orange-dark text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
-            onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+          <Button
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+            onClick={handleLineClick}
+            data-event="line_registration_click"
+            data-event-location={`pricing_${plan.id}`}
           >
             このプランで始める
           </Button>
         ) : (
           <Button
             variant="outline"
-            className="w-full border-2 border-emerald text-emerald hover:bg-emerald hover:text-white font-bold py-6 rounded-xl transition-all"
-            onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+            className="w-full border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-bold py-6 rounded-xl transition-all"
+            onClick={handleLineClick}
+            data-event="line_registration_click"
+            data-event-location={`pricing_${plan.id}`}
           >
             このプランで始める
           </Button>
@@ -133,8 +149,10 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         {/* Expand/Collapse Button */}
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex items-center justify-center gap-2 mt-4 py-2 text-sm text-slate-500 hover:text-emerald transition-colors"
+          onClick={handleExpandToggle}
+          className="w-full flex items-center justify-center gap-2 mt-4 py-2 text-sm text-slate-500 hover:text-emerald-600 transition-colors"
+          data-event="pricing_expand"
+          data-event-plan={plan.id}
         >
           <span>{isExpanded ? "詳細を閉じる" : "詳細を見る"}</span>
           {isExpanded ? (
@@ -154,13 +172,13 @@ function PricingCard({ plan }: { plan: Plan }) {
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <Check
-                    className={`w-5 h-5 shrink-0 mt-0.5 ${feature.highlighted ? "text-emerald" : "text-emerald/70"
+                    className={`w-5 h-5 shrink-0 mt-0.5 ${feature.highlighted ? "text-emerald-600" : "text-emerald-600/70"
                       }`}
                   />
                   <span
                     className={`text-sm ${feature.highlighted
-                        ? "font-bold text-slate-800"
-                        : "text-slate-600"
+                      ? "font-bold text-slate-800"
+                      : "text-slate-600"
                       }`}
                   >
                     {feature.text}
@@ -176,13 +194,41 @@ function PricingCard({ plan }: { plan: Plan }) {
 }
 
 export default function PricingSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTrackedScroll = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTrackedScroll.current) {
+            hasTrackedScroll.current = true;
+            trackSectionScroll("料金セクション");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="pricing" className="section-padding bg-slate-50">
-      <div className="container">
+    <section
+      ref={sectionRef}
+      id="pricing"
+      className="py-16 md:py-24 bg-slate-50"
+      data-event="scroll_to_pricing"
+    >
+      <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block bg-emerald/10 text-emerald text-sm font-bold px-4 py-2 rounded-full mb-4">
-            PRICING
+          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+            料金プラン
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800">
             料金プラン

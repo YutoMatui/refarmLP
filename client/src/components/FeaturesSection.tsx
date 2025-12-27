@@ -1,11 +1,6 @@
-/**
- * VegeKobe Features Section Component
- * Design: Left tabs with right content panel (interactive)
- * Features: 4 feature tabs with detailed descriptions
- */
-
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Smartphone, Truck, Megaphone, Tag } from "lucide-react";
+import { trackFeatureTabClick, trackSectionScroll } from "../lib/gtag";
 
 const features = [
   {
@@ -52,16 +47,49 @@ const features = [
 
 export default function FeaturesSection() {
   const [activeTab, setActiveTab] = useState(features[0].id);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasTrackedScroll = useRef(false);
 
   const activeFeature = features.find((f) => f.id === activeTab) || features[0];
 
+  // Scroll tracking
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTrackedScroll.current) {
+            hasTrackedScroll.current = true;
+            trackSectionScroll("機能セクション");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleTabClick = (featureId: string) => {
+    setActiveTab(featureId);
+    trackFeatureTabClick(featureId);
+  };
+
   return (
-    <section id="features" className="section-padding bg-white">
-      <div className="container">
+    <section
+      ref={sectionRef}
+      id="features"
+      className="py-16 md:py-24 bg-white"
+      data-event="scroll_to_features"
+    >
+      <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block bg-emerald/10 text-emerald text-sm font-bold px-4 py-2 rounded-full mb-4">
-            FEATURES
+          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+            機能紹介
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800">
             ベジコベの4つの特徴
@@ -76,20 +104,22 @@ export default function FeaturesSection() {
               {features.map((feature) => (
                 <button
                   key={feature.id}
-                  onClick={() => setActiveTab(feature.id)}
+                  onClick={() => handleTabClick(feature.id)}
                   className={`flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-3 px-2 lg:px-4 py-3 lg:py-4 rounded-xl text-center lg:text-left transition-all duration-200 ${activeTab === feature.id
-                      ? "bg-emerald text-white shadow-lg"
-                      : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                    ? "bg-emerald-600 text-white shadow-lg"
+                    : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                     }`}
+                  data-event="feature_tab_click"
+                  data-event-tab={feature.id}
                 >
                   <div
                     className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center shrink-0 ${activeTab === feature.id
-                        ? "bg-white/20"
-                        : "bg-emerald/10"
+                      ? "bg-white/20"
+                      : "bg-emerald-600/10"
                       }`}
                   >
                     <feature.icon
-                      className={`w-4 h-4 lg:w-5 lg:h-5 ${activeTab === feature.id ? "text-white" : "text-emerald"
+                      className={`w-4 h-4 lg:w-5 lg:h-5 ${activeTab === feature.id ? "text-white" : "text-emerald-600"
                         }`}
                     />
                   </div>
@@ -109,8 +139,8 @@ export default function FeaturesSection() {
                 {/* Text Content */}
                 <div className="order-2 md:order-1">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center">
-                      <activeFeature.icon className="w-6 h-6 text-emerald" />
+                    <div className="w-12 h-12 bg-emerald-600/10 rounded-xl flex items-center justify-center">
+                      <activeFeature.icon className="w-6 h-6 text-emerald-600" />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-slate-800">
                       {activeFeature.title}

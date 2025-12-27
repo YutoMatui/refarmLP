@@ -10,16 +10,21 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import PainPointsSection from "@/components/PainPointsSection";
-import SolutionSection from "@/components/SolutionSection";
+import BenefitsGrid from "@/components/BenefitsGrid"; // Replaces SolutionSection
+import MarketingSupportSection from "@/components/MarketingSupportSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import OnboardingFlowSection from "@/components/OnboardingFlowSection";
 import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import FooterCTASection from "@/components/FooterCTASection";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col font-sans text-slate-800">
+      <GoogleAnalytics />
+
       {/* Sticky Header */}
       <Header />
 
@@ -31,11 +36,17 @@ export default function Home() {
         {/* Pain Points Section */}
         <PainPointsSection />
 
-        {/* Solution Section */}
-        <SolutionSection />
+        {/* Benefits Grid (Solution Grid) */}
+        <BenefitsGrid />
+
+        {/* Marketing Support Section (Before/After & Repeat Mechanism) */}
+        <MarketingSupportSection />
 
         {/* Features Section (Tab UI) */}
         <FeaturesSection />
+
+        {/* Onboarding Flow Section */}
+        <OnboardingFlowSection />
 
         {/* Pricing Section (Accordion) */}
         <PricingSection />

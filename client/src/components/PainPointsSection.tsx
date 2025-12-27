@@ -1,9 +1,3 @@
-/**
- * VegeKobe Pain Points Section Component
- * Design: 3-column card layout highlighting customer pain points
- * Features: Icon cards with problem descriptions
- */
-
 import { TrendingDown, Users, Clock } from "lucide-react";
 
 const painPoints = [
@@ -29,8 +23,8 @@ const painPoints = [
 
 export default function PainPointsSection() {
   return (
-    <section id="pain-points" className="section-padding bg-white">
-      <div className="container">
+    <section id="pain-points" className="py-16 md:py-24 bg-white">
+      <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 leading-tight">
@@ -48,8 +42,8 @@ export default function PainPointsSection() {
               className="bg-slate-50 rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300"
             >
               {/* Icon */}
-              <div className="w-14 h-14 bg-orange/10 rounded-xl flex items-center justify-center mb-5">
-                <point.icon className="w-7 h-7 text-orange" />
+              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-5">
+                <point.icon className="w-7 h-7 text-orange-500" />
               </div>
 
               {/* Title */}
