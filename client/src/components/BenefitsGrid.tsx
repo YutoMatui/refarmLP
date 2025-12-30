@@ -8,7 +8,7 @@ const reasons = [
         title: "物語の力で単価UP",
         subtitle: "メニューに書くだけで価値が伝わる",
         description: "生産者の顔やこだわり（ストーリー）がセットで届くから、メニューブックや接客で「語れる一皿」に変わります。「地元のこだわり野菜」という付加価値が、20%以上の単価アップを正当化します。",
-        image: "/images/icons/icon-story-value.png", // 生成した画像のファイル名1
+        image: "/images/icons/icon-story-value.png", // 白いアイコン画像
         highlight: "料理の味は変えずに、価値を変える。",
     },
     {
@@ -16,7 +16,7 @@ const reasons = [
         title: "納得と驚きでリピート",
         subtitle: "次も来たくなる「予告」の仕掛け",
         description: "市場にはない「朝採れ」の圧倒的な美味しさ（驚き）と、その背景情報（納得）がファンの心を掴みます。さらに「来月はこの野菜」という旬の予告が、次回の来店動機を自然に生み出します。",
-        image: "/images/icons/icon-repeat-cycle.png", // 生成した画像のファイル名2
+        image: "/images/icons/icon-repeat-cycle.png", // 白いアイコン画像
         highlight: "ただの食事を、記憶に残る体験へ。",
     },
     {
@@ -24,7 +24,7 @@ const reasons = [
         title: "「訳あり」で原価DOWN",
         subtitle: "味は同じでコスト削減",
         description: "形が少し悪い、サイズが不揃いといった「訳あり野菜」も積極的にラインナップ。味や鮮度は一級品と同じですが、価格は抑えられています。スープやソース、お通しなどに賢く活用できます。",
-        image: "/images/icons/icon-smart-cost.png", // 生成した画像のファイル名3
+        image: "/images/icons/icon-smart-cost.png", // 白いアイコン画像
         highlight: "賢い仕入れで、コストパフォーマンスを最大化。",
     },
 ];
@@ -57,7 +57,7 @@ export default function BenefitsGrid() {
         <section
             ref={sectionRef}
             id="benefits"
-            className="py-16 md:py-24 bg-white"
+            className="py-16 md:py-24 bg-slate-50" // 全体の背景をわずかにグレーにして白カードを目立たせる
             data-event="scroll_to_benefits"
         >
             <div className="container mx-auto px-4">
@@ -79,21 +79,21 @@ export default function BenefitsGrid() {
                             className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                         >
 
-                            {/* Icon Circle (Smaregi Style) */}
-                            <div className="w-28 h-28 bg-emerald-50 rounded-full flex items-center justify-center mb-8 relative">
+                            {/* Icon Circle - 変更点: 白アイコン用に濃い緑(emerald-500)を採用 */}
+                            <div className="w-28 h-28 bg-emerald-500 rounded-full flex items-center justify-center mb-8 relative shadow-md shadow-emerald-100">
                                 <img
                                     src={reason.image}
                                     alt={reason.title}
-                                    className="w-16 h-16 object-contain"
+                                    className="w-14 h-14 object-contain" // アイコンサイズを微調整
                                 />
                                 {/* Number Badge */}
-                                <div className="absolute -top-1 -right-1 bg-orange-500 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-sm border-2 border-white">
+                                <div className="absolute -top-1 -right-1 bg-orange-500 text-white font-bold w-9 h-9 rounded-full flex items-center justify-center shadow-lg text-base border-4 border-white">
                                     {index + 1}
                                 </div>
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-2 leading-tight">
+                            <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-3 leading-tight">
                                 {reason.title}
                             </h3>
 
@@ -103,13 +103,14 @@ export default function BenefitsGrid() {
                             </p>
 
                             {/* Description */}
-                            <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+                            <p className="text-slate-600 text-sm leading-relaxed mb-8 flex-grow">
                                 {reason.description}
                             </p>
 
                             {/* Bottom Highlight Box */}
                             <div className="mt-auto pt-5 border-t border-slate-100 w-full">
                                 <p className="text-slate-800 font-bold text-sm flex items-center justify-center gap-2">
+                                    {/* Highlight Dot */}
                                     <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                                     {reason.highlight}
                                 </p>

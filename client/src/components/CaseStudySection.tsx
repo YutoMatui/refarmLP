@@ -28,7 +28,7 @@ export default function CaseStudySection() {
                         <div className="relative h-64 overflow-hidden">
                             {/* 画像: カレー屋 */}
                             <img
-                                src="/images/case-curry.jpg"
+                                src="/images/case-curry.png"
                                 alt="野菜カレーを提供する店主"
                                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                             />
@@ -73,7 +73,7 @@ export default function CaseStudySection() {
                         <div className="relative h-64 overflow-hidden">
                             {/* 画像: イタリアン */}
                             <img
-                                src="/images/case-italian.jpg"
+                                src="/images/case-italian.png"
                                 alt="イタリアンレストランのシェフ"
                                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                             />
