@@ -7,7 +7,7 @@ const cases = [
         category: "スパイスカレー店",
         achievement: "売上110%達成",
         tags: ["#規格外野菜活用", "#客単価UP", "#コスト削減"],
-        image: "/images/case-spice-curry.png",
+        image: "/images/case-curry.png",
         story: "原価高騰に悩んでいたが、ベジコベの「規格外野菜」を使って自家製アチャールを開発。メインのカレーを値上げすることなく、トッピング注文率を上げることで無理なく客単価UPに成功。「安いのに味が濃くて美味しい野菜のおかげです」"
     },
     {
@@ -16,7 +16,7 @@ const cases = [
         category: "イタリアンレストラン",
         achievement: "売上120%達成",
         tags: ["#高付加価値化", "#リピート率UP", "#接客支援"],
-        image: "/images/case-italian-restaurant.png",
+        image: "/images/case-italian.png",
         story: "「本日のおすすめ」が売れないのが悩みだった。ベジコベから届く野菜の「生産者ストーリー」をスタッフに共有したところ、接客の熱量が変化。お客様との会話が弾み、高単価な季節限定メニューの注文が倍増した。「野菜の背景にある物語が、一番の調味料でした」"
     }
 ];
