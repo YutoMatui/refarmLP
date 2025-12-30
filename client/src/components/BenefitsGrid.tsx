@@ -1,33 +1,30 @@
 import { useEffect, useRef } from "react";
-import { trackSectionScroll } from "@/lib/gtag";
+import { trackSectionScroll } from "../lib/gtag";
 
-// Updated to 3 Core Reasons - Support section removed to be separate
+// 3つのコアな選ばれる理由
 const reasons = [
     {
         id: "unit-price",
-        tag: "客単価UP",
-        title: "「物語」で単価UP",
+        title: "物語の力で単価UP",
         subtitle: "メニューに書くだけで価値が伝わる",
-        description: "生産者の顔やこだわり（ストーリー）がセットで届くから、メニューブックや接客で「語れる一皿」になります。「地元のこだわり野菜」という付加価値が、50円〜100円の値上げを正当化。",
-        image: "/images/icons/icon-trust.png", // Using icon as main visual for simple design
+        description: "生産者の顔やこだわり（ストーリー）がセットで届くから、メニューブックや接客で「語れる一皿」に変わります。「地元のこだわり野菜」という付加価値が、20%以上の単価アップを正当化します。",
+        image: "/images/icons/icon-story-value.png", // 生成した画像のファイル名1
         highlight: "料理の味は変えずに、価値を変える。",
     },
     {
         id: "repeat",
-        tag: "リピートUP",
-        title: "「感動品質」でリピート",
-        subtitle: "スーパーにない朝採れ野菜",
-        description: "市場経由では手に入らない「朝採れ」や「珍しい品種」が届きます。鮮度抜群の野菜が生む「驚きのおいしさ」が、お客様の記憶に残り、「あの野菜をまた食べたい」という動機を作ります。",
-        image: "/images/icons/icon-quality.png",
-        highlight: "他店との圧倒的な差別化。",
+        title: "納得と驚きでリピート",
+        subtitle: "次も来たくなる「予告」の仕掛け",
+        description: "市場にはない「朝採れ」の圧倒的な美味しさ（驚き）と、その背景情報（納得）がファンの心を掴みます。さらに「来月はこの野菜」という旬の予告が、次回の来店動機を自然に生み出します。",
+        image: "/images/icons/icon-repeat-cycle.png", // 生成した画像のファイル名2
+        highlight: "ただの食事を、記憶に残る体験へ。",
     },
     {
         id: "cost",
-        tag: "原価DOWN",
         title: "「訳あり」で原価DOWN",
         subtitle: "味は同じでコスト削減",
-        description: "形が少し悪い、サイズが不揃いといった「訳あり野菜」も積極的にラインナップ。味や鮮度は一級品と同じですが、価格は抑えられています。カレー、スープ、ソースやお通しなどに活用。",
-        image: "/images/icons/icon-cost.png",
+        description: "形が少し悪い、サイズが不揃いといった「訳あり野菜」も積極的にラインナップ。味や鮮度は一級品と同じですが、価格は抑えられています。スープやソース、お通しなどに賢く活用できます。",
+        image: "/images/icons/icon-smart-cost.png", // 生成した画像のファイル名3
         highlight: "賢い仕入れで、コストパフォーマンスを最大化。",
     },
 ];
@@ -64,6 +61,7 @@ export default function BenefitsGrid() {
             data-event="scroll_to_benefits"
         >
             <div className="container mx-auto px-4">
+                {/* Section Title */}
                 <div className="text-center mb-12 md:mb-16">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4 leading-tight">
                         ベジコベが選ばれる<br className="md:hidden" />3つの理由
@@ -73,45 +71,46 @@ export default function BenefitsGrid() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {/* Benefits Grid */}
+                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {reasons.map((reason, index) => (
-                        <div key={reason.id} className="bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-slate-100 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+                        <div
+                            key={reason.id}
+                            className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                        >
 
-                            {/* Icon Circle */}
-                            <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mb-6 relative">
+                            {/* Icon Circle (Smaregi Style) */}
+                            <div className="w-28 h-28 bg-emerald-50 rounded-full flex items-center justify-center mb-8 relative">
                                 <img
                                     src={reason.image}
                                     alt={reason.title}
-                                    className="w-12 h-12 object-contain"
+                                    className="w-16 h-16 object-contain"
                                 />
-                                <div className="absolute -top-2 -right-2 bg-orange-500 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+                                {/* Number Badge */}
+                                <div className="absolute -top-1 -right-1 bg-orange-500 text-white font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-sm border-2 border-white">
                                     {index + 1}
                                 </div>
                             </div>
-
-                            {/* Tag */}
-                            <span className="text-emerald-600 font-bold text-sm bg-emerald-50 px-3 py-1 rounded-full mb-3">
-                                {reason.tag}
-                            </span>
 
                             {/* Title */}
                             <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-2 leading-tight">
                                 {reason.title}
                             </h3>
 
-                            {/* Subtitle */}
-                            <p className="text-orange-500 font-bold text-sm mb-4">
+                            {/* Subtitle (Highlight Color) */}
+                            <p className="text-emerald-600 font-bold text-sm mb-5">
                                 {reason.subtitle}
                             </p>
 
                             {/* Description */}
-                            <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                            <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
                                 {reason.description}
                             </p>
 
-                            {/* Highlight */}
-                            <div className="mt-auto pt-4 border-t border-slate-100 w-full">
-                                <p className="text-emerald-700 font-bold text-sm">
+                            {/* Bottom Highlight Box */}
+                            <div className="mt-auto pt-5 border-t border-slate-100 w-full">
+                                <p className="text-slate-800 font-bold text-sm flex items-center justify-center gap-2">
+                                    <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
                                     {reason.highlight}
                                 </p>
                             </div>
