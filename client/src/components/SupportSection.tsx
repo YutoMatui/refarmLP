@@ -1,54 +1,71 @@
-/**
- * VegeKobe Support Section (Peace of Mind)
- */
+// Lucideアイコンのインポートは不要になります
+// import { ShieldCheck, MessageCircle, TrendingUp } from "lucide-react";
 
-import { ShieldCheck, Clock, HeartHandshake } from "lucide-react";
-
-const supportPoints = [
+const supportFeatures = [
     {
-        icon: ShieldCheck,
-        title: "安全・品質へのこだわり",
-        description: "契約農家はすべて、こだわり抜いた栽培方法を実践。ベジコベ独自の品質基準に基づき、最高鮮度の状態でお店にお届けします。"
+        // iconプロパティを削除し、imageプロパティにファイルパスを指定
+        image: "/images/support-line.png",
+        title: "LINEで即座に対応",
+        subtitle: "365日いつでも相談",
+        description: "発注ミスや配送トラブルも、LINE一本ですぐに解決。電話を待たされるストレスはありません。専任スタッフがスピーディーに対応します。"
     },
     {
-        icon: Clock,
-        title: "迅速なトラブル対応",
-        description: "万が一の欠品や配送トラブルにも、LINEですぐに対応。担当スタッフが迅速に代替品の提案や調整を行い、お店の営業を止めません。"
+        image: "/images/support-quality.png",
+        title: "品質・鮮度保証",
+        subtitle: "万が一の時も安心",
+        description: "届いた野菜の品質に問題があった場合は、すぐに代替品の手配や返金対応を行います。独自の品質基準をクリアした野菜のみをお届けします。"
     },
     {
-        icon: HeartHandshake,
-        title: "継続的なメニュー相談",
-        description: "ただ野菜を売るだけではありません。季節の野菜を使ったおすすめメニューの提案や、販促POPの作成など、集客まで並走します。"
+        image: "/images/support-menu.png",
+        title: "「売れる」メニュー提案",
+        subtitle: "導入後もずっと並走",
+        description: "ただ野菜を届けるだけではありません。「今週のおすすめ」や「他店の成功事例」など、客単価アップに繋がる情報を定期的に提供します。"
     }
 ];
 
 export default function SupportSection() {
     return (
-        <section className="py-16 md:py-24 bg-emerald-50">
+        <section className="py-20 md:py-28 bg-white">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12 md:mb-16">
-                    <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
-                        安心の理由
-                    </span>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
-                        長く選ばれ続けるための、<br className="md:hidden" />充実したサポート体制
+                {/* Header Area */}
+                <div className="text-center mb-16">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-6 leading-tight">
+                        お客様の「困った」も<br className="md:hidden" />
+                        <span className="text-emerald-600 border-b-4 border-emerald-200">LINEですぐに解決！</span>
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        導入前から導入後まで、私たちが全力でお店をバックアップします。
+                    <p className="text-lg text-slate-600 font-bold">
+                        サポートスタッフは、<span className="text-emerald-600">野菜と飲食のプロ</span>のみで安心
+                    </p>
+                    <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                        導入前の不安から、導入後のメニュー相談まで。<br className="hidden md:block" />
+                        マニュアル通りの対応ではなく、お店一軒一軒の状況に合わせた誠実なサポートをお約束します。
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {supportPoints.map((point, index) => (
-                        <div key={index} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
-                            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
-                                <point.icon className="w-8 h-8 text-emerald-600" />
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-800 mb-4">
-                                {point.title}
+                {/* Cards Grid */}
+                <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    {supportFeatures.map((feature, index) => (
+                        <div
+                            key={index}
+                            className="bg-emerald-50/50 rounded-2xl p-8 md:p-10 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg border border-emerald-100/50"
+                        >
+                            {/* Image Icon */}
+                            {/* 画像自体が円形なので、そのまま表示します。サイズはw-24 h-24 (96px) に設定 */}
+                            <img
+                                src={feature.image}
+                                alt={feature.title}
+                                className="w-24 h-24 mb-6 shadow-sm rounded-full shrink-0"
+                            />
+
+                            {/* Text Content */}
+                            <p className="text-sm font-bold text-emerald-600 mb-2">
+                                {feature.subtitle}
+                            </p>
+                            <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4">
+                                {feature.title}
                             </h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                {point.description}
+                            <p className="text-slate-600 leading-relaxed text-sm md:text-base">
+                                {feature.description}
                             </p>
                         </div>
                     ))}
