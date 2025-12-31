@@ -222,14 +222,14 @@ export default function PainPointsSection() {
         </div>
       </div>
 
-      {/* Solution Modal - Smaregi Style Pop-up */}
+      {/* Solution Modal */}
       <Dialog open={open} onOpenChange={setOpen}>
-        {/* max-w-5xlで幅を制限し、overflow-visibleで外側の矢印を表示可能にする */}
-        <DialogContent className="max-w-[95vw] md:max-w-5xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8 focus:outline-none">
+        {/* スマホ修正: pb-20 (下部に余白) を追加してカードを上に押し上げる */}
+        <DialogContent className="max-w-[95vw] md:max-w-5xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8 pb-20 md:pb-0 focus:outline-none">
 
           <div className="relative w-full">
 
-            {/* PC用: 左右の矢印ボタン（カードの外側に配置） */}
+            {/* PC用矢印 (カードの外側) */}
             <button
               onClick={handlePrev}
               className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full items-center justify-center transition-all z-50 shadow-lg"
@@ -246,24 +246,24 @@ export default function PainPointsSection() {
             {/* カード本体 */}
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden relative">
 
-              {/* SP用: ナビゲーションボタン（カードの中、端） */}
+              {/* スマホ修正: 矢印をカード全体の中心線（ライン）に配置。色は見やすいように少し濃く調整 */}
               <button
                 onClick={handlePrev}
-                className="md:hidden absolute left-2 top-1/3 z-50 w-10 h-10 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-sm"
+                className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 bg-black/10 text-slate-500 rounded-full flex items-center justify-center hover:bg-black/20"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={handleNext}
-                className="md:hidden absolute right-2 top-1/3 z-50 w-10 h-10 bg-black/20 text-white rounded-full flex items-center justify-center backdrop-blur-sm"
+                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-50 w-10 h-10 bg-black/10 text-slate-500 rounded-full flex items-center justify-center hover:bg-black/20"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
 
               <div className="flex flex-col md:flex-row min-h-[500px]">
-                {/* 画像エリア (PC: 左側40%程度, SP: 上部) */}
+                {/* 画像エリア */}
                 <div className="w-full md:w-5/12 bg-white flex items-center justify-center p-6 pb-0 md:p-8 md:pr-0">
-                  {/* 画像をカードの中に収めるデザイン (横長) */}
+                  {/* 画像 (横長) */}
                   <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
                     <img
                       src={currentPoint.solution.image}
@@ -276,7 +276,7 @@ export default function PainPointsSection() {
                 {/* テキストエリア */}
                 <div className="w-full md:w-7/12 p-6 md:p-10 flex flex-col justify-center">
                   {/* 課題タイトル */}
-                  <div className="mb-6">
+                  <div className="mb-6 text-center md:text-left">
                     <span className="text-emerald-500 text-sm font-bold mb-1 block">
                       現在のお悩み
                     </span>
@@ -287,13 +287,13 @@ export default function PainPointsSection() {
 
                   {/* 解決策詳細 */}
                   <div className="border-t border-slate-100 pt-6">
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
                       <span className="text-emerald-600 font-bold text-lg md:text-xl">
                         ベジコベなら！
                       </span>
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-4">
+                    <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-4 text-center md:text-left">
                       {currentPoint.solution.title}
                     </h3>
 
@@ -313,11 +313,11 @@ export default function PainPointsSection() {
                 </div>
               </div>
 
-              {/* 吹き出しのしっぽ (カードの下部中央) - PCのみ表示 */}
+              {/* 吹き出しのしっぽ (PCのみ) */}
               <div className="hidden md:block absolute -bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[20px] border-t-white"></div>
             </div>
 
-            {/* インジケーター (カードの外側下部) */}
+            {/* インジケーター */}
             <div className="flex justify-center gap-2 mt-8">
               {painPoints.map((_, idx) => (
                 <div key={idx} className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-white scale-125' : 'bg-white/40'}`} />
