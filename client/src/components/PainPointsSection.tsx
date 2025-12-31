@@ -2,9 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import {
   TrendingDown, Users, Clock,
   ChevronRight, ChevronLeft, Check,
-  ShoppingBag, Smile, Smartphone
+  ShoppingBag, Smile, Smartphone, X
 } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -92,7 +92,7 @@ const PainPointCard = ({ point, onClick, className }: { point: PainPoint, onClic
   <div className={`relative flex flex-col h-full ${className} pb-6`}>
     <div
       onClick={onClick}
-      className="group cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative h-full flex flex-col text-left"
+      className="group cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative h-full flex flex-col text-left border border-slate-100"
     >
       <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 leading-snug group-hover:text-emerald-600 transition-colors">
         {point.title}
@@ -221,25 +221,28 @@ export default function PainPointsSection() {
         </div>
       </div>
 
-      {/* Solution Modal - Improved Layout & Navigation */}
+      {/* Solution Modal */}
       <Dialog open={open} onOpenChange={setOpen}>
-        {/* max-w-7xl と w-full で幅を大きく確保し、横長レイアウトに対応 */}
-        <DialogContent className="max-w-[95vw] md:max-w-7xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center">
+        {/* PC: max-w-6xl で幅制限と余白を確保, SP: 幅95% */}
+        <DialogContent className="max-w-[95vw] md:max-w-6xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8">
 
-          <div className="relative w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh]">
+          <div className="relative w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[85vh]">
 
-            {/* Navigation Buttons (Desktop: Outside / Mobile: Inside Bottom) */}
-            {/* 左矢印 (PC用: コンテンツの外左側に配置) */}
+            {/* Close Button (Inside Top-Right) */}
+            <DialogClose className="absolute top-4 right-4 z-50 p-2 bg-black/10 hover:bg-black/20 rounded-full text-slate-500 transition-colors md:hidden">
+              <X className="w-6 h-6" />
+            </DialogClose>
+
+            {/* PC Navigation Buttons (Outside) */}
             <button
               onClick={handlePrev}
-              className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50"
+              className="hidden md:flex absolute -left-20 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50 shadow-lg"
             >
               <ChevronLeft className="w-8 h-8" />
             </button>
-            {/* 右矢印 (PC用: コンテンツの外右側に配置) */}
             <button
               onClick={handleNext}
-              className="hidden md:flex absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50"
+              className="hidden md:flex absolute -right-20 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50 shadow-lg"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
@@ -247,28 +250,43 @@ export default function PainPointsSection() {
             {/* Content Area */}
             <div className="flex-1 overflow-y-auto md:overflow-hidden flex flex-col md:flex-row h-full">
 
-              {/* Left: Image Area (横長レイアウトのために大きく確保) */}
-              <div className="w-full md:w-1/2 bg-emerald-50 h-64 md:h-full relative shrink-0">
+              {/* Left: Image Area */}
+              <div className="w-full md:w-1/2 bg-emerald-50 relative shrink-0 min-h-[300px] md:h-auto flex items-center justify-center overflow-hidden">
                 <img
                   src={currentPoint.solution.image}
                   alt={currentPoint.solution.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover md:object-cover"
                 />
-                {/* Image Overlay Title (Mobile Only) */}
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-6 md:hidden">
-                  <span className="inline-block bg-white/90 text-slate-800 text-xs font-bold px-3 py-1 rounded-full mb-2 shadow-sm">
+
+                {/* Mobile Title Overlay (SPのみ画像の上にタイトル表示) */}
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-20 md:hidden">
+                  <span className="inline-block bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-2 shadow-sm border border-white/20">
                     現在のお悩み
                   </span>
-                  <h2 className="text-xl font-bold text-white leading-tight">
+                  <h2 className="text-xl font-bold text-white leading-tight drop-shadow-md">
                     {currentPoint.title}
                   </h2>
                 </div>
+
+                {/* SP Navigation Buttons (Inside Image Side-Center) */}
+                <button
+                  onClick={handlePrev}
+                  className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 text-white rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 text-white rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
 
               {/* Right: Text Content Area */}
               <div className="w-full md:w-1/2 p-6 md:p-10 lg:p-12 flex flex-col h-full overflow-y-auto bg-white">
 
-                {/* Header (Desktop Only) */}
+                {/* PC Header */}
                 <div className="hidden md:block mb-8 pb-6 border-b border-slate-100">
                   <span className="inline-block bg-slate-100 text-slate-600 text-sm font-bold px-4 py-1.5 rounded-full mb-3">
                     現在のお悩み
@@ -280,8 +298,8 @@ export default function PainPointsSection() {
 
                 {/* Solution Detail */}
                 <div className="flex-grow">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center shadow-md rotate-3">
+                  <div className="flex items-center gap-3 mb-4 mt-2 md:mt-0">
+                    <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center shadow-md rotate-3 shrink-0">
                       <SolutionIcon className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-emerald-600 font-bold text-xl md:text-2xl tracking-wide">
@@ -310,37 +328,9 @@ export default function PainPointsSection() {
                     </ul>
                   </div>
                 </div>
-
-                {/* Mobile Navigation (Bottom) */}
-                <div className="flex md:hidden justify-between items-center mt-8 pt-4 border-t border-slate-100">
-                  <button
-                    onClick={handlePrev}
-                    className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 active:bg-slate-200"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  <div className="flex gap-2">
-                    {painPoints.map((_, idx) => (
-                      <div key={idx} className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-emerald-600' : 'bg-slate-200'}`} />
-                    ))}
-                  </div>
-                  <button
-                    onClick={handleNext}
-                    className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 active:bg-slate-200"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </div>
-
               </div>
             </div>
           </div>
-
-          {/* Overlay Close Hint (Optional) */}
-          <div className="fixed top-6 right-6 z-50 md:hidden pointer-events-none text-white/80 text-sm font-bold drop-shadow-md">
-            画面外タップで閉じる
-          </div>
-
         </DialogContent>
       </Dialog>
     </section>
