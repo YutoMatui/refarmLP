@@ -34,11 +34,10 @@ export default function SupportSection() {
                         <span className="text-emerald-600 border-b-4 border-emerald-200">LINEですぐに解決！</span>
                     </h2>
                     <p className="text-lg text-slate-600 font-bold">
-                        サポートスタッフは、<span className="text-emerald-600">野菜と飲食のプロ</span>のみで安心
+                        サポートスタッフは、<span className="text-emerald-600">お店ごとの専属担当制だから安心</span>
                     </p>
                     <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-                        導入前の不安から、導入後のメニュー相談まで。<br className="hidden md:block" />
-                        マニュアル通りの対応ではなく、お店一軒一軒の状況に合わせた誠実なサポートをお約束します。
+                        マニュアル通りの対応ではなく、お店の事情や好みを理解した専属スタッフが、誠実・丁寧に対応します。
                     </p>
                 </div>
 

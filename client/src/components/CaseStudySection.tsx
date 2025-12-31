@@ -172,7 +172,7 @@ export default function CaseStudySection() {
 
                     {/* Dots Indicator */}
                     <div className="flex justify-center gap-2 mt-6">
-                        {Array.from({ length: count }).map((_, index) => (
+                        {cases.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => api?.scrollTo(index)}

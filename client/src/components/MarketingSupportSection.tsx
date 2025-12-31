@@ -63,13 +63,10 @@ export default function MarketingSupportSection() {
                             {/* Image Area */}
                             <div className="aspect-video bg-slate-300 rounded-xl mb-6 overflow-hidden relative">
                                 <img src="/images/before-service.png" alt="Before" className="w-full h-full object-cover mix-blend-multiply" />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <Frown className="w-16 h-16 text-slate-500 opacity-50" />
-                                </div>
                             </div>
                             <div className="space-y-2">
                                 <h4 className="text-lg font-bold text-slate-600">トマトパスタ</h4>
-                                <p className="text-3xl font-black text-slate-500">¥1,200</p>
+                                <p className="text-3xl font-black text-slate-500">¥1,500</p>
                                 <div className="bg-slate-200/50 p-4 rounded-lg mt-4">
                                     <p className="text-sm font-bold text-slate-500 mb-1">お客様の心理</p>
                                     <p className="text-slate-600">「美味しいけど、これなら他のお店でもいいかな…」</p>
@@ -88,7 +85,7 @@ export default function MarketingSupportSection() {
                         </div>
 
                         {/* After Card */}
-                        <div className="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-500 shadow-2xl relative transform md:scale-105 z-10">
+                        <div className="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-500 shadow-2xl relative transform md:scale-105 z-10 md:mt-16">
                             <div className="absolute -top-5 right-6 bg-orange-500 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg">
                                 単価UP & 注文数UP!
                             </div>
@@ -110,12 +107,12 @@ export default function MarketingSupportSection() {
                                     <span className="text-orange-500">ヤスオさんの王様トマト</span>のパスタ
                                 </h4>
                                 <div className="flex items-baseline gap-3">
-                                    <p className="text-4xl font-black text-slate-800">¥1,400</p>
-                                    <p className="text-lg text-slate-400 line-through decoration-2">¥1,200</p>
+                                    <p className="text-4xl font-black text-slate-800">¥1,800</p>
+                                    <p className="text-lg text-slate-400 line-through decoration-2">¥1,500</p>
                                 </div>
                                 <div className="bg-emerald-50 p-4 rounded-lg mt-4 border border-emerald-100">
                                     <p className="text-sm font-bold text-emerald-600 mb-1">お客様の心理</p>
-                                    <p className="text-slate-800 font-bold">「このトマト食べてみたい！安い！」</p>
+                                    <p className="text-slate-800 font-bold">「こんなにこだわってるからおいしいのか！また来たい！」</p>
                                 </div>
                             </div>
                         </div>
@@ -153,11 +150,6 @@ export default function MarketingSupportSection() {
                                         {/* Step Number Badge */}
                                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-emerald-600 font-black px-3 py-1 rounded shadow-sm text-sm">
                                             STEP 0{step.id}
-                                        </div>
-
-                                        {/* Icon Badge */}
-                                        <div className="absolute -bottom-6 right-6 w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-md border-4 border-white">
-                                            <step.icon className="w-6 h-6" />
                                         </div>
                                     </div>
 
@@ -202,7 +194,7 @@ export default function MarketingSupportSection() {
                             </div>
                             {/* 代表者署名風 */}
                             <div className="shrink-0 text-center">
-                                <div className="w-20 h-20 bg-white rounded-full p-1 shadow-md mx-auto mb-2 overflow-hidden">
+                                <div className="w-32 h-32 bg-white rounded-full p-1 shadow-md mx-auto mb-2 overflow-hidden">
                                     {/* 代表者画像があればここに */}
                                     <img src="/images/profile-icon.jpg" alt="松井優人" className="w-full h-full object-cover rounded-full" />
                                 </div>

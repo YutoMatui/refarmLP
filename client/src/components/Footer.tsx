@@ -16,9 +16,15 @@ export default function Footer() {
             <img
               src="/images/logo.png"
               alt="ベジコベ VegeKobe"
-              className="h-8 md:h-10 brightness-0 invert" // Make logo white for dark footer
+              className="h-8 md:h-10"
             />
           </a>
+
+          {/* Company Info */}
+          <div className="text-slate-400 text-sm text-center md:text-left">
+            <p className="font-bold mb-1">運営: りふぁーむ</p>
+            <p>代表: 松井 優人</p>
+          </div>
 
           {/* Copyright */}
           <p className="text-slate-400 text-sm">

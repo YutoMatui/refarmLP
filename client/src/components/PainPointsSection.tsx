@@ -121,9 +121,19 @@ export default function PainPointsSection() {
   // Carousel Sync
   useEffect(() => {
     if (!api) return;
+
+    // Autoplay logic
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 4000);
+
     const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
     api.on("select", onSelect);
-    return () => { api.off("select", onSelect); };
+
+    return () => {
+      api.off("select", onSelect);
+      clearInterval(interval);
+    };
   }, [api]);
 
   // Sync React state to Carousel
@@ -214,12 +224,12 @@ export default function PainPointsSection() {
           </Carousel>
         </div>
 
-        {/* Bottom Link */}
-        <div className="text-center mt-4 md:mt-8">
+        {/* Bottom Link - Removed as per request */}
+        {/* <div className="text-center mt-4 md:mt-8">
           <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-emerald-600 rounded-full px-8 py-6 text-lg font-bold transition-all">
             全機能・解決策を見る <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
-        </div>
+        </div> */}
       </div>
 
       {/* Solution Modal */}
