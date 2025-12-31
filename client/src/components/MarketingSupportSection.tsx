@@ -1,4 +1,4 @@
-import { ArrowRight, MessageCircle, FileText, Users, Frown, Smile, Check } from "lucide-react";
+import { ArrowRight, MessageCircle, FileText, Users, Frown, Smile } from "lucide-react";
 
 // 3ステップのデータ
 const steps = [
@@ -8,7 +8,7 @@ const steps = [
         subtitle: "想いを言語化・映像化",
         description: "りふぁーむが農家にインタビューを行い、栽培のこだわりや生産者の想いを言語化・映像化。「なぜ美味しいのか」というストーリーを引き出します。",
         icon: Users,
-        image: "/images/step-interview.jpg", // 取材の様子（生成画像の3枚目など）
+        image: "/images/step-interview.jpg",
     },
     {
         id: 2,
@@ -16,7 +16,7 @@ const steps = [
         subtitle: "メニュー・POP・SNS素材",
         description: "取材情報を「メニュー表」や「POP」として提供。「美味しい」に「情報」が加わることで、お客様の満足度と価格への納得感が向上します。",
         icon: FileText,
-        image: "/images/step-pop.jpg", // POPやメニューの画像（生成画像の4枚目など）
+        image: "/images/step-pop.jpg",
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const steps = [
         subtitle: "ファン化してリピート",
         description: "来店客をLINEへ誘導。食材や新メニューの魅力を定期的に発信することで、忘れられないお店となり「また来たい」を創出します。",
         icon: MessageCircle,
-        image: "/images/step-line.jpg", // スマホでLINEを見ている画像など
+        image: "/images/step-line.jpg",
     },
 ];
 
@@ -181,17 +181,21 @@ export default function MarketingSupportSection() {
 
                 {/* 4. Conclusion Message (Letter Style) */}
                 <div className="max-w-3xl mx-auto">
-                    <div className="bg-orange-50 rounded-xl p-8 md:p-10 border-2 border-orange-100 relative shadow-sm text-center md:text-left">
+                    {/* スマホでのパディングを少し減らしました (p-6) */}
+                    <div className="bg-orange-50 rounded-xl p-6 md:p-10 border-2 border-orange-100 relative shadow-sm text-center md:text-left">
                         {/* Clip decoration */}
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-16 bg-gray-200 rounded-full border-4 border-white shadow-sm hidden md:block"></div>
 
                         <div className="flex flex-col md:flex-row items-center gap-6">
                             <div className="flex-1">
-                                <h3 className="text-xl font-bold text-slate-800 mb-4 text-center md:text-left">
+                                {/* スマホでのフォントサイズを調整 (text-lg) */}
+                                <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-4 text-center md:text-left">
                                     ただ野菜を届けるだけではありません
                                 </h3>
                                 <p className="text-slate-700 leading-relaxed font-medium mb-4">
-                                    私たちはりふぁーむは、「お店のファン作り」までサポートします。
+                                    {/* スマホのみ指定位置で改行 */}
+                                    私たちは「お店のファン作り」まで、<br className="md:hidden" />
+                                    サポートします。
                                     <br />
                                     美味しい料理と、その裏にある物語で、お客様が<span className="text-orange-500 font-bold text-lg border-b-2 border-orange-300">「また来たい」</span>と思うお店を一緒に作りましょう。
                                 </p>
