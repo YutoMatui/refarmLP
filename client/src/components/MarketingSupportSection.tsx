@@ -8,9 +8,7 @@ const steps = [
         subtitle: "想いを言語化・映像化",
         description: "りふぁーむが農家にインタビューを行い、栽培のこだわりや生産者の想いを言語化・映像化。「なぜ美味しいのか」というストーリーを引き出します。",
         icon: Users,
-        image: "/images/step-interview.jpg",
-        // 追加: 画像の上部（顔や背景）を中心に表示
-        imagePosition: "object-top",
+        image: "/images/step-interview.jpg", // 取材の様子（生成画像の3枚目など）
     },
     {
         id: 2,
@@ -18,9 +16,7 @@ const steps = [
         subtitle: "メニュー・POP・SNS素材",
         description: "取材情報を「メニュー表」や「POP」として提供。「美味しい」に「情報」が加わることで、お客様の満足度と価格への納得感が向上します。",
         icon: FileText,
-        image: "/images/step-pop.jpg",
-        // 追加: 画像の下部（料理やテーブル）を中心に表示
-        imagePosition: "object-bottom",
+        image: "/images/step-pop.jpg", // POPやメニューの画像（生成画像の4枚目など）
     },
     {
         id: 3,
@@ -28,9 +24,7 @@ const steps = [
         subtitle: "ファン化してリピート",
         description: "来店客をLINEへ誘導。食材や新メニューの魅力を定期的に発信することで、忘れられないお店となり「また来たい」を創出します。",
         icon: MessageCircle,
-        image: "/images/step-line.jpg",
-        // 追加: デフォルトの中央表示
-        imagePosition: "object-center",
+        image: "/images/step-line.jpg", // スマホでLINEを見ている画像など
     },
 ];
 
@@ -68,7 +62,6 @@ export default function MarketingSupportSection() {
                             </div>
                             {/* Image Area */}
                             <div className="aspect-video bg-slate-300 rounded-xl mb-6 overflow-hidden relative">
-                                {/* 仮の画像パスです。実際のものに置き換えてください */}
                                 <img src="/images/before-service.png" alt="Before" className="w-full h-full object-cover mix-blend-multiply" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <Frown className="w-16 h-16 text-slate-500 opacity-50" />
@@ -105,7 +98,6 @@ export default function MarketingSupportSection() {
 
                             {/* Image Area */}
                             <div className="aspect-video bg-emerald-50 rounded-xl mb-6 overflow-hidden relative">
-                                {/* 仮の画像パスです。実際のものに置き換えてください */}
                                 <img src="/images/after-service.png" alt="After" className="w-full h-full object-cover" />
                                 {/* Smile Badge */}
                                 <div className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md">
@@ -156,12 +148,7 @@ export default function MarketingSupportSection() {
                                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col h-full">
                                     {/* Step Header Image */}
                                     <div className="h-40 bg-slate-100 relative">
-                                        <img
-                                            src={step.image}
-                                            alt={step.title}
-                                            // 修正箇所: object-cover に加えて、データで定義した imagePosition を適用
-                                            className={`w-full h-full object-cover ${step.imagePosition}`}
-                                        />
+                                        <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
 
                                         {/* Step Number Badge */}
                                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-emerald-600 font-black px-3 py-1 rounded shadow-sm text-sm">
@@ -209,9 +196,10 @@ export default function MarketingSupportSection() {
                                     美味しい料理と、その裏にある物語で、お客様が<span className="text-orange-500 font-bold text-lg border-b-2 border-orange-300">「また来たい」</span>と思うお店を一緒に作りましょう。
                                 </p>
                             </div>
-                            {/* 代表者署名風 - 画像パスは適宜変更してください */}
+                            {/* 代表者署名風 */}
                             <div className="shrink-0 text-center">
                                 <div className="w-20 h-20 bg-white rounded-full p-1 shadow-md mx-auto mb-2 overflow-hidden">
+                                    {/* 代表者画像があればここに */}
                                     <img src="/images/profile-icon.jpg" alt="松井優人" className="w-full h-full object-cover rounded-full" />
                                 </div>
                                 <p className="text-sm text-slate-500 font-bold">りふぁーむ代表</p>
