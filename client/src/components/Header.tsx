@@ -7,6 +7,12 @@
 import { useState, useEffect } from "react";
 import { Leaf, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const navItems = [
   { label: "選ばれる理由", href: "#pain-points" },
@@ -18,6 +24,7 @@ const navItems = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +45,8 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white/95 backdrop-blur-sm shadow-md"
-          : "bg-white"
+        ? "bg-white/95 backdrop-blur-sm shadow-md"
+        : "bg-white"
         }`}
     >
       <div className="container">
@@ -73,6 +80,12 @@ export default function Header() {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={() => setIsAboutOpen(true)}
+              className="text-slate-600 hover:text-emerald font-medium transition-colors"
+            >
+              私たちについて
+            </button>
           </nav>
 
           {/* Desktop CTA Buttons */}
@@ -119,6 +132,15 @@ export default function Header() {
                   {item.label}
                 </button>
               ))}
+              <button
+                onClick={() => {
+                  setIsAboutOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-left py-3 px-4 text-slate-600 hover:text-emerald hover:bg-slate-50 rounded-lg font-medium transition-colors"
+              >
+                私たちについて
+              </button>
             </nav>
             <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-100">
               <Button
@@ -138,6 +160,42 @@ export default function Header() {
           </div>
         )}
       </div>
+
+      <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
+        <DialogContent className="sm:max-w-[500px] bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-center border-b pb-4">私たちについて</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <h4 className="font-bold text-emerald-600 mb-4 text-center">特定商取引法に基づく表記</h4>
+            <div className="space-y-4 text-sm">
+              <div className="grid grid-cols-[100px_1fr] gap-4 items-start border-b border-slate-100 pb-3">
+                <div className="font-bold text-slate-500">屋号</div>
+                <div className="font-medium text-slate-800">りふぁーむ</div>
+              </div>
+
+              <div className="grid grid-cols-[100px_1fr] gap-4 items-start border-b border-slate-100 pb-3">
+                <div className="font-bold text-slate-500">住所</div>
+                <div className="font-medium text-slate-800">
+                  〒653-0041<br />
+                  神戸市長田区腕塚町5-2-1<br />
+                  新長田キャンパスプラザ5階
+                </div>
+              </div>
+
+              <div className="grid grid-cols-[100px_1fr] gap-4 items-start border-b border-slate-100 pb-3">
+                <div className="font-bold text-slate-500">メール</div>
+                <div className="font-medium text-slate-800">refarmkobe@gmail.com</div>
+              </div>
+
+              <div className="grid grid-cols-[100px_1fr] gap-4 items-start">
+                <div className="font-bold text-slate-500">代表者</div>
+                <div className="font-medium text-slate-800">松井優人</div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </header>
   );
 }

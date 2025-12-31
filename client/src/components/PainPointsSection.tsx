@@ -128,6 +128,40 @@ export default function PainPointsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
+  // Sync Carousel state with React state
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!api || open) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [api, open]);
+
+  // Sync React state changes (e.g. from Dialog) back to Carousel
+  useEffect(() => {
+    if (!api) return;
+    if (api.selectedScrollSnap() !== currentIndex) {
+      api.scrollTo(currentIndex);
+    }
+  }, [currentIndex, api]);
+
   const handleCardClick = (index: number) => {
     setCurrentIndex(index);
     setOpen(true);
@@ -197,10 +231,17 @@ export default function PainPointsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {/* Dots indicator could be added here if needed */}
-            <div className="hidden">
-              <CarouselPrevious />
-              <CarouselNext />
+            {/* Dots indicator */}
+            <div className="flex justify-center gap-3 mt-2">
+              {painPoints.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`w-3 h-3 rounded-full border border-emerald-500 transition-all duration-300 ${index === currentIndex ? "bg-emerald-500" : "bg-transparent"
+                    }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
           </Carousel>
         </div>
