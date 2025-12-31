@@ -171,14 +171,14 @@ export default function CaseStudySection() {
                     </Carousel>
 
                     {/* Dots Indicator */}
-                    <div className="flex justify-center gap-2 mt-6">
+                    <div className="flex justify-center gap-3 mt-8">
                         {cases.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => api?.scrollTo(index)}
                                 className={cn(
-                                    "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                                    current === index ? "bg-emerald-500 w-4" : "bg-slate-300 hover:bg-emerald-300"
+                                    "w-3 h-3 rounded-full transition-all duration-300",
+                                    current === index ? "bg-emerald-500 scale-110" : "bg-slate-300 hover:bg-emerald-200"
                                 )}
                                 aria-label={`Go to slide ${index + 1}`}
                             />

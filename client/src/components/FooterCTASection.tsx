@@ -28,7 +28,7 @@ export default function FooterCTASection() {
           <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-10">
             無理な営業は一切しません。
             <br className="hidden sm:block" />
-            あなたのお店に、神戸野菜がどう役立つか、
+            あなたのお店に、地産地消がどう役立つか、
             <br className="hidden sm:block" />
             シミュレーションだけでもしてみませんか？
           </p>
@@ -39,7 +39,7 @@ export default function FooterCTASection() {
             <div className="flex flex-col items-center">
               <Button
                 className="bg-orange hover:bg-orange-dark text-white font-bold text-lg py-6 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
-                onClick={() => window.open('https://line.me', '_blank')}
+                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
                 「客単価アップ」について相談する
               </Button>
@@ -51,11 +51,11 @@ export default function FooterCTASection() {
               <Button
                 variant="outline"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald font-bold text-lg py-6 px-10 rounded-xl transition-all duration-200"
-                onClick={() => window.open('https://line.me', '_blank')}
+                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
                 「リピート率アップ」について相談する
               </Button>
-              <span className="text-sm text-white/80 mt-2">1分で完了</span>
+              <span className="text-sm text-white/80 mt-2">1分で入力完了</span>
             </div>
           </div>
         </div>

@@ -53,7 +53,7 @@ export default function MarketingSupportSection() {
                     {/* Background Connector Line (PC) */}
                     <div className="hidden md:block absolute top-1/2 left-0 w-full h-2 bg-slate-200 -z-10 rounded-full"></div>
 
-                    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-24 items-center">
 
                         {/* Before Card */}
                         <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-200 relative grayscale opacity-90">
@@ -78,14 +78,14 @@ export default function MarketingSupportSection() {
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:flex w-16 h-16 bg-emerald-500 rounded-full items-center justify-center shadow-lg border-4 border-white">
                             <ArrowRight className="w-8 h-8 text-white" />
                         </div>
-                        <div className="md:hidden flex justify-center -my-6 relative z-10">
+                        <div className="md:hidden flex justify-center relative z-10 -my-6">
                             <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg border-4 border-white rotate-90">
                                 <ArrowRight className="w-6 h-6 text-white" />
                             </div>
                         </div>
 
                         {/* After Card */}
-                        <div className="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-500 shadow-2xl relative transform md:scale-105 z-10 md:mt-16">
+                        <div className="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-500 shadow-2xl relative transform md:scale-105 z-10 mt-16 md:mt-0 md:translate-y-12">
                             <div className="absolute -top-5 right-6 bg-orange-500 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg">
                                 単価UP & 注文数UP!
                             </div>
@@ -96,10 +96,6 @@ export default function MarketingSupportSection() {
                             {/* Image Area */}
                             <div className="aspect-video bg-emerald-50 rounded-xl mb-6 overflow-hidden relative">
                                 <img src="/images/after-service.png" alt="After" className="w-full h-full object-cover" />
-                                {/* Smile Badge */}
-                                <div className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md">
-                                    <Smile className="w-8 h-8 text-emerald-500" />
-                                </div>
                             </div>
 
                             <div className="space-y-2">

@@ -8,13 +8,14 @@ export default function StickyCTA() {
                 <div className="flex gap-3 max-w-md mx-auto">
                     <Button
                         className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-6 rounded-xl shadow-md flex items-center justify-center gap-2"
-                        onClick={() => window.open('https://line.me', '_blank')}
+                        onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
                     >
                         <MessageCircle className="w-5 h-5" />
                         LINEで無料相談
                     </Button>
                     <Button
                         className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 rounded-xl shadow-md flex items-center justify-center gap-2"
+                        onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
                     >
                         資料をダウンロード
                         <ArrowRight className="w-4 h-4" />
