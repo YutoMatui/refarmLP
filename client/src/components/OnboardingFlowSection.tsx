@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { trackLineRegistration, trackCTAClick } from "../lib/gtag";
-import { ArrowRight } from "lucide-react"; // 矢印アイコン用
+import { ArrowRight } from "lucide-react";
 
 const steps = [
     {
@@ -59,27 +59,27 @@ export default function OnboardingFlowSection() {
                 {/* ==============================================
                     Mobile Layout (Image 1 Style: Vertical List) 
                    ============================================== */}
-                <div className="md:hidden max-w-md mx-auto space-y-2">
+                <div className="md:hidden max-w-md mx-auto space-y-4">
                     {steps.map((step) => (
-                        <div key={step.id} className="flex items-center p-4 bg-orange-50/50 rounded-xl border-b-2 border-dashed border-emerald-100 last:border-0">
-                            {/* Icon Circle */}
-                            <div className="flex-shrink-0 mr-6">
-                                <div className="w-16 h-16 rounded-full border-2 border-emerald-400 bg-white flex items-center justify-center shadow-sm">
+                        <div key={step.id} className="flex items-center p-5 bg-orange-50/50 rounded-2xl border-b-2 border-dashed border-emerald-100 last:border-0 shadow-sm">
+                            {/* Icon Circle - スマホ版のサイズアップ */}
+                            <div className="flex-shrink-0 mr-5">
+                                <div className="w-20 h-20 rounded-full border-2 border-emerald-400 bg-white flex items-center justify-center shadow-md">
                                     <img
                                         src={step.icon}
                                         alt={step.title}
-                                        className="w-8 h-8 object-contain"
+                                        className="w-10 h-10 object-contain"
                                     />
                                 </div>
                             </div>
 
                             {/* Text Content */}
                             <div className="flex-grow">
-                                <div className="flex items-baseline gap-3 mb-1">
-                                    <span className="text-sm font-bold text-slate-400 font-en">
+                                <div className="flex flex-col mb-1">
+                                    <span className="text-xs font-bold text-emerald-600 font-en mb-1">
                                         Step {step.id}
                                     </span>
-                                    <h3 className="text-lg font-bold text-slate-800">
+                                    <h3 className="text-lg font-bold text-slate-800 leading-tight">
                                         {step.title}
                                     </h3>
                                 </div>
@@ -92,47 +92,45 @@ export default function OnboardingFlowSection() {
                 </div>
 
                 {/* ==============================================
-                    Desktop Layout (Image 2 Style: Horizontal Circles)
+                    Desktop Layout (Image 2 Style: Adjusted)
                    ============================================== */}
-                <div className="hidden md:flex justify-between items-start max-w-6xl mx-auto relative">
-                    {/* Background Connector Line (Absolute centered) */}
-                    <div className="absolute top-[6rem] left-0 w-full h-1 bg-transparent z-0 hidden lg:block" />
+                <div className="hidden md:flex justify-between items-start max-w-6xl mx-auto relative mt-12">
+                    {/* Background Connector Line */}
+                    {/* 円の中心を通るように top の位置を調整 (Step文字の高さ + 円の半分) */}
+                    <div className="absolute top-[calc(2rem+6rem)] left-0 w-full h-1 bg-emerald-100 z-0 hidden lg:block rounded-full" />
 
                     {steps.map((step, index) => (
-                        <div key={step.id} className="flex-1 flex flex-col items-center relative z-10 group">
+                        <div key={step.id} className="flex-1 flex flex-col items-center relative z-10 group px-2">
 
-                            {/* Big Circle Container */}
-                            <div className="w-52 h-52 rounded-full border-4 border-emerald-600 bg-white flex flex-col items-center justify-center text-center shadow-lg transition-transform duration-300 group-hover:scale-105 relative">
+                            {/* 1. Step Number (Outside Top) */}
+                            <span className="block text-emerald-600 font-black text-xl font-en mb-4 tracking-wider">
+                                Step {step.id}
+                            </span>
 
-                                {/* Step Number (Inside Top) */}
-                                <span className="absolute top-8 text-emerald-600 font-bold text-lg font-en">
-                                    Step {step.id}
-                                </span>
-
-                                {/* Icon */}
-                                <div className="w-20 h-20 mb-2 flex items-center justify-center">
-                                    <img
-                                        src={step.icon}
-                                        alt={step.title}
-                                        className="w-full h-full object-contain"
-                                    />
-                                </div>
-
-                                {/* Title (Inside Bottom) */}
-                                <h3 className="text-lg font-bold text-slate-800 mt-1">
-                                    {step.title}
-                                </h3>
+                            {/* 2. Big Circle Container (Icon Only) */}
+                            <div className="w-48 h-48 rounded-full border-4 border-emerald-500 bg-white flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl relative mb-6">
+                                {/* Icon Image - PC版のサイズアップ */}
+                                <img
+                                    src={step.icon}
+                                    alt={step.title}
+                                    className="w-24 h-24 object-contain drop-shadow-sm"
+                                />
                             </div>
 
-                            {/* Arrow (Render between items) */}
+                            {/* Arrow Connector */}
                             {index < steps.length - 1 && (
-                                <div className="hidden lg:block absolute top-[6rem] -right-[20%] text-emerald-600">
+                                <div className="hidden lg:block absolute top-[calc(2rem+6rem-1.5rem)] -right-[15%] text-emerald-400">
                                     <ArrowRight size={48} strokeWidth={3} />
                                 </div>
                             )}
 
-                            {/* Description (Below Circle) */}
-                            <div className="mt-6 text-center px-4">
+                            {/* 3. Title (Outside Bottom) */}
+                            <h3 className="text-xl font-black text-slate-800 mb-3 text-center">
+                                {step.title}
+                            </h3>
+
+                            {/* 4. Description */}
+                            <div className="text-center">
                                 <p className="text-sm text-slate-600 leading-relaxed font-medium">
                                     {step.description}
                                 </p>
@@ -142,7 +140,7 @@ export default function OnboardingFlowSection() {
                 </div>
 
                 {/* CTA Area */}
-                <div className="text-center mt-12 md:mt-20">
+                <div className="text-center mt-16 md:mt-24">
                     <Button
                         className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl py-8 px-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                         onClick={handleLineClick}
