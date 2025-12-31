@@ -1,166 +1,214 @@
-import { ArrowRight, MessageCircle, FileText, Users } from "lucide-react";
+import { ArrowRight, MessageCircle, FileText, Users, Frown, Smile, Check } from "lucide-react";
 
-// ロジックに基づいた3ステップの構成
+// 3ステップのデータ
 const steps = [
     {
         id: 1,
         title: "農家への密着取材",
         subtitle: "想いを言語化・映像化",
-        description:
-            "りふぁーむが農家にインタビューを行い、栽培のこだわりや生産者の想いを言語化・映像化。「なぜ美味しいのか」というストーリーを引き出します。",
+        description: "りふぁーむが農家にインタビューを行い、栽培のこだわりや生産者の想いを言語化・映像化。「なぜ美味しいのか」というストーリーを引き出します。",
         icon: Users,
+        image: "/images/step-interview.jpg", // 取材の様子（生成画像の3枚目など）
     },
     {
         id: 2,
         title: "店内での価値伝達",
         subtitle: "メニュー・POP・SNS素材",
-        description:
-            "取材情報を「メニュー表」や「POP」として提供。「美味しい」に「情報」が加わることで、お客様の満足度と価格への納得感が向上します。",
+        description: "取材情報を「メニュー表」や「POP」として提供。「美味しい」に「情報」が加わることで、お客様の満足度と価格への納得感が向上します。",
         icon: FileText,
+        image: "/images/step-pop.jpg", // POPやメニューの画像（生成画像の4枚目など）
     },
     {
         id: 3,
         title: "LINEでの再来店誘導",
         subtitle: "ファン化してリピート",
-        description:
-            "来店客をLINEへ誘導。食材や新メニューの魅力を定期的に発信することで、忘れられないお店となり「また来たい」を創出します。",
+        description: "来店客をLINEへ誘導。食材や新メニューの魅力を定期的に発信することで、忘れられないお店となり「また来たい」を創出します。",
         icon: MessageCircle,
+        image: "/images/step-line.jpg", // スマホでLINEを見ている画像など
     },
 ];
 
 export default function MarketingSupportSection() {
     return (
-        <section id="marketing-support" className="py-16 md:py-24 bg-emerald-50">
+        <section id="marketing-support" className="py-16 md:py-24 bg-emerald-50 overflow-hidden">
             <div className="container mx-auto px-4">
-                {/* Section Title */}
-                <div className="text-center mb-12 md:mb-16">
-                    <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+
+                {/* 1. Section Title */}
+                <div className="text-center mb-16 md:mb-20">
+                    <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4 shadow-md">
                         売上アップの秘密
                     </span>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-6 leading-tight">
                         なぜ、客単価とリピート率が上がるのか？
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
                         ただ野菜を仕入れるだけではありません。
                         <br className="hidden md:block" />
-                        「美味しい理由」をお客様に届けることで、お店の価値が変わります。
+                        「美味しい理由」をお客様に届けることで、<span className="font-bold text-emerald-600 border-b-2 border-emerald-400">お店の価値</span>が変わります。
                     </p>
                 </div>
 
-                {/* Before/After Comparison (Logic 3: 価格への納得感) */}
-                <div className="max-w-4xl mx-auto mb-16">
-                    <div className="grid md:grid-cols-2 gap-6 items-center">
-                        {/* Before */}
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border-2 border-slate-200 opacity-80 scale-95">
-                            <span className="inline-block bg-slate-200 text-slate-600 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                {/* 2. Before / After Comparison */}
+                <div className="max-w-5xl mx-auto mb-24 relative">
+                    {/* Background Connector Line (PC) */}
+                    <div className="hidden md:block absolute top-1/2 left-0 w-full h-2 bg-slate-200 -z-10 rounded-full"></div>
+
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+
+                        {/* Before Card */}
+                        <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-200 relative grayscale opacity-90">
+                            <div className="absolute -top-4 left-6 bg-slate-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                                 これまでのメニュー
-                            </span>
-                            <div className="mb-4">
-                                <h4 className="text-lg font-bold text-slate-800 mb-1">
-                                    トマトパスタ
-                                </h4>
-                                <p className="text-2xl font-black text-slate-800">¥1,200</p>
                             </div>
-                            <div className="bg-slate-100 rounded-lg p-4">
-                                <p className="text-sm text-slate-500 mb-1 font-bold">お客様の反応</p>
-                                <p className="text-base text-slate-600">
-                                    「美味しいけど、ちょっと高いかな…」
-                                </p>
+                            {/* Image Area */}
+                            <div className="aspect-video bg-slate-300 rounded-xl mb-6 overflow-hidden relative">
+                                <img src="/images/before-service.png" alt="Before" className="w-full h-full object-cover mix-blend-multiply" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <Frown className="w-16 h-16 text-slate-500 opacity-50" />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <h4 className="text-lg font-bold text-slate-600">トマトパスタ</h4>
+                                <p className="text-3xl font-black text-slate-500">¥1,200</p>
+                                <div className="bg-slate-200/50 p-4 rounded-lg mt-4">
+                                    <p className="text-sm font-bold text-slate-500 mb-1">お客様の心理</p>
+                                    <p className="text-slate-600">「美味しいけど、これなら他のお店でもいいかな…」</p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* After */}
-                        <div className="bg-white rounded-2xl p-6 shadow-xl border-4 border-emerald-500 relative transform md:scale-105 z-10">
-                            <span className="absolute -top-4 right-4 bg-orange-500 text-white text-sm font-bold px-4 py-1 rounded-full shadow-md">
+                        {/* Arrow Icon (Center) */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden md:flex w-16 h-16 bg-emerald-500 rounded-full items-center justify-center shadow-lg border-4 border-white">
+                            <ArrowRight className="w-8 h-8 text-white" />
+                        </div>
+                        <div className="md:hidden flex justify-center -my-6 relative z-10">
+                            <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg border-4 border-white rotate-90">
+                                <ArrowRight className="w-6 h-6 text-white" />
+                            </div>
+                        </div>
+
+                        {/* After Card */}
+                        <div className="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-500 shadow-2xl relative transform md:scale-105 z-10">
+                            <div className="absolute -top-5 right-6 bg-orange-500 text-white text-sm font-bold px-6 py-2 rounded-full shadow-lg">
                                 単価UP & 注文数UP!
-                            </span>
-                            <span className="inline-block bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                            </div>
+                            <div className="absolute -top-4 left-6 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                                 ベジコベ導入後
-                            </span>
-                            <div className="mb-4">
-                                <h4 className="text-lg font-bold text-emerald-800 mb-1">
-                                    ヤスオさんの王様トマトのパスタ
+                            </div>
+
+                            {/* Image Area */}
+                            <div className="aspect-video bg-emerald-50 rounded-xl mb-6 overflow-hidden relative">
+                                <img src="/images/after-service.png" alt="After" className="w-full h-full object-cover" />
+                                {/* Smile Badge */}
+                                <div className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md">
+                                    <Smile className="w-8 h-8 text-emerald-500" />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <h4 className="text-lg font-bold text-emerald-800">
+                                    <span className="text-orange-500">ヤスオさんの王様トマト</span>のパスタ
                                 </h4>
-                                <p className="text-3xl font-black text-slate-800">
-                                    ¥1,400 <span className="text-sm font-normal text-slate-500 line-through">¥1,200</span>
-                                </p>
-                            </div>
-                            <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-100">
-                                <p className="text-sm text-emerald-600 mb-1 font-bold">お客様の反応</p>
-                                <p className="text-base text-slate-800 font-bold">
-                                    「このトマト食べてみたい！安い！」
-                                </p>
+                                <div className="flex items-baseline gap-3">
+                                    <p className="text-4xl font-black text-slate-800">¥1,400</p>
+                                    <p className="text-lg text-slate-400 line-through decoration-2">¥1,200</p>
+                                </div>
+                                <div className="bg-emerald-50 p-4 rounded-lg mt-4 border border-emerald-100">
+                                    <p className="text-sm font-bold text-emerald-600 mb-1">お客様の心理</p>
+                                    <p className="text-slate-800 font-bold">「このトマト食べてみたい！安い！」</p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
-                    <p className="text-center text-slate-600 mt-8 font-medium">
-                        こだわりが伝わることで、
-                        <span className="font-bold text-emerald-600 text-lg border-b-2 border-emerald-600">
-                            価格以上の価値
-                        </span>
-                        を感じていただけます。
-                    </p>
                 </div>
 
-                {/* 3-Step Logic Flow */}
-                <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
-                    {steps.map((step, index) => (
-                        <div key={step.id} className="relative group">
-                            {/* Connector Arrow (Desktop) */}
-                            {index < steps.length - 1 && (
-                                <div className="hidden md:flex absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 text-emerald-300">
-                                    <ArrowRight className="w-8 h-8" strokeWidth={3} />
-                                </div>
-                            )}
-                            {/* Connector Arrow (Mobile) */}
-                            {index < steps.length - 1 && (
-                                <div className="flex md:hidden absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-10 text-emerald-300 rotate-90">
-                                    <ArrowRight className="w-8 h-8" strokeWidth={3} />
-                                </div>
-                            )}
-
-                            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 h-full border-b-4 border-transparent hover:border-emerald-500">
-                                {/* Step Header */}
-                                <div className="flex flex-col items-center text-center mb-4">
-                                    <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                        <step.icon className="w-6 h-6" />
-                                    </div>
-                                    <span className="text-emerald-600 font-bold text-sm tracking-wider mb-1">
-                                        STEP {step.id}
-                                    </span>
-                                    <h3 className="text-xl font-bold text-slate-800">
-                                        {step.title}
-                                    </h3>
-                                    <p className="text-xs text-slate-500 font-bold mt-1 bg-slate-100 px-2 py-1 rounded">
-                                        {step.subtitle}
-                                    </p>
-                                </div>
-
-                                {/* Description */}
-                                <p className="text-slate-600 text-sm leading-relaxed text-center">
-                                    {step.description}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Conclusion Message */}
-                <div className="max-w-3xl mx-auto text-center">
-                    <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-8 shadow-lg text-white">
-                        <h3 className="text-xl md:text-2xl font-bold mb-4">
-                            ただ野菜を届けるだけではありません
+                {/* 3. Logic Flow Steps */}
+                <div className="max-w-6xl mx-auto mb-20">
+                    <div className="text-center mb-12">
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-800">
+                            <span className="text-emerald-600">「価値」</span>を伝える3つのステップ
                         </h3>
-                        <p className="text-base md:text-lg font-medium leading-relaxed opacity-90">
-                            「お店のファン作り」までサポートします。
-                            <br className="hidden md:block" />
-                            美味しい料理と、その裏にある物語で、
-                            <br />
-                            お客様が<span className="text-yellow-300 font-bold text-xl">「また来たい」</span>と思うお店を一緒に作りましょう。
-                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-12 left-0 w-full h-1 bg-emerald-100 rounded-full -z-10"></div>
+
+                        {steps.map((step, index) => (
+                            <div key={step.id} className="relative group">
+                                {/* Connector Arrow */}
+                                {index < steps.length - 1 && (
+                                    <div className="hidden md:block absolute top-24 -right-8 text-emerald-300 z-10">
+                                        <ArrowRight className="w-10 h-10" strokeWidth={3} />
+                                    </div>
+                                )}
+
+                                {/* Step Card */}
+                                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col h-full">
+                                    {/* Step Header Image */}
+                                    <div className="h-40 bg-slate-100 relative">
+                                        <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+
+                                        {/* Step Number Badge */}
+                                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-emerald-600 font-black px-3 py-1 rounded shadow-sm text-sm">
+                                            STEP 0{step.id}
+                                        </div>
+
+                                        {/* Icon Badge */}
+                                        <div className="absolute -bottom-6 right-6 w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-md border-4 border-white">
+                                            <step.icon className="w-6 h-6" />
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-6 pt-8 flex-grow flex flex-col">
+                                        <span className="text-xs font-bold text-orange-500 mb-2 block">
+                                            {step.subtitle}
+                                        </span>
+                                        <h4 className="text-xl font-bold text-slate-800 mb-4 leading-tight">
+                                            {step.title}
+                                        </h4>
+                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
+
+                {/* 4. Conclusion Message (Letter Style) */}
+                <div className="max-w-3xl mx-auto">
+                    <div className="bg-orange-50 rounded-xl p-8 md:p-10 border-2 border-orange-100 relative shadow-sm text-center md:text-left">
+                        {/* Clip decoration */}
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-16 bg-gray-200 rounded-full border-4 border-white shadow-sm hidden md:block"></div>
+
+                        <div className="flex flex-col md:flex-row items-center gap-6">
+                            <div className="flex-1">
+                                <h3 className="text-xl font-bold text-slate-800 mb-4 text-center md:text-left">
+                                    ただ野菜を届けるだけではありません
+                                </h3>
+                                <p className="text-slate-700 leading-relaxed font-medium mb-4">
+                                    私たちはりふぁーむは、「お店のファン作り」までサポートします。
+                                    <br />
+                                    美味しい料理と、その裏にある物語で、お客様が<span className="text-orange-500 font-bold text-lg border-b-2 border-orange-300">「また来たい」</span>と思うお店を一緒に作りましょう。
+                                </p>
+                            </div>
+                            {/* 代表者署名風 */}
+                            <div className="shrink-0 text-center">
+                                <div className="w-20 h-20 bg-white rounded-full p-1 shadow-md mx-auto mb-2 overflow-hidden">
+                                    {/* 代表者画像があればここに */}
+                                    <img src="/images/profile-icon.jpg" alt="松井優人" className="w-full h-full object-cover rounded-full" />
+                                </div>
+                                <p className="text-sm text-slate-500 font-bold">りふぁーむ代表</p>
+                                <p className="text-lg font-black text-slate-800">松井 優人</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     );
