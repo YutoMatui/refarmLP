@@ -29,7 +29,7 @@ interface Solution {
 interface PainPoint {
   id: string;
   title: string;
-  description: string; // カード表示用
+  description: string;
   solution: Solution;
 }
 
@@ -90,27 +90,19 @@ const painPoints: PainPoint[] = [
 
 const PainPointCard = ({ point, onClick, className }: { point: PainPoint, onClick: () => void, className?: string }) => (
   <div className={`relative flex flex-col h-full ${className} pb-6`}>
-    {/* Box Container - 白い吹き出しボックス */}
     <div
       onClick={onClick}
       className="group cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative h-full flex flex-col text-left"
     >
-      {/* Title */}
       <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 leading-snug group-hover:text-emerald-600 transition-colors">
         {point.title}
       </h3>
-
-      {/* Description */}
       <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8 flex-grow">
         {point.description}
       </p>
-
-      {/* Button Style Action */}
       <div className="mt-auto w-full bg-emerald-600 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 group-hover:bg-emerald-700 transition-colors shadow-md">
         ベジコベで解決する <ChevronRight className="w-5 h-5" />
       </div>
-
-      {/* Speech Bubble Tail (Triangle) */}
       <div className="absolute -bottom-4 left-10 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-white filter drop-shadow-sm group-hover:-bottom-6 transition-all duration-300"></div>
     </div>
   </div>
@@ -125,7 +117,7 @@ export default function PainPointsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
-  // Carousel Sync Logic
+  // Carousel Sync
   useEffect(() => {
     if (!api) return;
     const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
@@ -133,7 +125,7 @@ export default function PainPointsSection() {
     return () => { api.off("select", onSelect); };
   }, [api]);
 
-  // Sync React state back to Carousel
+  // Sync React state to Carousel
   useEffect(() => {
     if (!api) return;
     if (api.selectedScrollSnap() !== currentIndex) {
@@ -151,18 +143,24 @@ export default function PainPointsSection() {
     });
   };
 
-  const handleNext = useCallback(() => setCurrentIndex((prev) => (prev + 1) % painPoints.length), []);
-  const handlePrev = useCallback(() => setCurrentIndex((prev) => (prev - 1 + painPoints.length) % painPoints.length), []);
+  const handleNext = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % painPoints.length);
+  }, []);
+
+  const handlePrev = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + painPoints.length) % painPoints.length);
+  }, []);
 
   const currentPoint = painPoints[currentIndex];
   const SolutionIcon = currentPoint.solution.icon;
 
   return (
-    // セクション全体を緑背景に設定
     <section id="pain-points" className="py-16 md:py-24 bg-emerald-600 overflow-hidden font-sans">
       <div className="container mx-auto px-4">
 
-        {/* Section Title (白文字) */}
+        {/* Section Title */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-4 drop-shadow-md">
             店舗のお悩み<span className="bg-white text-emerald-600 px-2 py-1 rounded mx-2 inline-block transform -rotate-2 shadow-sm">ベジコベ</span>で<br className="md:hidden" />すべて解決できます！
@@ -172,7 +170,7 @@ export default function PainPointsSection() {
           </p>
         </div>
 
-        {/* Desktop View: Grid Layout (3列グリッド) */}
+        {/* Desktop Grid */}
         <div className="hidden md:grid md:grid-cols-3 gap-8 max-w-6xl mx-auto pb-12">
           {painPoints.map((point, index) => (
             <PainPointCard
@@ -183,7 +181,7 @@ export default function PainPointsSection() {
           ))}
         </div>
 
-        {/* Mobile View: Carousel Layout (カルーセル) */}
+        {/* Mobile Carousel */}
         <div className="md:hidden relative max-w-sm mx-auto pb-8">
           <Carousel
             opts={{ align: "center", loop: true }}
@@ -201,7 +199,6 @@ export default function PainPointsSection() {
               ))}
             </CarouselContent>
 
-            {/* Dots indicator */}
             <div className="flex justify-center gap-3 mt-0">
               {painPoints.map((_, index) => (
                 <button
@@ -216,7 +213,7 @@ export default function PainPointsSection() {
           </Carousel>
         </div>
 
-        {/* Bottom Link (Optional) */}
+        {/* Bottom Link */}
         <div className="text-center mt-4 md:mt-8">
           <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-emerald-600 rounded-full px-8 py-6 text-lg font-bold transition-all">
             全機能・解決策を見る <ChevronRight className="ml-2 w-5 h-5" />
@@ -224,91 +221,124 @@ export default function PainPointsSection() {
         </div>
       </div>
 
-      {/* Solution Modal - Fullscreen Design */}
+      {/* Solution Modal - Improved Layout & Navigation */}
       <Dialog open={open} onOpenChange={setOpen}>
-        {/* バツ印削除、外側クリックで閉じる設定はデフォルトで有効 */}
-        <DialogContent className="w-screen h-screen max-w-none m-0 p-0 bg-white overflow-y-auto border-0 rounded-none flex flex-col focus:outline-none">
+        {/* max-w-7xl と w-full で幅を大きく確保し、横長レイアウトに対応 */}
+        <DialogContent className="max-w-[95vw] md:max-w-7xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center">
 
-          {/* Main Content Body */}
-          <div className="flex-grow container mx-auto px-4 py-12 md:py-16 max-w-5xl flex flex-col justify-center">
+          <div className="relative w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh]">
 
-            {/* 1. Problem Statement (タイトルのみ表示) */}
-            <div className="mb-12 text-center">
-              <span className="inline-block bg-slate-100 text-slate-600 text-sm font-bold px-4 py-1.5 rounded-full mb-5">
-                現在のお悩み
-              </span>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-800 mb-0 leading-tight">
-                {currentPoint.title}
-              </h2>
-              {/* 説明文は削除 */}
-            </div>
+            {/* Navigation Buttons (Desktop: Outside / Mobile: Inside Bottom) */}
+            {/* 左矢印 (PC用: コンテンツの外左側に配置) */}
+            <button
+              onClick={handlePrev}
+              className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+            {/* 右矢印 (PC用: コンテンツの外右側に配置) */}
+            <button
+              onClick={handleNext}
+              className="hidden md:flex absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 text-white rounded-full items-center justify-center transition-all z-50 backdrop-blur-sm border-2 border-white/50"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
 
-            {/* 2. Visual & Solution */}
-            <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center bg-slate-50 p-8 md:p-12 rounded-3xl">
-              {/* Main Visual Image */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video md:aspect-square relative group bg-white border-4 border-white ring-1 ring-slate-100">
+            {/* Content Area */}
+            <div className="flex-1 overflow-y-auto md:overflow-hidden flex flex-col md:flex-row h-full">
+
+              {/* Left: Image Area (横長レイアウトのために大きく確保) */}
+              <div className="w-full md:w-1/2 bg-emerald-50 h-64 md:h-full relative shrink-0">
                 <img
                   src={currentPoint.solution.image}
                   alt={currentPoint.solution.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
+                {/* Image Overlay Title (Mobile Only) */}
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-6 md:hidden">
+                  <span className="inline-block bg-white/90 text-slate-800 text-xs font-bold px-3 py-1 rounded-full mb-2 shadow-sm">
+                    現在のお悩み
+                  </span>
+                  <h2 className="text-xl font-bold text-white leading-tight">
+                    {currentPoint.title}
+                  </h2>
+                </div>
               </div>
 
-              {/* Solution Details */}
-              <div className="flex flex-col justify-center h-full pt-4">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg transform -rotate-3">
-                    <SolutionIcon className="w-7 h-7 text-white" />
+              {/* Right: Text Content Area */}
+              <div className="w-full md:w-1/2 p-6 md:p-10 lg:p-12 flex flex-col h-full overflow-y-auto bg-white">
+
+                {/* Header (Desktop Only) */}
+                <div className="hidden md:block mb-8 pb-6 border-b border-slate-100">
+                  <span className="inline-block bg-slate-100 text-slate-600 text-sm font-bold px-4 py-1.5 rounded-full mb-3">
+                    現在のお悩み
+                  </span>
+                  <h2 className="text-2xl lg:text-3xl font-black text-slate-800 leading-tight">
+                    {currentPoint.title}
+                  </h2>
+                </div>
+
+                {/* Solution Detail */}
+                <div className="flex-grow">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center shadow-md rotate-3">
+                      <SolutionIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-emerald-600 font-bold text-xl md:text-2xl tracking-wide">
+                      ベジコベなら！
+                    </span>
                   </div>
-                  <span className="text-emerald-600 font-bold text-xl tracking-wide ml-2">ベジコベなら！</span>
+
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-black text-slate-800 mb-4 leading-snug">
+                    {currentPoint.solution.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8">
+                    {currentPoint.solution.description}
+                  </p>
+
+                  <div className="bg-emerald-50 rounded-2xl p-5 md:p-6 border border-emerald-100">
+                    <ul className="space-y-3">
+                      {currentPoint.solution.points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="mt-1 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+                            <Check className="w-3 h-3 text-white" strokeWidth={2.5} />
+                          </div>
+                          <span className="text-slate-700 font-bold text-sm md:text-base">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-black text-slate-800 mb-6 leading-tight">
-                  {currentPoint.solution.title}
-                </h3>
-
-                <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-8">
-                  {currentPoint.solution.description}
-                </p>
-
-                {/* Points List */}
-                <div className="bg-emerald-50/50 rounded-2xl p-6 md:p-8 border border-emerald-100 bg-white shadow-sm">
-                  <ul className="space-y-4">
-                    {currentPoint.solution.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                        <div className="mt-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0 shadow-sm">
-                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                        </div>
-                        <span className="text-slate-700 font-bold text-base md:text-lg">{point}</span>
-                      </li>
+                {/* Mobile Navigation (Bottom) */}
+                <div className="flex md:hidden justify-between items-center mt-8 pt-4 border-t border-slate-100">
+                  <button
+                    onClick={handlePrev}
+                    className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 active:bg-slate-200"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <div className="flex gap-2">
+                    {painPoints.map((_, idx) => (
+                      <div key={idx} className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-emerald-600' : 'bg-slate-200'}`} />
                     ))}
-                  </ul>
+                  </div>
+                  <button
+                    onClick={handleNext}
+                    className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 active:bg-slate-200"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
                 </div>
+
               </div>
             </div>
-
           </div>
 
-          {/* Sticky Footer Navigation */}
-          <div className="sticky bottom-0 z-50 bg-white/90 backdrop-blur-md border-t border-slate-100 px-6 py-6 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-            <Button variant="ghost" onClick={handlePrev} className="text-slate-500 hover:text-emerald-600 gap-2 pl-0 hover:bg-slate-50 text-base font-bold">
-              <ChevronLeft className="w-6 h-6" />
-              <span className="hidden md:inline">前の悩み</span>
-              <span className="md:hidden">前へ</span>
-            </Button>
-
-            {/* Dots Indicator */}
-            <div className="flex gap-2">
-              {painPoints.map((_, idx) => (
-                <div key={idx} className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-emerald-600 scale-125' : 'bg-slate-200'}`} />
-              ))}
-            </div>
-
-            <Button variant="ghost" onClick={handleNext} className="text-slate-500 hover:text-emerald-600 gap-2 pr-0 hover:bg-slate-50 text-base font-bold">
-              <span className="hidden md:inline">次の悩み</span>
-              <span className="md:hidden">次へ</span>
-              <ChevronRight className="w-6 h-6" />
-            </Button>
+          {/* Overlay Close Hint (Optional) */}
+          <div className="fixed top-6 right-6 z-50 md:hidden pointer-events-none text-white/80 text-sm font-bold drop-shadow-md">
+            画面外タップで閉じる
           </div>
 
         </DialogContent>
