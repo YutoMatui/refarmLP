@@ -171,8 +171,6 @@ export default function MarketingSupportSection() {
                 <div className="max-w-3xl mx-auto">
                     {/* スマホでのパディングを少し減らしました (p-6) */}
                     <div className="bg-orange-50 rounded-xl p-6 md:p-10 border-2 border-orange-100 relative shadow-sm text-center md:text-left">
-                        {/* Clip decoration */}
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-16 bg-gray-200 rounded-full border-4 border-white shadow-sm hidden md:block"></div>
 
                         <div className="flex flex-col md:flex-row items-center gap-6">
                             <div className="flex-1">
@@ -205,4 +203,3 @@ export default function MarketingSupportSection() {
         </section>
     );
 }
-
