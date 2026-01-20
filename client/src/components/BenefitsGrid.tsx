@@ -9,7 +9,7 @@ const reasons = [
         title: "物語の力で単価UP",
         subtitle: "メニューに書くだけで価値が伝わる",
         description: "生産者の顔やストーリーがセットで届くから、メニューや接客で「語れる一皿」に変わります。「地元のこだわり野菜」という付加価値が、20%以上の単価アップを正当化します。",
-        image: "/images/icons/icon-story-value.png",
+        image: "/images/icons/icon-story-value.jpg",
         highlight: "料理の味は変えずに、価値を変える。",
     },
     {
@@ -17,7 +17,7 @@ const reasons = [
         title: "納得と驚きでリピート",
         subtitle: "次も来たくなる「予告」の仕掛け",
         description: "市場にはない「朝採れ」の圧倒的な美味しさと、その背景情報が納得感を生み、ファンの心を掴みます。さらに「来月はこの野菜」という旬の予告が、次回の来店動機を自然に生み出します。",
-        image: "/images/icons/icon-repeat-cycle.png",
+        image: "/images/icons/icon-repeat-cycle.jpg",
         highlight: "いつもの食事を、記憶に残る体験へ。",
     },
     {
@@ -25,7 +25,7 @@ const reasons = [
         title: "「訳あり野菜」で原価DOWN",
         subtitle: "味は同じでコスト削減",
         description: "形が少し悪い、サイズが不揃いといった「訳あり野菜」も積極的にラインナップ。味や鮮度は一級品と同じですが、価格は抑えられます。スープやソース、お通しなどに賢く活用できます。",
-        image: "/images/icons/icon-smart-cost.png",
+        image: "/images/icons/icon-smart-cost.jpg",
         highlight: "コストパフォーマンスを最大化。",
     },
 ];

@@ -46,23 +46,23 @@ export default function CTASection() {
                         </div>
 
                         <div className="px-6 flex-1 text-center pb-6">
-                            <div className="mb-4 flex justify-center h-32 md:h-40 items-center">
+                            <div className="mb-4 flex justify-center h-48 md:h-56 items-center">
                                 {/* 資料イメージ画像プレースホルダー */}
                                 <div className="relative w-full h-full flex items-center justify-center">
                                     <img
                                         src="/images/cta-doc-mockup.png"
                                         alt="資料とスマホ画面"
-                                        className="max-h-full max-w-full object-contain drop-shadow-lg"
+                                        className="max-h-full w-full object-cover rounded-lg drop-shadow-lg"
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
-                                            e.currentTarget.parentElement!.innerHTML = '<div class="w-32 h-40 bg-slate-100 rounded border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 text-xs">資料・スマホ画像<br/>(要差替)</div>';
+                                            e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-40 bg-slate-100 rounded border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 text-xs">資料・スマホ画像<br/>(要差替)</div>';
                                         }}
                                     />
                                 </div>
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-slate-700 mb-2">
-                                ベジコベの仕組みや<br />
-                                <span className="text-emerald-600">最新の価格リスト</span>がすぐ分かる！
+                                ベジコベの仕組みや効果が<br />
+                                <span className="text-emerald-600">すぐにわかる！</span>
                             </h3>
                             <p className="text-slate-500 text-xs md:text-sm">
                                 PDF資料と、実際のアプリ画面をご覧いただけます。
@@ -92,23 +92,23 @@ export default function CTASection() {
                         </div>
 
                         <div className="px-6 flex-1 text-center pb-6">
-                            <div className="mb-4 flex justify-center h-32 md:h-40 items-center">
+                            <div className="mb-4 flex justify-center h-48 md:h-56 items-center">
                                 {/* スタッフ/サポート画像プレースホルダー */}
                                 <div className="relative w-full h-full flex items-center justify-center">
                                     <img
                                         src="/images/cta-staff-smile.png"
                                         alt="笑顔のスタッフ"
-                                        className="max-h-full max-w-full object-contain drop-shadow-lg"
+                                        className="max-h-full w-full object-cover rounded-lg drop-shadow-lg"
                                         onError={(e) => {
                                             e.currentTarget.style.display = 'none';
-                                            e.currentTarget.parentElement!.innerHTML = '<div class="w-40 h-32 bg-slate-100 rounded border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 text-xs">スタッフ・相談画像<br/>(要差替)</div>';
+                                            e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-32 bg-slate-100 rounded border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 text-xs">スタッフ・相談画像<br/>(要差替)</div>';
                                         }}
                                     />
                                 </div>
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-slate-700 mb-2">
-                                お店の課題を無料診断！<br />
-                                <span className="text-emerald-600">現在の仕入れとの比較</span>もOK。
+                                誰に相談したらいいか分からない<br />
+                                <span className="text-emerald-600">お店の悩みを無料相談！</span>
                             </h3>
                             <p className="text-slate-500 text-xs md:text-sm">
                                 導入サポートや使い方のご質問もお気軽にどうぞ。
@@ -122,20 +122,13 @@ export default function CTASection() {
                         >
                             <div className="flex items-center justify-center gap-2">
                                 <span className="text-slate-900 font-black text-lg md:text-xl tracking-wide">
-                                    LINEで無料相談する
+                                    LINEから無料相談する
                                 </span>
                                 <ChevronRight className="w-6 h-6 text-slate-900 group-hover:translate-x-1 transition-transform stroke-[3]" />
                             </div>
                         </div>
                     </div>
 
-                </div>
-
-                {/* 下部の補足テキスト */}
-                <div className="text-center mt-12">
-                    <p className="text-emerald-100 text-xs md:text-sm opacity-80">
-                        ※LINE公式アカウントへ移動します。登録後、自動メッセージで案内が届きます。
-                    </p>
                 </div>
 
             </div>
