@@ -23,7 +23,7 @@ const plans: Plan[] = [
     id: "free",
     name: "フリープラン",
     price: "¥0",
-    description: "まずはどんな野菜が届くかを見てみたい方です。",
+    description: "まずは野菜を試してみたい方向け",
     features: [
       { text: "全提携農家の野菜の閲覧・発注（訳あり野菜を含む）" },
       { text: "インボイス対応の請求書のDL機能" },
@@ -35,7 +35,7 @@ const plans: Plan[] = [
     id: "basic",
     name: "ベーシックプラン",
     price: "¥6,400",
-    description: "素材さえあれば自分でインスタの投稿やメニュー表の作成などができる方",
+    description: "マーケティング素材を活用したい方向け",
     isPopular: true,
     features: [
       { text: "フリープランの全機能", highlighted: true },
@@ -50,7 +50,7 @@ const plans: Plan[] = [
     id: "premium",
     name: "プレミアムプラン",
     price: "¥34,980",
-    description: "要望を伝えたあとはすべてお任せして売上アップを実現したい方",
+    description: "マーケティング業務を全てお任せしたい方向け",
     features: [
       { text: "ベーシックプランの全機能", highlighted: true },
       { text: "オリジナル動画制作（3ヵ月に一回）" },
