@@ -43,8 +43,8 @@ export default function Home() {
         {/* 4. CTA (Mid Page) */}
         <CTASection />
 
-        {/* 5. 導入事例 (Case Study) */}
-        <CaseStudySection />
+        {/* 5. 導入事例 (Case Study) - コメントアウト */}
+        {/* <CaseStudySection /> */}
 
         {/* Other Sections (Appropriate Placement) */}
         {/* Marketing Support - Supports Reasons & Case Study */}

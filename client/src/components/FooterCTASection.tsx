@@ -38,22 +38,22 @@ export default function FooterCTASection() {
             {/* Main CTA */}
             <div className="flex flex-col items-center">
               <Button
-                className="bg-orange hover:bg-orange-dark text-white font-bold text-lg py-6 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5"
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
                 onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
-                「客単価アップ」について相談する
+                無料で利用開始
               </Button>
-              <span className="text-sm text-white/80 mt-2">相談は無料です</span>
+              <span className="text-sm text-white/80 mt-2">クレジットカード不要</span>
             </div>
 
             {/* Sub CTA */}
             <div className="flex flex-col items-center">
               <Button
                 variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald font-bold text-lg py-6 px-10 rounded-xl transition-all duration-200"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald font-bold text-lg py-7 px-12 rounded-2xl transition-all duration-200"
                 onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
-                「リピート率アップ」について相談する
+                資料請求
               </Button>
               <span className="text-sm text-white/80 mt-2">1分で入力完了</span>
             </div>

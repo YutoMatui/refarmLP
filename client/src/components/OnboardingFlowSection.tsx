@@ -142,11 +142,14 @@ export default function OnboardingFlowSection() {
                 {/* CTA Area */}
                 <div className="text-center mt-16 md:mt-24">
                     <Button
-                        className="bg-[#06C755] hover:bg-[#05b34c] text-white font-bold text-xl py-8 px-12 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
                         onClick={handleLineClick}
                     >
-                        LINEから無料相談する
+                        無料で利用開始
                     </Button>
+                    <p className="text-slate-500 text-sm mt-4">
+                        ※クレジットカード不要・いつでもキャンセル可能
+                    </p>
                 </div>
             </div>
         </section>
