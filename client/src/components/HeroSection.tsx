@@ -19,20 +19,20 @@ export default function HeroSection() {
 
           {/* テキストコンテンツエリア */}
           <div className="w-full lg:w-1/2 text-center lg:text-left z-10 order-2 lg:order-1 animate-fade-in-up">
-            {/* タグ風の見出し */}
-            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
-              <span className="bg-orange-500 text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full shadow-sm">
+            {/* タグ風の見出し - スマホでは画像より上に、PCではより大きく */}
+            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 md:gap-4 mb-8 md:mb-10">
+              <span className="bg-orange-500 text-white text-sm md:text-2xl font-bold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-sm">
                 客単価UP
               </span>
-              <span className="text-slate-400 font-bold">×</span>
-              <span className="bg-emerald-500 text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="text-slate-400 font-bold text-lg md:text-3xl">×</span>
+              <span className="bg-emerald-500 text-white text-sm md:text-2xl font-bold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-sm">
                 リピート率UP
               </span>
-              <span className="text-slate-600 text-xs md:text-sm font-medium ml-1">を実現</span>
+              <span className="text-slate-600 text-sm md:text-2xl font-bold">を実現</span>
             </div>
 
             {/* メインコピー */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.2] mb-6">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.2] mb-10 md:mb-12">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400">
                 「選ばれる」飲食店
               </span>
@@ -40,14 +40,8 @@ export default function HeroSection() {
               への最短ルート。
             </h1>
 
-            <p className="text-base md:text-xl text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              こだわりの食材仕入れから、常連客をつかむ仕組みづくりまで。
-              <br className="hidden md:block" />
-              ベジコベは、忙しいオーナー様の「成長」をLINE一本で支えます。
-            </p>
-
             {/* CTAエリア */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Button
                 className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-black text-lg py-7 px-10 rounded-2xl shadow-lg shadow-orange-200 transition-all hover:-translate-y-1 active:translate-y-0"
                 onClick={() => handleLineClick("Hero CTA Consult")}
@@ -61,15 +55,6 @@ export default function HeroSection() {
               >
                 資料をダウンロード
               </Button>
-            </div>
-
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-slate-400 text-sm font-medium">
-              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>導入店舗数 急増中</span>
-              <span className="mx-2">|</span>
-              <span>最短即日から利用可能</span>
             </div>
           </div>
 
@@ -87,26 +72,9 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
                 <div className="absolute bottom-6 left-6 right-6 md:hidden">
                   <p className="text-white font-bold text-lg leading-tight">
-                    「仕入れを変えてから、<br />お客様の反応が変わりました」
+                    「選ばれる」飲食店への最短ルート
                   </p>
                 </div>
-              </div>
-
-              {/* 装飾要素：実績バッジ */}
-              <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 z-20 bg-white p-4 md:p-6 rounded-3xl shadow-xl border border-orange-50">
-                <div className="text-center">
-                  <p className="text-orange-500 font-black text-2xl md:text-4xl leading-none">120%</p>
-                  <p className="text-slate-600 font-bold text-xs md:text-sm mt-1">平均客単価UP</p>
-                </div>
-              </div>
-
-              {/* 装飾要素：スマホ画面のチラ見せ */}
-              <div className="absolute -top-6 -right-6 md:-top-12 md:-right-12 z-20 w-32 md:w-48 animate-bounce-slow">
-                <img
-                  src="/images/hero-app-screen-products.png"
-                  alt="アプリ画面"
-                  className="w-full h-auto rounded-2xl md:rounded-3xl border-4 border-white shadow-xl rotate-12"
-                />
               </div>
 
               {/* 背景のドット装飾 */}
@@ -118,17 +86,6 @@ export default function HeroSection() {
 
         </div>
       </div>
-
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0) rotate(12deg); }
-          50% { transform: translateY(-15px) rotate(12deg); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 4s ease-in-out infinite;
-        }
-      `}} />
     </section>
   );
 }
