@@ -9,116 +9,126 @@ export default function HeroSection() {
   };
 
   return (
-    // パディングをさらに詰めてコンパクトに (pt-16 pb-4)
-    <section className="relative pt-16 pb-4 md:pt-28 md:pb-16 overflow-hidden bg-[#fafaf8]">
-      <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full bg-orange-100/60 blur-3xl -z-10" />
-      <div className="absolute bottom-[20%] left-[-10%] w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full bg-emerald-100/60 blur-3xl -z-10" />
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden bg-white">
+      {/* 背景の装飾 */}
+      <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-orange-50 blur-3xl -z-10" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] rounded-full bg-emerald-50 blur-3xl -z-10" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* h-screenに近づけて一画面収まりを意識 */}
-        <div className="text-center max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-80px)] md:min-h-0">
+      <div className="container mx-auto px-4 py-12 md:py-20">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
 
-          {/* 1. Top Tags: マージン削減 */}
-          <div className="flex flex-nowrap items-center justify-center gap-1 md:gap-4 mb-2 md:mb-6">
-            <div className="bg-white border md:border-2 border-slate-800 px-2 py-1 md:px-6 md:py-3 rounded-md md:rounded-lg shadow-sm whitespace-nowrap">
-              <span className="text-slate-800 font-bold text-xs md:text-2xl tracking-wide">
-                客単価アップ
+          {/* テキストコンテンツエリア */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left z-10 order-2 lg:order-1 animate-fade-in-up">
+            {/* タグ風の見出し */}
+            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
+              <span className="bg-orange-500 text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full shadow-sm">
+                客単価UP
               </span>
-            </div>
-            <span className="text-slate-400 text-lg md:text-4xl font-black mx-1">×</span>
-            <div className="bg-white border md:border-2 border-slate-800 px-2 py-1 md:px-6 md:py-3 rounded-md md:rounded-lg shadow-sm whitespace-nowrap">
-              <span className="text-slate-800 font-bold text-xs md:text-2xl tracking-wide">
-                リピート率アップ
+              <span className="text-slate-400 font-bold">×</span>
+              <span className="bg-emerald-500 text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full shadow-sm">
+                リピート率UP
               </span>
+              <span className="text-slate-600 text-xs md:text-sm font-medium ml-1">を実現</span>
             </div>
-            <span className="text-slate-700 font-bold text-xs md:text-2xl pt-1 ml-1 whitespace-nowrap">なら</span>
+
+            {/* メインコピー */}
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.2] mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400">
+                「選ばれる」飲食店
+              </span>
+              <br />
+              への最短ルート。
+            </h1>
+
+            <p className="text-base md:text-xl text-slate-600 font-medium mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              こだわりの食材仕入れから、常連客をつかむ仕組みづくりまで。
+              <br className="hidden md:block" />
+              ベジコベは、忙しいオーナー様の「成長」をLINE一本で支えます。
+            </p>
+
+            {/* CTAエリア */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+              <Button
+                className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-black text-lg py-7 px-10 rounded-2xl shadow-lg shadow-orange-200 transition-all hover:-translate-y-1 active:translate-y-0"
+                onClick={() => handleLineClick("Hero CTA Consult")}
+              >
+                LINEで無料相談を始める
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto border-2 border-slate-200 text-slate-600 hover:bg-slate-50 font-bold text-lg py-7 px-10 rounded-2xl transition-all"
+                onClick={() => handleLineClick("Hero CTA Download")}
+              >
+                資料をダウンロード
+              </Button>
+            </div>
+
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-slate-400 text-sm font-medium">
+              <svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>導入店舗数 急増中</span>
+              <span className="mx-2">|</span>
+              <span>最短即日から利用可能</span>
+            </div>
           </div>
 
-          {/* 2. Logo: マージン削減 */}
-          <div className="mb-2 md:mb-8 flex justify-center">
-            <img
-              src="/images/logo.png"
-              alt="ベジコベ"
-              className="h-14 md:h-28 w-auto object-contain"
-            />
-          </div>
-
-          {/* 3. Main Copy: マージン削減 */}
-          <h1 className="text-sm md:text-2xl lg:text-3xl font-bold text-slate-700 leading-tight mb-4 md:mb-8">
-            毎日の野菜発注も、
-            <span className="inline-block">お店の差別化も</span>
-            <br />
-            <span className="text-orange-500 font-black text-xl md:text-4xl lg:text-5xl mt-1 inline-block">
-              LINEで簡単シンプルに解決！
-            </span>
-          </h1>
-
-          {/* 4. Mockup Area (2枚横並び、CSSでスマホ枠再現) */}
-          <div className="relative mx-auto max-w-3xl mt-2 md:mt-0 mb-4 flex justify-center gap-3 md:gap-6 px-2">
-
-            {/* 左の画像（農家さん） */}
-            <div className="relative z-10 w-[45%] md:w-[40%] max-w-[220px]">
-              {/* CSSでスマホ風の枠を作成 */}
-              <img
-                src="/images/hero-app-screen-farmer.png" // 変更したファイル名
-                alt="農家さんのこだわりが見える画面"
-                className="w-full h-auto rounded-[1.2rem] md:rounded-[2rem] border-4 md:border-8 border-slate-700 shadow-xl"
-              />
-            </div>
-
-            {/* 右の画像（野菜一覧） */}
-            <div className="relative z-10 w-[45%] md:w-[40%] max-w-[220px] mt-4 md:mt-8"> {/* 右側を少し下げてリズム感を出す */}
-              <img
-                src="/images/hero-app-screen-products.png" // 変更したファイル名
-                alt="新鮮な野菜が一覧できる画面"
-                className="w-full h-auto rounded-[1.2rem] md:rounded-[2rem] border-4 md:border-8 border-slate-700 shadow-xl"
-              />
-            </div>
-
-            {/* Stamp Badge: 位置を中央寄りに調整 */}
-            <div className="absolute bottom-[10px] left-1/2 -translate-x-1/2 z-20 rotate-[-5deg]">
-              <div className="bg-white rounded-full p-1 shadow-xl scale-75 md:scale-100">
-                <div className="bg-white border-4 border-orange-500 rounded-full w-28 h-28 md:w-40 md:h-40 flex flex-col items-center justify-center text-center p-2 shadow-inner">
-                  <span className="text-emerald-500 font-black text-lg md:text-2xl leading-none mb-1">LINE</span>
-                  <span className="text-slate-700 font-bold text-xs md:text-base">で</span>
-                  <span className="text-orange-500 font-black text-base md:text-xl leading-tight">
-                    かんたん
-                    <br />
-                    受発注！
-                  </span>
+          {/* 画像エリア */}
+          <div className="w-full lg:w-1/2 order-1 lg:order-2 animate-fade-in-up animate-delay-200">
+            <div className="relative mx-auto max-w-[500px] lg:max-w-none">
+              {/* メイン画像（オーナー） */}
+              <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
+                <img
+                  src="/images/hero-owner.jpg"
+                  alt="成長を実感する飲食店オーナー"
+                  className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[4/5]"
+                />
+                {/* 画像上のオーバーレイ（スマホで見えやすく） */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
+                <div className="absolute bottom-6 left-6 right-6 md:hidden">
+                  <p className="text-white font-bold text-lg leading-tight">
+                    「仕入れを変えてから、<br />お客様の反応が変わりました」
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* 5. Bottom CTA Area: マージンをマイナスにして上に詰める */}
-          <div className="relative z-30 px-2 md:px-4 mt-[-1rem] md:mt-4">
-            <div className="bg-white/95 backdrop-blur-sm border-2 border-orange-100 rounded-xl p-3 md:p-6 flex flex-col md:flex-row items-center gap-2 md:gap-4 shadow-lg max-w-3xl mx-auto w-full">
-              <div className="text-center md:text-left flex-1 md:mb-0 mb-1">
-                <p className="text-slate-700 font-bold text-xs md:text-lg">
-                  1分でベジコベのことが分かる！
-                </p>
+              {/* 装飾要素：実績バッジ */}
+              <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 z-20 bg-white p-4 md:p-6 rounded-3xl shadow-xl border border-orange-50">
+                <div className="text-center">
+                  <p className="text-orange-500 font-black text-2xl md:text-4xl leading-none">120%</p>
+                  <p className="text-slate-600 font-bold text-xs md:text-sm mt-1">平均客単価UP</p>
+                </div>
               </div>
-              <div className="flex flex-row gap-2 w-full md:w-auto justify-center">
-                <Button
-                  variant="outline"
-                  className="flex-1 md:flex-none border-orange-500 text-orange-500 hover:bg-orange-50 font-bold text-xs md:text-base py-2 px-2 md:px-6 rounded-lg shadow-sm whitespace-nowrap h-auto leading-tight"
-                  onClick={() => handleLineClick("Hero CTA Download")}
-                >
-                  資料ダウンロード
-                </Button>
-                <Button
-                  className="flex-1 md:flex-none bg-orange-500 hover:bg-orange-600 text-white font-black text-xs md:text-base py-2 px-2 md:px-6 rounded-lg shadow-md hover:shadow-xl transition-all animate-pulse hover:animate-none whitespace-nowrap h-auto leading-tight"
-                  onClick={() => handleLineClick("Hero CTA Consult")}
-                >
-                  LINEで無料相談
-                </Button>
+
+              {/* 装飾要素：スマホ画面のチラ見せ */}
+              <div className="absolute -top-6 -right-6 md:-top-12 md:-right-12 z-20 w-32 md:w-48 animate-bounce-slow">
+                <img
+                  src="/images/hero-app-screen-products.png"
+                  alt="アプリ画面"
+                  className="w-full h-auto rounded-2xl md:rounded-3xl border-4 border-white shadow-xl rotate-12"
+                />
+              </div>
+
+              {/* 背景のドット装飾 */}
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-20">
+                <div className="w-full h-full bg-[radial-gradient(#e2e8f0_2px,transparent_1px)] [background-size:20px_2px]" />
               </div>
             </div>
           </div>
 
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0) rotate(12deg); }
+          50% { transform: translateY(-15px) rotate(12deg); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 4s ease-in-out infinite;
+        }
+      `}} />
     </section>
   );
 }
