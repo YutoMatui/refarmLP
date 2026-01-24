@@ -14,19 +14,15 @@ export default function HeroSection() {
       <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-orange-50 blur-3xl -z-10" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] rounded-full bg-emerald-50 blur-3xl -z-10" />
 
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+      <div className="container mx-auto px-4 relative z-10">
+        {/* h-screenに近づけて一画面収まりを意識 */}
+        <div className="text-center max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-80px)] md:min-h-0">
 
-          {/* テキストコンテンツエリア */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left z-10 order-2 lg:order-1 animate-fade-in-up">
-            {/* タグ風の見出し - スマホでは画像より上に、PCではより大きく */}
-            <div className="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 md:gap-4 mb-8 md:mb-10">
-              <span className="bg-orange-500 text-white text-sm md:text-2xl font-bold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-sm">
-                客単価UP
-              </span>
-              <span className="text-slate-400 font-bold text-lg md:text-3xl">×</span>
-              <span className="bg-emerald-500 text-white text-sm md:text-2xl font-bold px-4 md:px-6 py-2 md:py-3 rounded-full shadow-sm">
-                リピート率UP
+          {/* 1. Top Tags: マージン削減 */}
+          <div className="flex flex-nowrap items-center justify-center gap-1 md:gap-4 mb-2 md:mb-6">
+            <div className="bg-white border md:border-2 border-slate-800 px-2 py-1 md:px-6 md:py-3 rounded-md md:rounded-lg shadow-sm whitespace-nowrap">
+              <span className="text-slate-800 font-bold text-xs md:text-2xl tracking-wide">
+                客単価アップ
               </span>
               <span className="text-slate-600 text-sm md:text-2xl font-bold">を実現</span>
             </div>
