@@ -21,14 +21,14 @@ const steps = [
         id: 3,
         title: "セットアップ",
         subtitle: "導入サポート",
-        description: "アカウント設定から農家提案まで\n専任スタッフがサポート。",
+        description: "初期設定やその他お困りごとを\n専任スタッフがサポート。",
         icon: "/images/icons/step-3-setup.png",
     },
     {
         id: 4,
-        title: "取引先案内開始",
+        title: "利用開始",
         subtitle: "利用開始",
-        description: "準備完了！\n朝採れ野菜がお店に届きます。",
+        description: "準備完了！\n一緒にお店を成長させていきましょう。",
         icon: "/images/icons/step-4-start.png",
     },
 ];
@@ -142,13 +142,13 @@ export default function OnboardingFlowSection() {
                 {/* CTA Area */}
                 <div className="text-center mt-16 md:mt-24">
                     <Button
-                        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
+                        className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
                         onClick={handleLineClick}
                     >
                         無料で利用開始
                     </Button>
                     <p className="text-slate-500 text-sm mt-4">
-                        ※クレジットカード不要・いつでもキャンセル可能
+                        しつこい営業は一切行いません。
                     </p>
                 </div>
             </div>
