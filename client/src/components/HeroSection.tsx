@@ -16,11 +16,7 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-4 py-8 md:py-16">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
-<<<<<<< HEAD
 
-=======
-          
->>>>>>> 3af80f818160be08e02b4afdd0eecd5037e060e4
           {/* スマホ用：画像の上のタグ */}
           <div className="w-full flex justify-center lg:hidden order-1">
             <div className="inline-flex flex-wrap items-center justify-center gap-2 mb-4">
