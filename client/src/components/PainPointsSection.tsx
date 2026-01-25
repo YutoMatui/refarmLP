@@ -120,21 +120,21 @@ export default function PainPointsSection() {
 
   // Carousel Sync
   useEffect(() => {
-    if (!api) return;
+    if (!api || !open) return;
 
-    // Autoplay logic
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 4000);
+    // 詳細を開いた後は自動スライドしない
+    // const interval = setInterval(() => {
+    //   api.scrollNext();
+    // }, 4000);
 
     const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
     api.on("select", onSelect);
 
     return () => {
       api.off("select", onSelect);
-      clearInterval(interval);
+      // clearInterval(interval);
     };
-  }, [api]);
+  }, [api, open]);
 
   // Sync React state to Carousel
   useEffect(() => {

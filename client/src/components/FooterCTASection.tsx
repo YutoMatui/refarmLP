@@ -35,22 +35,21 @@ export default function FooterCTASection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* Main CTA */}
+            {/* Main CTA - 緑色 */}
             <div className="flex flex-col items-center">
               <Button
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
                 onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
                 無料で利用開始
               </Button>
-              <span className="text-sm text-white/80 mt-2">クレジットカード不要</span>
+              <span className="text-sm text-white/80 mt-2">しつこい営業は一切行いません。</span>
             </div>
 
-            {/* Sub CTA */}
+            {/* Sub CTA - オレンジ色 */}
             <div className="flex flex-col items-center">
               <Button
-                variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald font-bold text-lg py-7 px-12 rounded-2xl transition-all duration-200"
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200"
                 onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
               >
                 資料請求

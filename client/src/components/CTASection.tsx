@@ -25,9 +25,9 @@ export default function CTASection() {
                 {/* Headline */}
                 <div className="text-center mb-10 md:mb-14">
                     <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight drop-shadow-md">
-                        まずはLINEで、
+                        客単価UP×リピート率UPを
                         <br className="md:hidden" />
-                        今の野菜を覗いてみませんか？
+                        実現しませんか？
                     </h2>
                     <p className="text-emerald-100 mt-4 text-sm md:text-lg font-medium">
                         無理な営業は一切いたしません。まずはお客様のペースでご覧ください。
@@ -64,9 +64,6 @@ export default function CTASection() {
                                 ベジコベの仕組みや効果が<br />
                                 <span className="text-emerald-600">すぐにわかる！</span>
                             </h3>
-                            <p className="text-slate-500 text-xs md:text-sm">
-                                PDF資料と、実際のアプリ画面をご覧いただけます。
-                            </p>
                         </div>
 
                         {/* Bottom Button Area - 黄色/オレンジ系で緑背景に映える色に */}
@@ -107,12 +104,9 @@ export default function CTASection() {
                                 </div>
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-slate-700 mb-2">
-                                誰に相談したらいいか分からない<br />
-                                <span className="text-emerald-600">お店の悩みを無料相談！</span>
+                                ベジコベを使って<br />
+                                <span className="text-emerald-600">あなたのお店がどう成長するかお伝えします！</span>
                             </h3>
-                            <p className="text-slate-500 text-xs md:text-sm">
-                                導入サポートや使い方のご質問もお気軽にどうぞ。
-                            </p>
                         </div>
 
                         {/* Bottom Button Area */}
