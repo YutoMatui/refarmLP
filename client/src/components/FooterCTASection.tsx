@@ -5,8 +5,25 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
 
 export default function FooterCTASection() {
+  const handleLineClick = (type: string) => {
+    // GA4計測用
+    trackLineRegistration("Footer CTA Section");
+    trackCTAClick(type, "Footer CTA");
+
+    // Meta Pixel計測用
+    if (type.includes("Download") || type.includes("資料")) {
+      trackDownloadClick("Footer CTA Section");
+    } else {
+      trackLineClick("Footer CTA Section");
+    }
+
+    window.open('https://lin.ee/qMfjf66', '_blank');
+  };
+
   return (
     <section className="py-16 md:py-24 bg-emerald relative overflow-hidden">
       {/* Background Pattern */}
@@ -39,7 +56,7 @@ export default function FooterCTASection() {
             <div className="flex flex-col items-center">
               <Button
                 className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
-                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
+                onClick={() => handleLineClick('無料で利用開始')}
               >
                 無料で利用開始
               </Button>
@@ -50,7 +67,7 @@ export default function FooterCTASection() {
             <div className="flex flex-col items-center">
               <Button
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200"
-                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
+                onClick={() => handleLineClick('資料請求')}
               >
                 資料請求
               </Button>

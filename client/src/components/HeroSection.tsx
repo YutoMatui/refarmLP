@@ -1,10 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
 
 export default function HeroSection() {
   const handleLineClick = (buttonType: string) => {
+    // Google Analytics tracking
     trackLineRegistration("Hero Section");
     trackCTAClick(buttonType, "Hero");
+
+    // Meta Pixel tracking
+    if (buttonType.includes("Download")) {
+      trackDownloadClick("Hero Section");
+    } else {
+      trackLineClick("Hero Section");
+    }
+
     window.open("https://lin.ee/qMfjf66", "_blank");
   };
 
