@@ -13,6 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
 
 const navItems = [
   { label: "選ばれる理由", href: "#pain-points" },
@@ -25,6 +27,21 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+
+  const handleHeaderCTAClick = (type: string) => {
+    // GA4計測用
+    trackLineRegistration("Header");
+    trackCTAClick(type, "Header");
+    
+    // Meta Pixel計測用
+    if (type.includes("資料")) {
+      trackDownloadClick("Header");
+    } else {
+      trackLineClick("Header");
+    }
+    
+    window.open("https://lin.ee/qMfjf66", "_blank");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,13 +110,13 @@ export default function Header() {
             <Button
               variant="outline"
               className="border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl px-5"
-              onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+              onClick={() => handleHeaderCTAClick("LINEで相談する")}
             >
               LINEで相談する
             </Button>
             <Button
               className="bg-orange hover:bg-orange-dark text-white font-bold rounded-xl px-5"
-              onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+              onClick={() => handleHeaderCTAClick("資料請求")}
             >
               資料請求
             </Button>
@@ -146,13 +163,13 @@ export default function Header() {
               <Button
                 variant="outline"
                 className="w-full border-emerald text-emerald hover:bg-emerald hover:text-white font-bold rounded-xl"
-                onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+                onClick={() => handleHeaderCTAClick("LINEで相談する")}
               >
                 LINEで相談する
               </Button>
               <Button
                 className="w-full bg-orange hover:bg-orange-dark text-white font-bold rounded-xl"
-                onClick={() => window.open("https://lin.ee/qMfjf66", "_blank")}
+                onClick={() => handleHeaderCTAClick("資料請求")}
               >
                 資料請求
               </Button>
