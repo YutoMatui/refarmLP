@@ -1,12 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
 
 export default function CTASection() {
     const handleLineClick = (type: string) => {
         // GA4計測用
         trackLineRegistration("CTA Section");
         trackCTAClick(type, "CTA");
+        
+        // Meta Pixel計測用
+        if (type.includes("Download")) {
+            trackDownloadClick("CTA Section");
+        } else {
+            trackLineClick("CTA Section");
+        }
+        
         // LINE公式アカウント等のURLへ遷移
         window.open("https://lin.ee/qMfjf66", "_blank");
     };
