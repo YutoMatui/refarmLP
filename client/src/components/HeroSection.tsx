@@ -29,21 +29,23 @@ export default function HeroSection() {
 
           {/* スマホ用：画像の上のタグ */}
           <div className="w-full flex justify-center lg:hidden order-1">
-            <div className="inline-flex flex-wrap items-center justify-center gap-2 mb-4">
-              <span className="bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full shadow-sm">
-                客単価UP
-              </span>
-              <span className="text-slate-400 font-bold text-lg">×</span>
-              <span className="bg-emerald-500 text-white text-sm font-bold px-4 py-2 rounded-full shadow-sm">
-                リピート率UP
-              </span>
-              <span className="text-slate-600 text-sm font-bold">を実現</span>
+            <div className="inline-flex flex-wrap items-center justify-center gap-2 mb-4 w-full">
+              <div className="flex items-center gap-2">
+                <span className="bg-orange-500 text-white text-lg font-bold px-5 py-2.5 rounded-full shadow-md whitespace-nowrap">
+                  客単価UP
+                </span>
+                <span className="text-slate-400 font-bold text-xl">×</span>
+                <span className="bg-emerald-500 text-white text-lg font-bold px-5 py-2.5 rounded-full shadow-md whitespace-nowrap">
+                  リピート率UP
+                </span>
+              </div>
+              <span className="text-slate-600 text-base font-bold mt-1">を実現</span>
             </div>
           </div>
 
           {/* 画像エリア */}
           <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fade-in-up animate-delay-200">
-            <div className="relative mx-auto max-w-[320px] lg:max-w-none">
+            <div className="relative mx-auto max-w-[340px] lg:max-w-none">
               {/* メイン画像（オーナー） */}
               <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img
@@ -52,10 +54,11 @@ export default function HeroSection() {
                   className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[3/4]"
                 />
                 {/* スマホ用：画像上に白のテキストを重ねる */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:hidden" />
-                <div className="absolute bottom-4 left-3 right-3 lg:hidden">
-                  <h2 className="text-white font-black text-xl leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    「選ばれる」飲食店<br />への最短ルート。
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent lg:hidden" />
+                <div className="absolute bottom-6 left-4 right-4 lg:hidden text-center">
+                  <h2 className="text-white font-black text-3xl leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] tracking-tight">
+                    <span className="inline-block mb-1 text-orange-400">「選ばれる」</span>飲食店<br />
+                    への<span className="text-emerald-300">最短ルート</span>。
                   </h2>
                 </div>
               </div>
