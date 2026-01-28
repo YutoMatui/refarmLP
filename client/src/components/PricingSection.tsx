@@ -18,20 +18,20 @@ const plans: Plan[] = [
   {
     id: "vegetable-only",
     name: "野菜仕入れ専用プラン",
-    price: "月額 0円",
+    price: "0円/月",
     targetUsers: ["まずは野菜の味と品質を確かめたい"],
     features: [
       "契約農家の野菜閲覧・発注",
       "インボイス対応請求書",
       "1回ごとの都度配送（送料800円）"
     ],
-    buttonText: "今の神戸野菜を見てみる",
+    buttonText: "LINEで野菜リストを見る",
     buttonVariant: "secondary",
   },
   {
     id: "unit-price-up",
     name: "客単価アップ支援プラン",
-    price: "月額 6,400円",
+    price: "6,400円/月",
     targetUsers: [
       "週2回、定期的に野菜を仕入れる（送料がお得！）",
       "SNS投稿は自分でする方"
@@ -41,14 +41,14 @@ const plans: Plan[] = [
       "プロ撮影の野菜写真・動画素材の提供",
       "ホール用「おすすめトーク」台本提供"
     ],
-    buttonText: "動画素材について詳しく聞く",
+    buttonText: "LINEで送料特典について聞く",
     isPopular: true,
     buttonVariant: "primary",
   },
   {
     id: "repeat-up",
     name: "客単価・リピート率アッププラン",
-    price: "月額 34,980円",
+    price: "34,980円/月",
     targetUsers: ["客単価もお店のファンも増やしたい方"],
     features: [
       "【特典】公式LINE構築 初期費用0円",
@@ -57,7 +57,7 @@ const plans: Plan[] = [
       "専任担当による毎月の集客ミーティング",
       "ベーシックの全機能（送料無料含む）"
     ],
-    buttonText: "お店のファン化について詳しく聞く",
+    buttonText: "LINEで集客の相談をする",
     buttonVariant: "secondary",
   },
 ];
