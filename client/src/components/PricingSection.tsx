@@ -27,12 +27,12 @@ const plans: Plan[] = [
       "インボイス対応請求書",
       "1回ごとの都度配送（送料800円）"
     ],
-    buttonText: "LINEで野菜リストを見る",
+    buttonText: "神戸野菜・農家さんを詳しく知る",
     buttonVariant: "secondary",
   },
   {
     id: "standard-line",
-    name: "LINE集客・運用プラン", // 旧プレミアムの内容
+    name: "客単価・リピート率アッププラン", // 旧プレミアムの内容
     price: "¥34,980 /月",
     targetUsers: [
       "LINE構築・運用を丸投げしたい",
@@ -43,7 +43,7 @@ const plans: Plan[] = [
       "オリジナルPR動画制作（3ヶ月に1回）",
       "月8回まで送料無料（実質0円以下）",
       "専任担当による毎月の集客ミーティング",
-      "ベーシック機能（素材提供等）全て込み"
+      "フリープラン機能全て込み"
     ],
     buttonText: "集客担当として雇う（相談）",
     isPopular: true, // これをスタンダード（推奨）にする
@@ -51,9 +51,9 @@ const plans: Plan[] = [
   },
   {
     id: "premium-marketing",
-    name: "Web集客フルサポート", // 新プレミアム（オプション）
+    name: "Web集客フルサポートプラン", // 新プレミアム（オプション）
     price: "要相談",
-    priceNote: "※スタンダードプランのオプション",
+    priceNote: "※有料プランのオプション",
     targetUsers: ["SNSも検索対策も全て任せたい方"],
     features: [
       "Instagram / TikTok 運用代行",
