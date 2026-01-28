@@ -57,12 +57,20 @@ export default function HeroSection() {
           <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fade-in-up animate-delay-200">
             <div className="relative mx-auto max-w-[280px] xs:max-w-[300px] lg:max-w-none">
               {/* メイン画像（オーナー） */}
-              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white transition-transform duration-500">
                 <img
                   src="/images/hero-owner.jpg"
                   alt="成長を実感する飲食店オーナー"
                   className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[3/4]"
                 />
+
+                {/* 個人店特化バッジ (スマホ用) */}
+                <div className="absolute top-[-10px] right-[-10px] z-20 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg border-4 border-white transform rotate-12 lg:hidden">
+                  <span className="text-black font-black text-xs text-center leading-tight">
+                    個人店<br />特化
+                  </span>
+                </div>
+
                 {/* スマホ用：画像上に白のテキストを重ねる */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent lg:hidden" />
                 <div className="absolute bottom-5 left-2 right-2 lg:hidden text-center">
@@ -71,6 +79,13 @@ export default function HeroSection() {
                     への<span className="text-emerald-300">最短ルート</span>。
                   </h2>
                 </div>
+              </div>
+
+              {/* 個人店特化バッジ (PC用) */}
+              <div className="hidden lg:flex absolute top-[-30px] right-[-30px] z-20 w-32 h-32 bg-yellow-400 rounded-full items-center justify-center shadow-xl border-4 border-white transform rotate-12">
+                <span className="text-black font-black text-xl text-center leading-tight">
+                  個人店<br />特化
+                </span>
               </div>
 
               {/* 背景のドット装飾 */}
