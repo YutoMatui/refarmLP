@@ -18,7 +18,7 @@ const plans: Plan[] = [
   {
     id: "vegetable-only",
     name: "野菜仕入れ専用プラン",
-    price: "0円/月",
+    price: "¥0 /月",
     targetUsers: ["まずは野菜の味と品質を確かめたい"],
     features: [
       "契約農家の野菜閲覧・発注",
@@ -31,7 +31,7 @@ const plans: Plan[] = [
   {
     id: "unit-price-up",
     name: "客単価アップ支援プラン",
-    price: "6,400円/月",
+    price: "¥6,400 /月",
     targetUsers: [
       "週2回、定期的に野菜を仕入れる（送料がお得！）",
       "SNS投稿は自分でする方"
@@ -48,7 +48,7 @@ const plans: Plan[] = [
   {
     id: "repeat-up",
     name: "客単価・リピート率アッププラン",
-    price: "34,980円/月",
+    price: "¥34,980 /月",
     targetUsers: ["客単価もお店のファンも増やしたい方"],
     features: [
       "【特典】公式LINE構築 初期費用0円",
@@ -113,7 +113,7 @@ function PricingCard({ plan }: { plan: Plan }) {
 
         {/* Price */}
         <div className="mb-4">
-          <span className="text-3xl md:text-4xl font-black text-slate-800">
+          <span className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
             {plan.price}
           </span>
         </div>
@@ -178,12 +178,12 @@ function PricingCard({ plan }: { plan: Plan }) {
                 return (
                   <li key={index} className="flex items-start gap-3">
                     <Check
-                      className={`w-5 h-5 shrink-0 mt-0.5 ${isHighlight ? "text-red-500" : "text-emerald-600/70"
+                      className={`w-5 h-5 shrink-0 mt-0.5 ${isHighlight ? "text-emerald-600" : "text-emerald-600/70"
                         }`}
                     />
                     <span
                       className={`text-sm ${isHighlight
-                        ? "font-bold text-red-600"
+                        ? "font-bold text-emerald-700" // 赤字をやめ、濃いグリーンで強調
                         : "text-slate-600"
                         }`}
                     >
