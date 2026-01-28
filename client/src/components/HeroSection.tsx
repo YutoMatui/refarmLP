@@ -57,18 +57,32 @@ export default function HeroSection() {
           <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fade-in-up animate-delay-200">
             <div className="relative mx-auto max-w-[320px] xs:max-w-[360px] lg:max-w-none">
               {/* メイン画像（オーナー） */}
-              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white transition-transform duration-500 mb-8 lg:mb-0">
+              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white transition-transform duration-500 mb-12 lg:mb-0">
                 <img
                   src="/images/hero-owner.jpg"
                   alt="成長を実感する飲食店オーナー"
                   className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[3/4]"
                 />
 
-                {/* 緑のバッジ (スマホ用：画像下部に配置) */}
-                <div className="absolute -bottom-10 right-0 left-0 mx-auto z-20 w-40 h-40 bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-xl border-[6px] border-white lg:hidden">
-                  <span className="text-white font-bold text-[10px] tracking-wider mb-0.5">神戸エリア限定</span>
-                  <span className="text-white font-black text-xl tracking-tight mb-0.5 text-yellow-300 drop-shadow-md">個人店特化</span>
-                  <span className="text-white font-bold text-[10px] tracking-wider">DX・集客支援</span>
+                {/* 3つの緑のバッジ (スマホ用：画像下部に横並び配置) */}
+                <div className="absolute -bottom-8 left-0 right-0 z-20 flex justify-center items-end gap-1.5 lg:hidden px-1">
+                  {/* 左：神戸エリア限定 */}
+                  <div className="w-[85px] h-[85px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight">
+                    <span className="text-white font-bold text-[11px]">神戸エリア</span>
+                    <span className="text-white font-bold text-sm">限定</span>
+                  </div>
+
+                  {/* 中央：個人店特化 (少し大きく・上にずらす) */}
+                  <div className="w-[100px] h-[100px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-xl border-[4px] border-white text-center leading-tight mb-2">
+                    <span className="text-white font-black text-lg drop-shadow-md">個人店</span>
+                    <span className="text-white font-black text-xl drop-shadow-md">特化</span>
+                  </div>
+
+                  {/* 右：DX・集客支援 */}
+                  <div className="w-[85px] h-[85px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight">
+                    <span className="text-white font-bold text-[11px]">DX・集客</span>
+                    <span className="text-white font-bold text-sm">支援</span>
+                  </div>
                 </div>
               </div>
 
