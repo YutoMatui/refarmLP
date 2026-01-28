@@ -24,7 +24,7 @@ const plans: Plan[] = [
       "インボイス対応請求書",
       "1回ごとの都度配送（送料800円）"
     ],
-    buttonText: "LINEで野菜リストを見る",
+    buttonText: "今の神戸野菜を見てみる",
   },
   {
     id: "unit-price-up",
@@ -39,7 +39,7 @@ const plans: Plan[] = [
       "プロ撮影の野菜写真・動画素材の提供",
       "ホール用「おすすめトーク」台本提供"
     ],
-    buttonText: "LINEで送料特典について聞く",
+    buttonText: "動画素材について詳しく聞く",
     isPopular: true,
   },
   {
@@ -48,12 +48,13 @@ const plans: Plan[] = [
     price: "月額 34,980円",
     targetUsers: ["客単価もお店のファンも増やしたい方"],
     features: [
-      "公式LINE構築・運用代行（丸投げOK）",
+      "【特典】公式LINE構築 初期費用0円",
+      "公式LINE運用代行（丸投げOK）",
       "オリジナルPR動画制作（3ヶ月に1回）",
       "専任担当による毎月の集客ミーティング",
       "ベーシックの全機能（送料無料含む）"
     ],
-    buttonText: "LINEで集客の相談をする",
+    buttonText: "LINEでお店のファン化について詳しく聞く",
   },
 ];
 
@@ -61,7 +62,17 @@ function PricingCard({ plan }: { plan: Plan }) {
   const handleLineClick = () => {
     trackLineRegistration("Pricing Section");
     trackCTAClick(`${plan.name}選択`, "Pricing");
-    window.open("https://lin.ee/qMfjf66", "_blank");
+
+    // パラメータを付与して流入経路を区別可能にする
+    const baseUrl = "https://lin.ee/qMfjf66";
+    // アプリ遷移時にパラメータが落ちる場合もあるが、ブラウザ経由での計測用として付与
+    const params = new URLSearchParams({
+      utm_source: "lp",
+      utm_medium: "pricing_button",
+      utm_campaign: plan.id
+    });
+
+    window.open(`${baseUrl}?${params.toString()}`, "_blank");
   };
 
   return (
@@ -113,14 +124,19 @@ function PricingCard({ plan }: { plan: Plan }) {
             主な内容
           </p>
           <ul className="space-y-3">
-            {plan.features.map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3 pl-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0" />
-                <span className="text-sm text-slate-600 leading-relaxed">
-                  {feature}
-                </span>
-              </li>
-            ))}
+            {plan.features.map((feature, idx) => {
+              // 特典などの強調表示
+              const isHighlight = feature.includes("【特典】") || feature.includes("初期費用0円");
+
+              return (
+                <li key={idx} className="flex items-start gap-3 pl-2">
+                  <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${isHighlight ? "bg-red-500" : "bg-emerald-400"}`} />
+                  <span className={`text-sm leading-relaxed ${isHighlight ? "font-bold text-red-600" : "text-slate-600"}`}>
+                    {feature}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -191,3 +207,4 @@ export default function PricingSection() {
     </section>
   );
 }
+
