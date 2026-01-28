@@ -67,19 +67,19 @@ export default function HeroSection() {
                 {/* 3つの緑のバッジ (スマホ用：画像下部に横並び配置) */}
                 <div className="absolute -bottom-10 left-0 right-0 z-20 flex justify-center items-center gap-2 lg:hidden px-1">
                   {/* 左：神戸エリア限定 */}
-                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight transform -translate-y-2">
+                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight transform -translate-y-6">
                     <span className="text-white font-bold text-[11px]">神戸エリア</span>
                     <span className="text-white font-black text-sm">限定</span>
                   </div>
 
                   {/* 中央：個人店特化 */}
-                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-xl border-[4px] border-white text-center leading-tight transform -translate-y-2">
+                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-xl border-[4px] border-white text-center leading-tight transform -translate-y-6">
                     <span className="text-white font-black text-sm drop-shadow-md">個人店</span>
-                    <span className="text-white font-black text-lg drop-shadow-md text-yellow-300">特化</span>
+                    <span className="text-white font-black text-lg drop-shadow-md">特化</span>
                   </div>
 
                   {/* 右：DX・集客支援 */}
-                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight transform -translate-y-2">
+                  <div className="w-[90px] h-[90px] bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-lg border-[3px] border-white text-center leading-tight transform -translate-y-6">
                     <span className="text-white font-bold text-[11px]">DX・集客</span>
                     <span className="text-white font-bold text-sm">支援</span>
                   </div>
