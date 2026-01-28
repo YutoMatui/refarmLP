@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
-import { Check, Star } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackLineRegistration, trackCTAClick, trackSectionScroll } from "@/lib/gtag";
+import { trackLineRegistration, trackCTAClick, trackSectionScroll, event } from "@/lib/gtag";
 
 interface Plan {
   id: string;
@@ -11,6 +11,7 @@ interface Plan {
   features: string[];
   buttonText: string;
   isPopular?: boolean;
+  buttonVariant: "primary" | "secondary";
 }
 
 const plans: Plan[] = [
@@ -25,6 +26,7 @@ const plans: Plan[] = [
       "1回ごとの都度配送（送料800円）"
     ],
     buttonText: "今の神戸野菜を見てみる",
+    buttonVariant: "secondary",
   },
   {
     id: "unit-price-up",
@@ -41,6 +43,7 @@ const plans: Plan[] = [
     ],
     buttonText: "動画素材について詳しく聞く",
     isPopular: true,
+    buttonVariant: "primary",
   },
   {
     id: "repeat-up",
@@ -54,18 +57,20 @@ const plans: Plan[] = [
       "専任担当による毎月の集客ミーティング",
       "ベーシックの全機能（送料無料含む）"
     ],
-    buttonText: "LINEでお店のファン化について詳しく聞く",
+    buttonText: "お店のファン化について詳しく聞く",
+    buttonVariant: "secondary",
   },
 ];
 
 function PricingCard({ plan }: { plan: Plan }) {
+  const [isExpanded, setIsExpanded] = useState(plan.isPopular);
+
   const handleLineClick = () => {
     trackLineRegistration("Pricing Section");
     trackCTAClick(`${plan.name}選択`, "Pricing");
 
     // パラメータを付与して流入経路を区別可能にする
     const baseUrl = "https://lin.ee/qMfjf66";
-    // アプリ遷移時にパラメータが落ちる場合もあるが、ブラウザ経由での計測用として付与
     const params = new URLSearchParams({
       utm_source: "lp",
       utm_medium: "pricing_button",
@@ -75,42 +80,52 @@ function PricingCard({ plan }: { plan: Plan }) {
     window.open(`${baseUrl}?${params.toString()}`, "_blank");
   };
 
+  const handleExpandToggle = () => {
+    const newState = !isExpanded;
+    setIsExpanded(newState);
+    event({
+      action: "pricing_expand",
+      category: "engagement",
+      label: `${plan.name} - ${newState ? "open" : "close"}`,
+    });
+  };
+
   return (
     <div
-      className={`relative h-full flex flex-col bg-white rounded-2xl shadow-sm transition-all duration-300 hover:shadow-xl ${plan.isPopular
-          ? "border-2 border-emerald-600 ring-4 ring-emerald-600/10 scale-105 z-10"
-          : "border border-slate-200"
+      className={`relative bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl ${plan.isPopular
+        ? "border-2 border-emerald-600 ring-4 ring-emerald-600/10 scale-105 z-10"
+        : "border border-slate-200"
         }`}
     >
       {/* Popular Badge */}
       {plan.isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-max">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
           <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
             <Star className="w-4 h-4 fill-current" />
-            おすすめ
+            人気No.1
           </span>
         </div>
       )}
 
-      <div className="p-6 md:p-8 flex-1 flex flex-col">
-        {/* Header */}
-        <div className="text-center mb-6">
-          <h3 className="text-lg font-bold text-slate-700 mb-4">{plan.name}</h3>
-          <div className="text-3xl font-black text-slate-800">
+      <div className="p-6 md:p-8">
+        {/* Plan Name */}
+        <h3 className="text-xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+
+        {/* Price */}
+        <div className="mb-4">
+          <span className="text-3xl md:text-4xl font-black text-slate-800">
             {plan.price}
-          </div>
+          </span>
         </div>
 
         {/* Target Users */}
-        <div className="mb-8 bg-slate-50 p-4 rounded-xl">
-          <p className="text-xs font-bold text-slate-500 mb-3 text-center uppercase tracking-wider">
-            こんな人におすすめ
-          </p>
+        <div className="mb-6 bg-slate-50 p-4 rounded-xl">
+          <p className="text-xs font-bold text-slate-500 mb-2">こんな人におすすめ</p>
           <ul className="space-y-2">
             {plan.targetUsers.map((user, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-emerald-600 shrink-0" />
-                <span className="text-sm font-bold text-slate-700 leading-snug">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span className="text-sm text-slate-700 leading-snug">
                   {user}
                 </span>
               </li>
@@ -118,38 +133,68 @@ function PricingCard({ plan }: { plan: Plan }) {
           </ul>
         </div>
 
-        {/* Features */}
-        <div className="mb-8 flex-1">
-          <p className="text-xs font-bold text-slate-400 mb-3 text-center uppercase tracking-wider">
-            主な内容
-          </p>
-          <ul className="space-y-3">
-            {plan.features.map((feature, idx) => {
-              // 特典などの強調表示
-              const isHighlight = feature.includes("【特典】") || feature.includes("初期費用0円");
+        {/* CTA Button */}
+        {plan.buttonVariant === "primary" ? (
+          <Button
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
+            onClick={handleLineClick}
+          >
+            {plan.buttonText}
+          </Button>
+        ) : (
+          <Button
+            variant="outline"
+            className="w-full border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-bold py-6 rounded-xl transition-all"
+            onClick={handleLineClick}
+          >
+            {plan.buttonText}
+          </Button>
+        )}
 
-              return (
-                <li key={idx} className="flex items-start gap-3 pl-2">
-                  <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${isHighlight ? "bg-red-500" : "bg-emerald-400"}`} />
-                  <span className={`text-sm leading-relaxed ${isHighlight ? "font-bold text-red-600" : "text-slate-600"}`}>
-                    {feature}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-        {/* Button */}
-        <Button
-          className={`w-full font-bold py-6 rounded-xl shadow-md transition-all ${plan.isPopular
-              ? "bg-emerald-600 hover:bg-emerald-700 text-white hover:shadow-lg"
-              : "bg-[#06C755] hover:bg-[#05b64d] text-white hover:shadow-lg"
-            }`}
-          onClick={handleLineClick}
+        {/* Expand/Collapse Button */}
+        <button
+          onClick={handleExpandToggle}
+          className="w-full flex items-center justify-center gap-2 mt-4 py-2 text-sm text-slate-500 hover:text-emerald-600 transition-colors"
+          data-event="pricing_expand"
+          data-event-plan={plan.id}
         >
-          {plan.buttonText}
-        </Button>
+          <span>{isExpanded ? "詳細を閉じる" : "詳細を見る"}</span>
+          {isExpanded ? (
+            <ChevronUp className="w-4 h-4" />
+          ) : (
+            <ChevronDown className="w-4 h-4" />
+          )}
+        </button>
+
+        {/* Features List (Expandable) */}
+        <div
+          className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
+            }`}
+        >
+          <div className="pt-4 border-t border-slate-100">
+            <ul className="space-y-3">
+              {plan.features.map((feature, index) => {
+                const isHighlight = feature.includes("【特典】") || feature.includes("初期費用0円");
+                return (
+                  <li key={index} className="flex items-start gap-3">
+                    <Check
+                      className={`w-5 h-5 shrink-0 mt-0.5 ${isHighlight ? "text-red-500" : "text-emerald-600/70"
+                        }`}
+                    />
+                    <span
+                      className={`text-sm ${isHighlight
+                        ? "font-bold text-red-600"
+                        : "text-slate-600"
+                        }`}
+                    >
+                      {feature}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -183,28 +228,32 @@ export default function PricingSection() {
     <section
       ref={sectionRef}
       id="pricing"
-      className="py-20 md:py-32 bg-slate-50"
+      className="py-16 md:py-24 bg-slate-50"
+      data-event="scroll_to_pricing"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">
+        {/* Section Title */}
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+            料金プラン
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800">
             料金プラン
           </h2>
-          <p className="text-slate-500">
-            あなたの店舗に最適なプランをお選びください
-          </p>
         </div>
 
-        {/* Grid Layout: 1 column on mobile, 3 columns on tablet/desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-8 max-w-6xl mx-auto items-stretch">
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-6 items-start max-w-5xl mx-auto">
           {plans.map((plan) => (
-            <div key={plan.id} className="flex">
-              <PricingCard plan={plan} />
-            </div>
+            <PricingCard key={plan.id} plan={plan} />
           ))}
         </div>
+
+        {/* Note */}
+        <p className="text-center text-sm text-slate-500 mt-8">
+          ※別途、野菜の購入代金がかかります。
+        </p>
       </div>
     </section>
   );
 }
-
