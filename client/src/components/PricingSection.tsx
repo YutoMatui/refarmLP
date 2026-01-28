@@ -18,7 +18,7 @@ interface Plan {
 const plans: Plan[] = [
   {
     id: "free-entry",
-    name: "野菜仕入れ専用プラン",
+    name: "神戸農家応援プラン",
     price: "¥0 /月",
     targetUsers: ["まずは野菜の味と品質を確かめたい"],
     features: [
@@ -43,9 +43,9 @@ const plans: Plan[] = [
       "オリジナルPR動画制作（3ヶ月に1回）",
       "月8回まで送料無料（実質0円以下）",
       "専任担当による毎月の集客ミーティング",
-      "フリープラン機能全て込み"
+      "フリープラン機能全て込み",
     ],
-    buttonText: "集客担当として雇う（相談）",
+    buttonText: "お店のファン化について相談",
     isPopular: true, // これをスタンダード（推奨）にする
     buttonVariant: "primary",
   },
@@ -60,7 +60,6 @@ const plans: Plan[] = [
       "SEO対策（検索順位向上）",
       "MEO対策（Googleマップ集客）",
       "競合調査・マーケティング戦略設計",
-      "スタンダードプランの全機能を含む"
     ],
     buttonText: "Web集客全般を相談する",
     buttonVariant: "tertiary", // 特別な色味（黒やゴールドなど）
@@ -274,7 +273,6 @@ export default function PricingSection() {
         {/* Note */}
         <p className="text-center text-sm text-slate-500 mt-12 bg-slate-100 py-4 rounded-lg max-w-3xl mx-auto">
           ※すべてのプランで、入会金・解約金はかかりません。（パートナー契約期間中は除く）<br />
-          ※野菜の購入代金は別途発生いたします。
         </p>
       </div>
     </section>
