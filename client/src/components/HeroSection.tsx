@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
 import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
+import { TrendingUp } from "lucide-react";
 
 export default function HeroSection() {
   const handleLineClick = (buttonType: string) => {
@@ -28,21 +29,27 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8">
 
           {/* スマホ用：画像の上のタグ */}
-          <div className="w-full flex flex-col items-center justify-center lg:hidden order-1 mb-2">
-            <div className="flex items-center justify-center gap-1 mb-1 w-full">
-              <span className="bg-orange-500 text-white text-base xs:text-lg font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+          <div className="w-full flex flex-col items-center justify-center lg:hidden order-1 mb-2 mt-2">
+            <div className="flex items-center justify-center gap-1 mb-2 w-full px-1">
+              <span className="bg-orange-500 text-white text-base xs:text-lg font-black px-3 py-2 rounded-full shadow-lg whitespace-nowrap flex items-center gap-1">
                 客単価UP
+                <TrendingUp className="w-5 h-5 stroke-[3]" />
               </span>
-              <span className="text-slate-400 font-bold text-lg">×</span>
-              <span className="bg-emerald-500 text-white text-base xs:text-lg font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+              <span className="text-slate-400 font-black text-xl">×</span>
+              <span className="bg-emerald-500 text-white text-base xs:text-lg font-black px-3 py-2 rounded-full shadow-lg whitespace-nowrap flex items-center gap-1">
                 リピート率UP
+                <TrendingUp className="w-5 h-5 stroke-[3]" />
               </span>
-              <span className="text-slate-600 text-lg font-bold ml-1">を</span>
+              <span className="text-slate-600 text-xl font-black ml-0.5">を</span>
             </div>
-            <div className="w-full text-center">
-              <span className="block text-5xl xs:text-6xl font-black text-orange-500 tracking-widest drop-shadow-md transform -rotate-2 py-2 leading-none">
+            <div className="w-full text-center relative">
+              <span className="block text-[3.5rem] xs:text-[4.5rem] font-black text-orange-500 tracking-widest drop-shadow-xl transform -rotate-3 py-2 leading-none">
                 全力支援！
               </span>
+              {/* 背景に大きな上昇矢印を配置して勢いを表現 */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none -z-10 opacity-10 flex justify-center items-center">
+                <TrendingUp className="w-[120%] h-full text-orange-600" />
+              </div>
             </div>
           </div>
 
