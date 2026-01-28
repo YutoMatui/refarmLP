@@ -55,29 +55,20 @@ export default function HeroSection() {
 
           {/* 画像エリア */}
           <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fade-in-up animate-delay-200">
-            <div className="relative mx-auto max-w-[280px] xs:max-w-[300px] lg:max-w-none">
+            <div className="relative mx-auto max-w-[320px] xs:max-w-[360px] lg:max-w-none">
               {/* メイン画像（オーナー） */}
-              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white transition-transform duration-500">
+              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white transition-transform duration-500 mb-8 lg:mb-0">
                 <img
                   src="/images/hero-owner.jpg"
                   alt="成長を実感する飲食店オーナー"
                   className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[3/4]"
                 />
 
-                {/* 個人店特化バッジ (スマホ用) */}
-                <div className="absolute top-[-10px] right-[-10px] z-20 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg border-4 border-white transform rotate-12 lg:hidden">
-                  <span className="text-black font-black text-xs text-center leading-tight">
-                    個人店<br />特化
-                  </span>
-                </div>
-
-                {/* スマホ用：画像上に白のテキストを重ねる */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent lg:hidden" />
-                <div className="absolute bottom-5 left-2 right-2 lg:hidden text-center">
-                  <h2 className="text-white font-black text-2xl xs:text-3xl leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] tracking-tight">
-                    <span className="inline-block mb-1 text-orange-400">「選ばれる」</span>飲食店<br />
-                    への<span className="text-emerald-300">最短ルート</span>。
-                  </h2>
+                {/* 緑のバッジ (スマホ用：画像下部に配置) */}
+                <div className="absolute -bottom-10 right-0 left-0 mx-auto z-20 w-40 h-40 bg-emerald-600 rounded-full flex flex-col items-center justify-center shadow-xl border-[6px] border-white lg:hidden">
+                  <span className="text-white font-bold text-[10px] tracking-wider mb-0.5">神戸エリア限定</span>
+                  <span className="text-white font-black text-xl tracking-tight mb-0.5 text-yellow-300 drop-shadow-md">個人店特化</span>
+                  <span className="text-white font-bold text-[10px] tracking-wider">DX・集客支援</span>
                 </div>
               </div>
 
