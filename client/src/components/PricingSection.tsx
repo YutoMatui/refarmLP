@@ -1,181 +1,139 @@
-import { useState, useEffect, useRef } from "react";
-import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackLineRegistration, trackCTAClick, trackSectionScroll, event } from "@/lib/gtag";
-
-interface PlanFeature {
-  text: string;
-  highlighted?: boolean;
-}
+import { trackLineRegistration, trackCTAClick, trackSectionScroll } from "@/lib/gtag";
 
 interface Plan {
   id: string;
   name: string;
   price: string;
-  description: string;
+  targetUsers: string[];
+  features: string[];
+  buttonText: string;
   isPopular?: boolean;
-  features: PlanFeature[];
-  buttonVariant: "primary" | "secondary";
 }
 
 const plans: Plan[] = [
   {
-    id: "free",
-    name: "フリープラン",
-    price: "¥0",
-    description: "まずは野菜を試してみたい方向け",
+    id: "vegetable-only",
+    name: "野菜仕入れ専用プラン",
+    price: "月額 0円",
+    targetUsers: ["まずは野菜の味と品質を確かめたい"],
     features: [
-      { text: "全提携農家の野菜の閲覧・発注（訳あり野菜を含む）" },
-      { text: "インボイス対応の請求書のDL機能" },
-      { text: "店舗へのお届け（一回当たり800円）" },
+      "契約農家の野菜閲覧・発注",
+      "インボイス対応請求書",
+      "1回ごとの都度配送（送料800円）"
     ],
-    buttonVariant: "secondary",
+    buttonText: "LINEで野菜リストを見る",
   },
   {
-    id: "basic",
-    name: "ベーシックプラン",
-    price: "¥6,400",
-    description: "マーケティング素材を活用したい方向け",
+    id: "unit-price-up",
+    name: "客単価アップ支援プラン",
+    price: "月額 6,400円",
+    targetUsers: [
+      "週2回、定期的に野菜を仕入れる（送料がお得！）",
+      "SNS投稿は自分でする方"
+    ],
+    features: [
+      "【特典】月8回まで送料無料（実質0円以下）",
+      "プロ撮影の野菜写真・動画素材の提供",
+      "ホール用「おすすめトーク」台本提供"
+    ],
+    buttonText: "LINEで送料特典について聞く",
     isPopular: true,
-    features: [
-      { text: "フリープランの全機能", highlighted: true },
-      { text: "月八回まで無料配送", highlighted: true },
-      { text: "農家のこだわり動画提供" },
-      { text: "接客スクリプト提供" },
-      { text: "来月の野菜予告機能" },
-    ],
-    buttonVariant: "primary",
   },
   {
-    id: "premium",
-    name: "プレミアムプラン",
-    price: "¥34,980",
-    description: "マーケティング業務を全てお任せしたい方向け",
+    id: "repeat-up",
+    name: "客単価・リピート率アッププラン",
+    price: "月額 34,980円",
+    targetUsers: ["客単価もお店のファンも増やしたい方"],
     features: [
-      { text: "ベーシックプランの全機能", highlighted: true },
-      { text: "オリジナル動画制作（3ヵ月に一回）" },
-      { text: "メニュー表作成（月一回）" },
-      { text: "公式Lineの運用" },
-      { text: "専任担当による効果測定と提案" },
+      "公式LINE構築・運用代行（丸投げOK）",
+      "オリジナルPR動画制作（3ヶ月に1回）",
+      "専任担当による毎月の集客ミーティング",
+      "ベーシックの全機能（送料無料含む）"
     ],
-    buttonVariant: "secondary",
+    buttonText: "LINEで集客の相談をする",
   },
 ];
 
 function PricingCard({ plan }: { plan: Plan }) {
-  const [isExpanded, setIsExpanded] = useState(plan.isPopular);
-
   const handleLineClick = () => {
     trackLineRegistration("Pricing Section");
-    trackCTAClick(`${plan.name}プラン選択`, "Pricing");
+    trackCTAClick(`${plan.name}選択`, "Pricing");
     window.open("https://lin.ee/qMfjf66", "_blank");
-  };
-
-  const handleExpandToggle = () => {
-    const newState = !isExpanded;
-    setIsExpanded(newState);
-    event({
-      action: "pricing_expand",
-      category: "engagement",
-      label: `${plan.name} - ${newState ? "open" : "close"}`,
-    });
   };
 
   return (
     <div
-      className={`relative bg-white rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl ${plan.isPopular
-        ? "border-2 border-emerald-600 ring-4 ring-emerald-600/10 scale-105 z-10"
-        : "border border-slate-200"
+      className={`relative h-full flex flex-col bg-white rounded-2xl shadow-sm transition-all duration-300 hover:shadow-xl ${plan.isPopular
+          ? "border-2 border-emerald-600 ring-4 ring-emerald-600/10 scale-105 z-10"
+          : "border border-slate-200"
         }`}
     >
       {/* Popular Badge */}
       {plan.isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-max">
           <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
             <Star className="w-4 h-4 fill-current" />
-            人気No.1
+            おすすめ
           </span>
         </div>
       )}
 
-      <div className="p-6 md:p-8">
-        {/* Plan Name */}
-        <h3 className="text-xl font-bold text-slate-800 mb-2">{plan.name}</h3>
-
-        {/* Price */}
-        <div className="mb-4">
-          <span className="text-3xl md:text-4xl font-black text-slate-800">
+      <div className="p-6 md:p-8 flex-1 flex flex-col">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h3 className="text-lg font-bold text-slate-700 mb-4">{plan.name}</h3>
+          <div className="text-3xl font-black text-slate-800">
             {plan.price}
-          </span>
-          <span className="text-slate-500">/月</span>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-slate-500 mb-6">{plan.description}</p>
-
-        {/* CTA Button */}
-        {plan.buttonVariant === "primary" ? (
-          <Button
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 rounded-xl shadow-md hover:shadow-lg transition-all"
-            onClick={handleLineClick}
-            data-event="line_registration_click"
-            data-event-location={`pricing_${plan.id}`}
-          >
-            このプランで始める
-          </Button>
-        ) : (
-          <Button
-            variant="outline"
-            className="w-full border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-bold py-6 rounded-xl transition-all"
-            onClick={handleLineClick}
-            data-event="line_registration_click"
-            data-event-location={`pricing_${plan.id}`}
-          >
-            このプランで始める
-          </Button>
-        )}
-
-        {/* Expand/Collapse Button */}
-        <button
-          onClick={handleExpandToggle}
-          className="w-full flex items-center justify-center gap-2 mt-4 py-2 text-sm text-slate-500 hover:text-emerald-600 transition-colors"
-          data-event="pricing_expand"
-          data-event-plan={plan.id}
-        >
-          <span>{isExpanded ? "詳細を閉じる" : "詳細を見る"}</span>
-          {isExpanded ? (
-            <ChevronUp className="w-4 h-4" />
-          ) : (
-            <ChevronDown className="w-4 h-4" />
-          )}
-        </button>
-
-        {/* Features List (Expandable) */}
-        <div
-          className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
-            }`}
-        >
-          <div className="pt-4 border-t border-slate-100">
-            <ul className="space-y-3">
-              {plan.features.map((feature, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <Check
-                    className={`w-5 h-5 shrink-0 mt-0.5 ${feature.highlighted ? "text-emerald-600" : "text-emerald-600/70"
-                      }`}
-                  />
-                  <span
-                    className={`text-sm ${feature.highlighted
-                      ? "font-bold text-slate-800"
-                      : "text-slate-600"
-                      }`}
-                  >
-                    {feature.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
+
+        {/* Target Users */}
+        <div className="mb-8 bg-slate-50 p-4 rounded-xl">
+          <p className="text-xs font-bold text-slate-500 mb-3 text-center uppercase tracking-wider">
+            こんな人におすすめ
+          </p>
+          <ul className="space-y-2">
+            {plan.targetUsers.map((user, idx) => (
+              <li key={idx} className="flex items-start gap-2">
+                <Check className="w-5 h-5 text-emerald-600 shrink-0" />
+                <span className="text-sm font-bold text-slate-700 leading-snug">
+                  {user}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Features */}
+        <div className="mb-8 flex-1">
+          <p className="text-xs font-bold text-slate-400 mb-3 text-center uppercase tracking-wider">
+            主な内容
+          </p>
+          <ul className="space-y-3">
+            {plan.features.map((feature, idx) => (
+              <li key={idx} className="flex items-start gap-3 pl-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0" />
+                <span className="text-sm text-slate-600 leading-relaxed">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Button */}
+        <Button
+          className={`w-full font-bold py-6 rounded-xl shadow-md transition-all ${plan.isPopular
+              ? "bg-emerald-600 hover:bg-emerald-700 text-white hover:shadow-lg"
+              : "bg-[#06C755] hover:bg-[#05b64d] text-white hover:shadow-lg"
+            }`}
+          onClick={handleLineClick}
+        >
+          {plan.buttonText}
+        </Button>
       </div>
     </div>
   );
@@ -209,33 +167,27 @@ export default function PricingSection() {
     <section
       ref={sectionRef}
       id="pricing"
-      className="py-16 md:py-24 bg-slate-50"
-      data-event="scroll_to_pricing"
+      className="py-20 md:py-32 bg-slate-50"
     >
       <div className="container mx-auto px-4">
-        {/* Section Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
-            料金プラン
-          </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">
             料金プラン
           </h2>
+          <p className="text-slate-500">
+            あなたの店舗に最適なプランをお選びください
+          </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-6 items-start max-w-5xl mx-auto">
+        {/* Grid Layout: 1 column on mobile, 3 columns on tablet/desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-8 max-w-6xl mx-auto items-stretch">
           {plans.map((plan) => (
-            <PricingCard key={plan.id} plan={plan} />
+            <div key={plan.id} className="flex">
+              <PricingCard plan={plan} />
+            </div>
           ))}
         </div>
-
-        {/* Note */}
-        <p className="text-center text-sm text-slate-500 mt-8">
-          ※別途、野菜の購入代金がかかります。
-        </p>
       </div>
     </section>
   );
 }
-
