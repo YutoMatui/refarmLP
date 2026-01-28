@@ -24,39 +24,42 @@ export default function HeroSection() {
       <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-orange-50 blur-3xl -z-10" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] rounded-full bg-emerald-50 blur-3xl -z-10" />
 
-      <div className="container mx-auto px-4 py-4 lg:py-8">
-        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
+      <div className="container mx-auto px-4 py-2 lg:py-8">
+        <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8">
 
           {/* スマホ用：画像の上のタグ */}
-          <div className="w-full flex justify-center lg:hidden order-1">
-            <div className="inline-flex flex-wrap items-center justify-center gap-2 mb-4 w-full">
-              <div className="flex items-center gap-2">
-                <span className="bg-orange-500 text-white text-lg font-bold px-5 py-2.5 rounded-full shadow-md whitespace-nowrap">
-                  客単価UP
-                </span>
-                <span className="text-slate-400 font-bold text-xl">×</span>
-                <span className="bg-emerald-500 text-white text-lg font-bold px-5 py-2.5 rounded-full shadow-md whitespace-nowrap">
-                  リピート率UP
-                </span>
-              </div>
-              <span className="text-slate-600 text-base font-bold mt-1">を実現</span>
+          <div className="w-full flex flex-col items-center justify-center lg:hidden order-1">
+            <div className="flex items-center justify-center gap-1 mb-0 w-full">
+              <span className="bg-orange-500 text-white text-sm xs:text-base font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                客単価UP
+              </span>
+              <span className="text-slate-400 font-bold text-lg">×</span>
+              <span className="bg-emerald-500 text-white text-sm xs:text-base font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                リピート率UP
+              </span>
+            </div>
+            <div className="flex items-baseline gap-2 mb-2 mt-1">
+              <span className="text-slate-600 text-sm font-bold">の実現に</span>
+              <span className="text-4xl font-black text-orange-500 tracking-widest drop-shadow-md transform -rotate-2">
+                全力支援！
+              </span>
             </div>
           </div>
 
           {/* 画像エリア */}
           <div className="w-full lg:w-1/2 order-2 lg:order-2 animate-fade-in-up animate-delay-200">
-            <div className="relative mx-auto max-w-[340px] lg:max-w-none">
+            <div className="relative mx-auto max-w-[280px] xs:max-w-[300px] lg:max-w-none">
               {/* メイン画像（オーナー） */}
-              <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] md:border-[12px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img
                   src="/images/hero-owner.jpg"
                   alt="成長を実感する飲食店オーナー"
                   className="w-full h-auto object-cover aspect-[3/4] md:aspect-square lg:aspect-[3/4]"
                 />
                 {/* スマホ用：画像上に白のテキストを重ねる */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent lg:hidden" />
-                <div className="absolute bottom-6 left-4 right-4 lg:hidden text-center">
-                  <h2 className="text-white font-black text-3xl leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] tracking-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent lg:hidden" />
+                <div className="absolute bottom-5 left-2 right-2 lg:hidden text-center">
+                  <h2 className="text-white font-black text-2xl xs:text-3xl leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] tracking-tight">
                     <span className="inline-block mb-1 text-orange-400">「選ばれる」</span>飲食店<br />
                     への<span className="text-emerald-300">最短ルート</span>。
                   </h2>
