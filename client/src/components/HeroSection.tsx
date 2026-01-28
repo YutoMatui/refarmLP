@@ -28,19 +28,19 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-8">
 
           {/* スマホ用：画像の上のタグ */}
-          <div className="w-full flex flex-col items-center justify-center lg:hidden order-1">
-            <div className="flex items-center justify-center gap-1 mb-0 w-full">
-              <span className="bg-orange-500 text-white text-sm xs:text-base font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+          <div className="w-full flex flex-col items-center justify-center lg:hidden order-1 mb-2">
+            <div className="flex items-center justify-center gap-1 mb-1 w-full">
+              <span className="bg-orange-500 text-white text-base xs:text-lg font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
                 客単価UP
               </span>
               <span className="text-slate-400 font-bold text-lg">×</span>
-              <span className="bg-emerald-500 text-white text-sm xs:text-base font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
+              <span className="bg-emerald-500 text-white text-base xs:text-lg font-bold px-3 py-1.5 rounded-full shadow-md whitespace-nowrap">
                 リピート率UP
               </span>
+              <span className="text-slate-600 text-lg font-bold ml-1">を</span>
             </div>
-            <div className="flex items-baseline gap-2 mb-2 mt-1">
-              <span className="text-slate-600 text-sm font-bold">の実現に</span>
-              <span className="text-4xl font-black text-orange-500 tracking-widest drop-shadow-md transform -rotate-2">
+            <div className="w-full text-center">
+              <span className="block text-5xl xs:text-6xl font-black text-orange-500 tracking-widest drop-shadow-md transform -rotate-2 py-2 leading-none">
                 全力支援！
               </span>
             </div>
