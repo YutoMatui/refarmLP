@@ -5,8 +5,25 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackLineClick, trackDownloadClick } from "@/lib/fbpixel";
 
 export default function FooterCTASection() {
+  const handleLineClick = (type: string) => {
+    // GA4計測用
+    trackLineRegistration("Footer CTA Section");
+    trackCTAClick(type, "Footer CTA");
+
+    // Meta Pixel計測用
+    if (type.includes("Download") || type.includes("資料")) {
+      trackDownloadClick("Footer CTA Section");
+    } else {
+      trackLineClick("Footer CTA Section");
+    }
+
+    window.open('https://lin.ee/qMfjf66', '_blank');
+  };
+
   return (
     <section className="py-16 md:py-24 bg-emerald relative overflow-hidden">
       {/* Background Pattern */}
@@ -35,23 +52,22 @@ export default function FooterCTASection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* Main CTA */}
+            {/* Main CTA - 緑色 */}
             <div className="flex flex-col items-center">
               <Button
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
-                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200 hover:-translate-y-1 animate-pulse hover:animate-none"
+                onClick={() => handleLineClick('無料で利用開始')}
               >
                 無料で利用開始
               </Button>
-              <span className="text-sm text-white/80 mt-2">クレジットカード不要</span>
+              <span className="text-sm text-white/80 mt-2">しつこい営業は一切行いません。</span>
             </div>
 
-            {/* Sub CTA */}
+            {/* Sub CTA - オレンジ色 */}
             <div className="flex flex-col items-center">
               <Button
-                variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald font-bold text-lg py-7 px-12 rounded-2xl transition-all duration-200"
-                onClick={() => window.open('https://lin.ee/qMfjf66', '_blank')}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-lg py-7 px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-200"
+                onClick={() => handleLineClick('資料請求')}
               >
                 資料請求
               </Button>
