@@ -130,11 +130,13 @@ export default function FeaturesSectionV2() {
 
                 {/* Image */}
                 <div className="order-1 md:order-2">
-                  <img
-                    src={activeFeature.image}
-                    alt={activeFeature.imageAlt}
-                    className="w-full h-auto rounded-xl shadow-md max-h-64 object-cover"
-                  />
+                  <div className="bg-white rounded-xl shadow-md overflow-hidden p-2 md:p-4">
+                    <img
+                      src={activeFeature.image}
+                      alt={activeFeature.imageAlt}
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

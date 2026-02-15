@@ -90,9 +90,12 @@ export default function FarmersCarouselV2() {
                 <img
                   src={farmer.image}
                   alt={farmer.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://via.placeholder.com/300x300/E8F5E9/2E7D32?text=${encodeURIComponent(farmer.name)}`;
+                    const target = e.target as HTMLImageElement;
+                    if (!target.src.includes('placeholder')) {
+                      target.src = `https://via.placeholder.com/400x500/E8F5E9/2E7D32?text=${encodeURIComponent(farmer.name)}`;
+                    }
                   }}
                 />
               </div>

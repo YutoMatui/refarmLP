@@ -48,32 +48,6 @@ export default function HeroSectionV2() {
             個人飲食店限定 地産地消プラットフォーム
           </p>
 
-          {/* Features Grid */}
-          <div className="w-full max-w-sm mb-10">
-            <h2 className="text-white text-xl font-black mb-4 flex items-center justify-center gap-2">
-              <span className="w-8 h-[2px] bg-white/50"></span>
-              ベジコベなら!
-              <span className="w-8 h-[2px] bg-white/50"></span>
-            </h2>
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
-              {[
-                { text: "圧倒的鮮度で\nお届け!", pos: "左上" },
-                { text: "顔が見えて\n安心!", pos: "右上" },
-                { text: "Lineアプリで\n30秒発注!", pos: "左下" },
-                { text: "こだわりを価値\nとして伝える!", pos: "右下" },
-              ].map((feature, i) => (
-                <div
-                  key={i}
-                  className="bg-white/10 backdrop-blur-md border border-white/30 rounded-xl p-3 md:p-4 flex items-center justify-center min-h-[70px] shadow-lg"
-                >
-                  <p className="text-white text-xs md:text-sm font-black leading-tight whitespace-pre-wrap">
-                    {feature.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xs sm:max-w-none">
             <Button
