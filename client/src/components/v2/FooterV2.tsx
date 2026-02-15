@@ -11,7 +11,6 @@ export default function FooterV2() {
               src="/images/logo.png"
               alt="ベジコベ"
               className="h-10 w-auto"
-              style={{ filter: "brightness(0) invert(1) drop-shadow(0 0 1px rgba(255,255,255,0.5))" }}
             />
           </div>
 

@@ -37,7 +37,7 @@ const painPoints: PainPoint[] = [
         "万が一、天候などで目当ての野菜が採れない場合でも、提携する別の農家さんから代替野菜をご提案",
         "お店のメニューに穴をあけさせません",
       ],
-      image: "/images/solution-price.jpg",
+      image: "/images/problem-v2-1.jpg",
     },
   },
   {
@@ -52,7 +52,7 @@ const painPoints: PainPoint[] = [
         "お店に合わせて「どう伝えれば注文されるか」をご提案",
         "飲食店の公式LINE運用代行でリピーター定着まで伴走",
       ],
-      image: "/images/solution-customers.jpg",
+      image: "/images/problem-v2-2.jpg",
     },
   },
   {
@@ -60,14 +60,14 @@ const painPoints: PainPoint[] = [
     title: "毎日のFAX発注、月末の請求書整理…事務作業に追われていませんか？",
     description: "営業後の疲れ切った体で事務作業。紙の請求書が山積みで、管理が大変。",
     solution: {
-      title: "発注も請求書も、LINEの中で完結。紙の山をゼロにして、料理と接客に集中できます。",
+      title: "発注も請求書も,LINEの中で完結。紙の山をゼロにして、料理と接客に集中できます。",
       description: "発注は「いつもの注文」ボタンで一瞬で完了。",
       points: [
         "経理もスマートに",
         "日々の納品書も月次の請求書もアプリ内で確認・管理",
         "事務コストを大幅に削減し、オーナー様の時間を生み出します",
       ],
-      image: "/images/solution-operations.jpg",
+      image: "/images/problem-v2-3.jpg",
     },
   },
 ];
@@ -97,14 +97,23 @@ export default function ProblemSectionV2() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
+  // UseEffect for auto-scrolling mobile carousel
   useEffect(() => {
-    if (!api || !open) return;
+    if (!api || open) return;
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, [api, open]);
+
+  useEffect(() => {
+    if (!api) return;
     const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
     api.on("select", onSelect);
     return () => {
-      api.off("select", onSelect);
+      api.on("select", onSelect);
     };
-  }, [api, open]);
+  }, [api]);
 
   useEffect(() => {
     if (!api) return;
@@ -135,9 +144,6 @@ export default function ProblemSectionV2() {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-emerald-50 text-sm md:text-base mb-4 opacity-90">
-            素晴らしい食材が近くにあるのに、使えていないのは「もったいない」。
-          </p>
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-4 drop-shadow-md">
             こだわりのあるオーナー様が直面する
             <span className="bg-white text-emerald-600 px-2 py-1 rounded mx-1 inline-block transform -rotate-1 shadow-sm">3つの悩み</span>

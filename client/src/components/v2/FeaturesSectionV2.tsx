@@ -7,27 +7,30 @@ const features = [
     id: "farmer-story",
     icon: Megaphone,
     title: "農家ストーリー画面",
+    displayTitle: "あなたに合った「運命の生産者」が見つかります！",
     description:
-      "生産者の顔写真、動画、こだわり文章が表示。スタッフも自信を持っておすすめできます。",
-    image: "/images/feature-v2-farmer.png",
+      "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんときっと出会えます。",
+    image: "/images/feature-v2-farmer.jpg",
     imageAlt: "農家ストーリー画面",
   },
   {
     id: "one-tap",
     icon: Smartphone,
-    title: "ワンタップ発注画面",
+    title: "いつもの注文ボタン",
+    displayTitle: "「いつもの注文」ボタンで、発注は一瞬で完了。",
     description:
-      "「いつもの注文」ボタンで、忙しい営業後でも1秒で発注完了。履歴から即発注できます。",
-    image: "/images/feature-v2-onetap.png",
+      "忙しい営業の後、スマホ画面をスクロールしてお気に入りの野菜を探す必要はありません。よく頼む野菜はワンタップで呼び出し可能。毎日のルーティン業務を極限までシンプルにしました。",
+    image: "/images/feature-v2-onetap.jpg",
     imageAlt: "ワンタップ発注画面",
   },
   {
     id: "irregular",
     icon: Truck,
     title: "規格外野菜リスト",
+    displayTitle: "「規格外野菜」で、コストを抑えてこだわりを。",
     description:
-      "安価で良質な規格外品が一覧で並ぶ画面。掘り出し物が見つかります。",
-    image: "/images/feature-v2-irregular.png",
+      "味や栄養価は全く変わらないのに、少し形が違うだけで市場に出ない野菜たち。これらを安価に仕入れることで、食材の品質は落とさずに、原価だけを抑えることが可能です。",
+    image: "/images/feature-v2-irregular.jpg",
     imageAlt: "規格外野菜リスト",
   },
 ];
@@ -69,9 +72,9 @@ export default function FeaturesSectionV2() {
             機能紹介
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 leading-tight">
-            忙しい営業の合間でも、サクサク使える。
+            忙しい営業の合間でも
             <br />
-            飲食店の現場に特化した3つの機能
+            現場に特化した3つの機能
           </h2>
         </div>
 
@@ -85,8 +88,8 @@ export default function FeaturesSectionV2() {
                   key={feature.id}
                   onClick={() => handleTabClick(feature.id)}
                   className={`flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-3 px-2 lg:px-4 py-3 lg:py-4 rounded-xl text-center lg:text-left transition-all duration-200 ${activeTab === feature.id
-                      ? "bg-emerald-600 text-white shadow-lg"
-                      : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                    ? "bg-emerald-600 text-white shadow-lg"
+                    : "bg-slate-50 text-slate-600 hover:bg-slate-100"
                     }`}
                 >
                   <div
@@ -117,7 +120,7 @@ export default function FeaturesSectionV2() {
                       <activeFeature.icon className="w-6 h-6 text-emerald-600" />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-slate-800">
-                      {activeFeature.title}
+                      {activeFeature.displayTitle}
                     </h3>
                   </div>
                   <p className="text-slate-600 leading-relaxed text-lg">

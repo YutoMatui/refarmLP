@@ -18,7 +18,7 @@ const supportFeatures = [
     title: "こだわりを伝えるサポート",
     subtitle: "導入後もずっと伴走",
     description:
-      "メニューシートや卓上POPの制作、店内サイネージのご提案、公式LINEの構築・運用支援など、お店のこだわりをお客様に届けるためのビジュアルコミュニケーションツールをご用意。リピート促進までトータルでサポートいたします。",
+      "メニュー表やPOP制作、公式LINEの構築・運用支援など、お店のこだわりをお客様にお届けし、リピート促進までトータルでサポートいたします。",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function SupportSectionV2() {
             </span>
           </p>
           <p className="text-slate-500 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-            マニュアル通りの対応ではなく、お店の事情や好みを理解した専属スタッフが、誠実・丁寧に対応します。
+            お店の事情や想いを理解した専属スタッフが、誠実・丁寧に対応します。
           </p>
         </div>
 

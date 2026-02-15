@@ -13,17 +13,17 @@ export default function MissionSectionV2() {
           {/* Body */}
           <div className="space-y-4 text-base md:text-lg leading-relaxed">
             <p>
-              神戸には誇れる農家がいます。<br />
-              しかし、その素晴らしい野菜が飲食店に使われていない現状があります。
+              神戸には誇れる農家がたくさんいます。<br />
+              しかし、それを知る術がほとんどありません。
             </p>
 
             <p className="text-emerald-100">
-              本当においしい地域の野菜を届け、<br />
-              地域農業に貢献するサイクルを作りたい。
+              本当においしい神戸の野菜をプロに届け、<br />
+              そのおいしさで一人でも多くの方を笑顔にしたい。
             </p>
 
             <p>
-              それが、ベジコベの想いです。
+              それが、私たちの想いです。
             </p>
           </div>
         </div>

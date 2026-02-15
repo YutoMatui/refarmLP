@@ -17,13 +17,13 @@ export default function FooterCTASectionV2() {
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4">
             あなたのお店に、<br />
-            神戸の畑の物語を。
+            神戸の農園の物語を。
           </h2>
 
           {/* Description */}
           <p className="text-base md:text-lg leading-relaxed mb-8 text-emerald-50">
-            こだわりのあるオーナー様だからこそ、<br />
-            ベジコベで実現できることがあります。
+            こだわりのあるオーナー様にだからこそ、<br />
+            近くにある本当の美味しい野菜を使っていただきたいです。
           </p>
 
           {/* CTA Button */}
