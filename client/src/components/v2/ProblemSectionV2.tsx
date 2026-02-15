@@ -195,8 +195,11 @@ export default function ProblemSectionV2() {
 
       {/* Solution Modal - PainPointsSection design: image left, text right */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-5xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8 pb-20 md:pb-0 focus:outline-none">
-          <div className="relative w-full">
+        <DialogContent
+          className="max-w-[95vw] md:max-w-5xl w-full p-4 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center focus:outline-none"
+          showCloseButton={false}
+        >
+          <div className="relative w-full py-8 md:py-12">
             {/* PC arrows */}
             <button
               onClick={handlePrev}
@@ -240,7 +243,7 @@ export default function ProblemSectionV2() {
                 </div>
 
                 {/* Text Area - right on desktop, below on mobile */}
-                <div className="w-full md:w-7/12 p-6 md:p-10 flex flex-col justify-center">
+                <div className="w-full md:w-7/12 p-8 md:p-12 flex flex-col justify-center">
                   {/* Problem header */}
                   <div className="mb-6 text-center md:text-left">
                     <span className="text-emerald-500 text-sm font-bold mb-1 block">
@@ -280,17 +283,6 @@ export default function ProblemSectionV2() {
               </div>
 
               <div className="hidden md:block absolute -bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[20px] border-t-white"></div>
-            </div>
-
-            {/* Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {painPoints.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-white scale-125" : "bg-white/40"}`}
-                />
-              ))}
             </div>
           </div>
         </DialogContent>

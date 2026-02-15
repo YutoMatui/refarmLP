@@ -4,22 +4,22 @@ const farmers = [
   {
     name: "鶴田農園",
     specialty: "なす、水菜",
-    image: "/images/farmers/tsuruta.jpg",
+    image: "/images/farmers/tsuruta.png",
   },
   {
     name: "くさとねやはし農園",
     specialty: "有機野菜全般",
-    image: "/images/farmers/kusatone.jpg",
+    image: "/images/farmers/kusatone.png",
   },
   {
     name: "芦田農園",
     specialty: "しいたけ、とうもろこし、イチゴ",
-    image: "/images/farmers/ashida.jpg",
+    image: "/images/farmers/ashida.png",
   },
   {
     name: "もりたんぼ",
     specialty: "人参、ハーブ",
-    image: "/images/farmers/moritanbo.jpg",
+    image: "/images/farmers/moritanbo.png",
   },
   {
     name: "ヘルシーファーム",
@@ -29,7 +29,7 @@ const farmers = [
   {
     name: "ヤスオ農園",
     specialty: "トマト",
-    image: "/images/farmers/yasuo.jpg",
+    image: "/images/farmers/yasuo.png",
   },
   {
     name: "熊井農園",
@@ -39,7 +39,7 @@ const farmers = [
   {
     name: "ココナッツファーム",
     specialty: "黄ニラ",
-    image: "/images/farmers/coconut.jpg",
+    image: "/images/farmers/coconut.png",
   },
   {
     name: "アベファーム",
@@ -57,6 +57,9 @@ export default function FarmersCarouselV2() {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+            提携農家
+          </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-2">
             提携農家のご紹介
           </h2>
