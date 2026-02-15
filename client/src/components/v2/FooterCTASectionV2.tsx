@@ -23,7 +23,7 @@ export default function FooterCTASectionV2() {
           {/* 説明文 */}
           <p className="text-base md:text-lg leading-relaxed mb-8 text-emerald-50">
             こだわりのあるオーナー様だからこそ、<br />
-            VegeKobeで実現できることがあります。
+            ベジコベで実現できることがあります。
           </p>
 
           {/* CTA ボタン */}

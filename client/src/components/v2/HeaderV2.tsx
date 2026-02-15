@@ -21,18 +21,23 @@ export default function HeaderV2() {
     <header className="sticky top-0 z-50 bg-white border-b border-emerald-100 shadow-sm">
       <div className="container mx-auto px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
-          {/* ロゴ */}
+          {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-black text-sm">VK</span>
-            </div>
-            <span className="font-black text-lg text-slate-900 hidden sm:inline">
-              VegeKobe
-            </span>
+            <img
+              src="/images/logo.png"
+              alt="ベジコベ"
+              className="h-8 md:h-10 w-auto"
+            />
           </div>
 
-          {/* ナビゲーション（PC用） */}
+          {/* Navigation (PC) */}
           <nav className="hidden md:flex items-center gap-6">
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-slate-600 hover:text-emerald-600 font-bold text-sm transition-colors"
+            >
+              私たちについて
+            </button>
             <button
               onClick={() => scrollToSection("benefits")}
               className="text-slate-600 hover:text-emerald-600 font-bold text-sm transition-colors"
@@ -59,7 +64,7 @@ export default function HeaderV2() {
             </button>
           </nav>
 
-          {/* CTA ボタン（PC用） */}
+          {/* CTA Button (PC) */}
           <Button
             className="hidden md:inline-flex bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm py-2 px-6 rounded-lg transition-colors"
             onClick={handleCTAClick}
@@ -67,7 +72,7 @@ export default function HeaderV2() {
             お試し配送を申し込む
           </Button>
 
-          {/* ハンバーガーメニュー（モバイル用） */}
+          {/* Hamburger menu (Mobile) */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -81,9 +86,15 @@ export default function HeaderV2() {
           </button>
         </div>
 
-        {/* モバイルメニュー */}
+        {/* Mobile menu */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 border-t border-emerald-100 pt-4 space-y-3">
+            <button
+              onClick={() => scrollToSection("about")}
+              className="block w-full text-left text-slate-600 hover:text-emerald-600 font-bold text-sm transition-colors"
+            >
+              私たちについて
+            </button>
             <button
               onClick={() => scrollToSection("benefits")}
               className="block w-full text-left text-slate-600 hover:text-emerald-600 font-bold text-sm transition-colors"

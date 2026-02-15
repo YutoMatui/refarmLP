@@ -1,15 +1,14 @@
-import { Leaf, Zap, Recycle, Clock, Megaphone } from "lucide-react";
+import { Sparkles, Leaf, Recycle, Clock, Megaphone } from "lucide-react";
 
 export default function BenefitsSectionV2() {
   const benefits = [
     {
-      icon: Zap,
+      icon: Sparkles,
       number: "1",
       title: "【鮮度】",
       catch: "その日の朝に採れた野菜が、その日のうちに届く。",
       description:
         "市場を通さない農家直送物流。圧倒的な鮮度が料理の味を底上げする。",
-      color: "emerald",
     },
     {
       icon: Leaf,
@@ -18,7 +17,6 @@ export default function BenefitsSectionV2() {
       catch: "「規格外野菜」の活用で、原価を賢く抑える。",
       description:
         "味は一級品だが形が不揃いな野菜も積極的に提供。コストパフォーマンスの高い仕入れが可能。",
-      color: "emerald",
     },
     {
       icon: Recycle,
@@ -27,7 +25,6 @@ export default function BenefitsSectionV2() {
       catch: "仕入れるだけで、神戸の地域農業と環境を守れる。",
       description:
         "フードロス削減と地産地消への貢献。お店のCSR活動としてもアピールできる。",
-      color: "orange",
     },
     {
       icon: Clock,
@@ -36,7 +33,6 @@ export default function BenefitsSectionV2() {
       catch: "毎日の発注も、月次の請求書も、LINEひとつで。",
       description:
         "電話やFAXは不要。請求書もLINEで自動送付され、事務作業の時間を大幅に削減できる。",
-      color: "orange",
     },
     {
       icon: Megaphone,
@@ -45,55 +41,42 @@ export default function BenefitsSectionV2() {
       catch: "「こだわりの理由」をお客様に届けるまでをサポート。",
       description:
         "良い食材を使うだけでは意味がない。農家の物語を伝えるPOP素材の提供や、飲食店の「公式LINE運用代行」もサポートし、リピーター定着と客単価アップまで伴走する。",
-      color: "emerald",
     },
   ];
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-emerald-50 to-white">
+    <section className="py-16 md:py-20 lg:py-24 bg-white">
       <div className="container mx-auto px-4">
-        {/* 見出し */}
+        {/* Section Title - matching FeaturesSection design */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4">
-            VegeKobeが<span className="text-emerald-600">選ばれる5つの理由</span>
+          <span className="inline-block bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+            選ばれる理由
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800">
+            ベジコベが選ばれる5つの理由
           </h2>
         </div>
 
-        {/* ベネフィットカード */}
-        <div className="space-y-6 md:space-y-8">
+        {/* Benefit Cards - unified design */}
+        <div className="space-y-4 md:space-y-6 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
-            const bgColor =
-              benefit.color === "emerald"
-                ? "bg-emerald-50 border-emerald-200"
-                : "bg-orange-50 border-orange-200";
-            const accentColor =
-              benefit.color === "emerald"
-                ? "text-emerald-600"
-                : "text-orange-600";
-            const badgeColor =
-              benefit.color === "emerald"
-                ? "bg-emerald-600"
-                : "bg-orange-600";
-
             return (
               <div
                 key={index}
-                className={`rounded-2xl p-6 md:p-8 border-2 ${bgColor} hover:shadow-lg transition-shadow duration-300`}
+                className="bg-slate-50 rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="flex gap-4 md:gap-6">
-                  {/* 左側：アイコンと番号 */}
+                  {/* Left: Icon with number */}
                   <div className="flex-shrink-0 flex flex-col items-center">
-                    <div
-                      className={`w-12 h-12 md:w-16 md:h-16 rounded-full ${badgeColor} flex items-center justify-center mb-2`}
-                    >
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-emerald-600 flex items-center justify-center mb-2">
                       <Icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
                   </div>
 
-                  {/* 右側：テキスト */}
+                  {/* Right: Text */}
                   <div className="flex-1">
-                    <h3 className={`text-lg md:text-xl font-black ${accentColor} mb-1`}>
+                    <h3 className="text-lg md:text-xl font-black text-emerald-600 mb-1">
                       {benefit.title}
                     </h3>
                     <p className="text-base md:text-lg font-bold text-slate-900 mb-2">
