@@ -13,34 +13,34 @@ export default function HeroSectionV2() {
 
   return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden pt-16 lg:pt-0">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image - PC */}
+      <div className="absolute inset-0 z-0 hidden md:block">
         <img
           src="/images/hero-bg.jpg"
           alt="農家とシェフが野菜を手渡す"
           className="w-full h-full object-cover"
         />
-        {/* Gradient overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+      </div>
+
+      {/* Background Image - Mobile */}
+      <div className="absolute inset-0 z-0 md:hidden">
+        <img
+          src="/images/hero-bg-mobile.jpg"
+          alt="農家とシェフが野菜を手渡す"
+          className="w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-12 lg:py-20">
         <div className="flex flex-col items-center justify-center text-center">
-          {/* Logo */}
-          <div className="mb-6 md:mb-8">
-            <img
-              src="/images/logo.png"
-              alt="ベジコベ"
-              className="h-16 md:h-20 lg:h-24 w-auto mx-auto drop-shadow-lg"
-            />
-          </div>
-
           {/* Main Copy */}
           <h1 className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 drop-shadow-lg">
             神戸の農家を支えることが
             <br />
-            <span className="text-orange-400">飲食店の成長に!</span>
+            <span className="text-orange-400 text-stroke-white">飲食店の成長に!</span>
           </h1>
 
           {/* Sub Copy */}

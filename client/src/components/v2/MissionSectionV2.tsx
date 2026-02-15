@@ -3,7 +3,7 @@ export default function MissionSectionV2() {
     <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          {/* Title - single line */}
+          {/* Title */}
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-6 leading-tight">
             一つ一つの野菜が持つ物語で食卓をもっと豊かに。
             <br />
@@ -25,12 +25,6 @@ export default function MissionSectionV2() {
             <p>
               それが、ベジコベの想いです。
             </p>
-          </div>
-
-          {/* Decoration */}
-          <div className="mt-12 flex justify-center gap-4">
-            <div className="w-1 h-16 bg-orange-400 rounded-full" />
-            <div className="w-1 h-16 bg-white rounded-full opacity-50" />
           </div>
         </div>
       </div>
