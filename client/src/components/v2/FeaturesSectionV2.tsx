@@ -9,8 +9,7 @@ const features = [
     title: "農家ストーリー画面",
     description:
       "生産者の顔写真、動画、こだわり文章が表示。スタッフも自信を持っておすすめできます。",
-    image:
-      "https://via.placeholder.com/300x400/E8F5E9/2E7D32?text=Farmer+Story",
+    image: "/images/feature-v2-farmer.png",
     imageAlt: "農家ストーリー画面",
   },
   {
@@ -19,8 +18,7 @@ const features = [
     title: "ワンタップ発注画面",
     description:
       "「いつもの注文」ボタンで、忙しい営業後でも1秒で発注完了。履歴から即発注できます。",
-    image:
-      "https://via.placeholder.com/300x400/E8F5E9/2E7D32?text=One+Tap+Order",
+    image: "/images/feature-v2-onetap.png",
     imageAlt: "ワンタップ発注画面",
   },
   {
@@ -29,8 +27,7 @@ const features = [
     title: "規格外野菜リスト",
     description:
       "安価で良質な規格外品が一覧で並ぶ画面。掘り出し物が見つかります。",
-    image:
-      "https://via.placeholder.com/300x400/E8F5E9/2E7D32?text=Irregular+Veggies",
+    image: "/images/feature-v2-irregular.png",
     imageAlt: "規格外野菜リスト",
   },
 ];
@@ -87,21 +84,18 @@ export default function FeaturesSectionV2() {
                 <button
                   key={feature.id}
                   onClick={() => handleTabClick(feature.id)}
-                  className={`flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-3 px-2 lg:px-4 py-3 lg:py-4 rounded-xl text-center lg:text-left transition-all duration-200 ${
-                    activeTab === feature.id
+                  className={`flex flex-col lg:flex-row items-center lg:items-center gap-2 lg:gap-3 px-2 lg:px-4 py-3 lg:py-4 rounded-xl text-center lg:text-left transition-all duration-200 ${activeTab === feature.id
                       ? "bg-emerald-600 text-white shadow-lg"
                       : "bg-slate-50 text-slate-600 hover:bg-slate-100"
-                  }`}
+                    }`}
                 >
                   <div
-                    className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center shrink-0 ${
-                      activeTab === feature.id ? "bg-white/20" : "bg-emerald-600/10"
-                    }`}
+                    className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center shrink-0 ${activeTab === feature.id ? "bg-white/20" : "bg-emerald-600/10"
+                      }`}
                   >
                     <feature.icon
-                      className={`w-4 h-4 lg:w-5 lg:h-5 ${
-                        activeTab === feature.id ? "text-white" : "text-emerald-600"
-                      }`}
+                      className={`w-4 h-4 lg:w-5 lg:h-5 ${activeTab === feature.id ? "text-white" : "text-emerald-600"
+                        }`}
                     />
                   </div>
                   <span className="font-bold text-xs lg:text-base">
