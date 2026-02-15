@@ -5,20 +5,21 @@ export default function FooterV2() {
     <footer className="bg-slate-900 text-white py-12 md:py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* ブランド */}
+          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-black text-sm">VK</span>
-              </div>
-              <span className="font-black text-lg">VegeKobe</span>
+              <img
+                src="/images/logo.png"
+                alt="ベジコベ"
+                className="h-8 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               神戸の飲食店向け野菜仕入れプラットフォーム。生産者の想いを届けます。
             </p>
           </div>
 
-          {/* サービス */}
+          {/* Service */}
           <div>
             <h4 className="font-bold text-white mb-4">サービス</h4>
             <ul className="space-y-2 text-slate-400 text-sm">
@@ -40,7 +41,7 @@ export default function FooterV2() {
             </ul>
           </div>
 
-          {/* 会社 */}
+          {/* Company */}
           <div>
             <h4 className="font-bold text-white mb-4">会社</h4>
             <ul className="space-y-2 text-slate-400 text-sm">
@@ -85,10 +86,10 @@ export default function FooterV2() {
           </div>
         </div>
 
-        {/* 区切り線 */}
+        {/* Divider */}
         <div className="border-t border-slate-700 pt-8">
           <p className="text-slate-400 text-sm text-center">
-            © {currentYear} VegeKobe. All rights reserved.
+            &copy; {currentYear} ベジコベ. All rights reserved.
           </p>
         </div>
       </div>

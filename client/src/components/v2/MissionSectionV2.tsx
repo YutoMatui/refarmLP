@@ -3,14 +3,14 @@ export default function MissionSectionV2() {
     <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          {/* 見出し */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6">
-            一つ一つの野菜が持つ物語で<br />
-            食卓をもっと豊かに。<br />
+          {/* Title - single line */}
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-6 leading-tight">
+            一つ一つの野菜が持つ物語で食卓をもっと豊かに。
+            <br />
             神戸の農業をもっと明るく。
           </h2>
 
-          {/* 本文 */}
+          {/* Body */}
           <div className="space-y-4 text-base md:text-lg leading-relaxed">
             <p>
               神戸には誇れる農家がいます。<br />
@@ -23,11 +23,11 @@ export default function MissionSectionV2() {
             </p>
 
             <p>
-              それが、VegeKobeの想いです。
+              それが、ベジコベの想いです。
             </p>
           </div>
 
-          {/* デコレーション */}
+          {/* Decoration */}
           <div className="mt-12 flex justify-center gap-4">
             <div className="w-1 h-16 bg-orange-400 rounded-full" />
             <div className="w-1 h-16 bg-white rounded-full opacity-50" />
