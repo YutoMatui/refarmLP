@@ -5,39 +5,32 @@ import { ArrowRight } from "lucide-react";
 const steps = [
   {
     id: 1,
-    title: "お申し込み",
-    subtitle: "LINE登録",
-    description: "LINEで友だち追加するだけ。\n30秒で完了します。",
+    title: "予約フォームから申し込み",
+    subtitle: "お申し込み",
+    description: "予約フォームより、30分程度のヒアリングの日程をご予約いただきます。\nアカウント発行に必要な情報をお伺いいたします。",
     icon: "/images/icons/step-1-apply.png",
   },
   {
     id: 2,
-    title: "ご相談",
+    title: "ヒアリング・お試し注文のためのアカウント発行",
     subtitle: "ヒアリング",
-    description: "お店の課題をお聞かせください。\n最適なプランをご提案します。",
+    description: "お店のこだわりやご要望をお伺いし、最適な提携農家をご提案いたします。\nその場でお試し用のアカウントを発行いたします。",
     icon: "/images/icons/step-2-consult.png",
   },
   {
     id: 3,
-    title: "セットアップ",
-    subtitle: "導入サポート",
-    description: "初期設定やその他お困りごとを\n専任スタッフがサポート。",
+    title: "1,000円分のお試し野菜配送（無料）",
+    subtitle: "お試し配送",
+    description: "実際に神戸産の新鮮野菜をお届けいたします。\n品質・鮮度をご確認いただき、ご満足いただけましたらそのままご継続いただけます。",
     icon: "/images/icons/step-3-setup.png",
-  },
-  {
-    id: 4,
-    title: "利用開始",
-    subtitle: "利用開始",
-    description: "準備完了！\n一緒にお店を成長させていきましょう。",
-    icon: "/images/icons/step-4-start.png",
   },
 ];
 
 export default function OnboardingFlowV2() {
-  const handleLineClick = () => {
+  const handleCTAClick = () => {
     trackLineRegistration("Onboarding Section V2");
-    trackCTAClick("LINE登録", "Onboarding V2");
-    window.open("https://lin.ee/qMfjf66", "_blank");
+    trackCTAClick("予約フォーム", "Onboarding V2");
+    window.open("https://www.jicoo.com/t/Q6dX269xuoEM/e/pqDziUpv", "_blank");
   };
 
   return (
@@ -49,14 +42,14 @@ export default function OnboardingFlowV2() {
             導入の流れ
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
-            利用開始までの流れ
+            ご利用開始までの流れ
           </h2>
           <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto">
             お申し込みから
             <span className="border-b-2 border-orange-400 font-bold text-slate-800">
-              最短1ヶ月
+              最短1週間
             </span>
-            で取引先への案内が可能です
+            でお試し配送が可能です
           </p>
         </div>
 
@@ -67,7 +60,6 @@ export default function OnboardingFlowV2() {
               key={step.id}
               className="flex items-center p-5 bg-orange-50/50 rounded-2xl border-b-2 border-dashed border-emerald-100 last:border-0 shadow-sm"
             >
-              {/* Icon Circle */}
               <div className="flex-shrink-0 mr-5">
                 <div className="w-20 h-20 rounded-full border-2 border-emerald-400 bg-white flex items-center justify-center shadow-md">
                   <img
@@ -77,14 +69,12 @@ export default function OnboardingFlowV2() {
                   />
                 </div>
               </div>
-
-              {/* Text Content */}
               <div className="flex-grow">
                 <div className="flex flex-col mb-1">
                   <span className="text-xs font-bold text-emerald-600 font-en mb-1">
                     Step {step.id}
                   </span>
-                  <h3 className="text-lg font-bold text-slate-800 leading-tight">
+                  <h3 className="text-base font-bold text-slate-800 leading-tight">
                     {step.title}
                   </h3>
                 </div>
@@ -97,7 +87,7 @@ export default function OnboardingFlowV2() {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:flex justify-between items-start max-w-6xl mx-auto relative mt-12">
+        <div className="hidden md:flex justify-between items-start max-w-5xl mx-auto relative mt-12">
           <div className="absolute top-[calc(2rem+6rem)] left-0 w-full h-1 bg-emerald-100 z-0 hidden lg:block rounded-full" />
 
           {steps.map((step, index) => (
@@ -105,12 +95,10 @@ export default function OnboardingFlowV2() {
               key={step.id}
               className="flex-1 flex flex-col items-center relative z-10 group px-2"
             >
-              {/* Step Number */}
               <span className="block text-emerald-600 font-black text-xl font-en mb-4 tracking-wider">
                 Step {step.id}
               </span>
 
-              {/* Big Circle */}
               <div className="w-48 h-48 rounded-full border-4 border-emerald-500 bg-white flex items-center justify-center shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-2xl relative mb-6">
                 <img
                   src={step.icon}
@@ -119,21 +107,18 @@ export default function OnboardingFlowV2() {
                 />
               </div>
 
-              {/* Arrow */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-[calc(2rem+6rem-1.5rem)] -right-[15%] text-emerald-400">
                   <ArrowRight size={48} strokeWidth={3} />
                 </div>
               )}
 
-              {/* Title */}
-              <h3 className="text-xl font-black text-slate-800 mb-3 text-center">
+              <h3 className="text-lg font-black text-slate-800 mb-3 text-center leading-snug">
                 {step.title}
               </h3>
 
-              {/* Description */}
               <div className="text-center">
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 leading-relaxed font-medium whitespace-pre-line">
                   {step.description}
                 </p>
               </div>
@@ -145,9 +130,9 @@ export default function OnboardingFlowV2() {
         <div className="text-center mt-16 md:mt-24">
           <Button
             className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
-            onClick={handleLineClick}
+            onClick={handleCTAClick}
           >
-            無料で利用開始
+            無料でお試し配送を申し込む
           </Button>
           <p className="text-slate-500 text-sm mt-4">
             しつこい営業は一切行いません。

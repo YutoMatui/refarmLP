@@ -15,10 +15,10 @@ const supportFeatures = [
   },
   {
     image: "/images/support-menu.png",
-    title: "「売れる」メニュー提案",
-    subtitle: "導入後もずっと並走",
+    title: "こだわりを伝えるサポート",
+    subtitle: "導入後もずっと伴走",
     description:
-      "ただ野菜を届けるだけではありません。「今週のおすすめ」や「他店の成功事例」など、客単価アップに繋がる情報を定期的に提供します。",
+      "メニューシートや卓上POPの制作、店内サイネージのご提案、公式LINEの構築・運用支援など、お店のこだわりをお客様に届けるためのビジュアルコミュニケーションツールをご用意。リピート促進までトータルでサポートいたします。",
   },
 ];
 
@@ -53,14 +53,11 @@ export default function SupportSectionV2() {
               key={index}
               className="bg-emerald-50/50 rounded-2xl p-8 md:p-10 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg border border-emerald-100/50"
             >
-              {/* Image Icon */}
               <img
                 src={feature.image}
                 alt={feature.title}
                 className="w-24 h-24 mb-6 shadow-sm rounded-full shrink-0"
               />
-
-              {/* Text */}
               <p className="text-sm font-bold text-emerald-600 mb-2">
                 {feature.subtitle}
               </p>

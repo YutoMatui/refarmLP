@@ -209,3 +209,10 @@
 .animate-delay-300 {
   animation-delay: 0.3s;
 }
+
+/* White outline for orange text in hero */
+.text-stroke-white {
+  -webkit-text-stroke: 2px white;
+  paint-order: stroke fill;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}

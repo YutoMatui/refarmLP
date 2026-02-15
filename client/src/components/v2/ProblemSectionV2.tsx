@@ -11,51 +11,63 @@ import {
 } from "@/components/ui/carousel";
 
 interface Solution {
-  iconEmoji: string;
   title: string;
-  body: string;
+  description: string;
+  points: string[];
+  image: string;
 }
 
 interface PainPoint {
   id: string;
-  iconEmoji: string;
   title: string;
-  subText: string;
+  description: string;
   solution: Solution;
 }
 
 const painPoints: PainPoint[] = [
   {
     id: "procurement",
-    iconEmoji: "😓",
-    title: "農家さんと直接やりとりしたい。\nでも、個別の連絡や手配が面倒…",
-    subText: "複数の農家へ個別に電話したり、配送手配をする時間がない。天候で欠品した時の対応も不安。",
+    title: "農家さんと直接やりとりしたい。でも、個別の連絡や手配が面倒…",
+    description: "複数の農家へ個別に電話したり、配送手配をする時間がない。天候で欠品した時の対応も不安。",
     solution: {
-      iconEmoji: "🤝",
-      title: "窓口は「ベジコベ」ひとつだけ。\n面倒な調整はすべて私たちが引き受けます。",
-      body: "オーナー様は、アプリから欲しい野菜を選ぶだけでOK。農家さんとの連絡や配送手配はすべて弊社が行います。\n\n【安心の欠品保証】\n万が一、天候などで目当ての野菜が採れない場合でも、私たちがすぐに提携する別の農家さんから代替野菜をご提案。お店のメニューに穴をあけさせません。",
+      title: "窓口は「ベジコベ」ひとつだけ。面倒な調整はすべて私たちが引き受けます。",
+      description: "オーナー様は、アプリから欲しい野菜を選ぶだけでOK。農家さんとの連絡や配送手配はすべて弊社が行います。",
+      points: [
+        "安心の欠品保証",
+        "万が一、天候などで目当ての野菜が採れない場合でも、提携する別の農家さんから代替野菜をご提案",
+        "お店のメニューに穴をあけさせません",
+      ],
+      image: "/images/solution-price.jpg",
     },
   },
   {
     id: "value",
-    iconEmoji: "📢",
-    title: "こだわりの食材を使っているのに、\nお客様にその価値が伝わっていない…",
-    subText: "「いいもの」を入れている自信はある。でも、忙しくてPOPを作ったり、SNSで発信する余裕がない。",
+    title: "こだわりの食材を使っているのに、お客様にその価値が伝わっていない…",
+    description: "「いいもの」を入れている自信はある。でも、忙しくてPOPを作ったり、SNSで発信する余裕がない。",
     solution: {
-      iconEmoji: "💡",
-      title: "スマホを見れば「語れるストーリー」がある。\n伝え方の提案から運用代行までサポート。",
-      body: "アプリ内で「生産者のこだわり動画」や「インタビュー」が見られるため、スタッフさんも自信を持って接客できます。\n\n【価値伝達サポート】\nさらにお店に合わせて、「どう伝えれば注文されるか」をご提案。ご希望であれば、飲食店の公式LINE運用代行までお任せいただき、リピーター定着まで伴走します。",
+      title: "スマホを見れば「語れるストーリー」がある。伝え方の提案から運用代行までサポート。",
+      description: "アプリ内で「生産者のこだわり動画」や「インタビュー」が見られるため、スタッフさんも自信を持っておすすめできます。",
+      points: [
+        "価値伝達サポート",
+        "お店に合わせて「どう伝えれば注文されるか」をご提案",
+        "飲食店の公式LINE運用代行でリピーター定着まで伴走",
+      ],
+      image: "/images/solution-customers.jpg",
     },
   },
   {
     id: "admin",
-    iconEmoji: "📑",
-    title: "毎日のFAX発注、月末の請求書整理…\n事務作業に追われていませんか？",
-    subText: "営業後の疲れ切った体で事務作業。紙の請求書が山積みで、管理が大変。",
+    title: "毎日のFAX発注、月末の請求書整理…事務作業に追われていませんか？",
+    description: "営業後の疲れ切った体で事務作業。紙の請求書が山積みで、管理が大変。",
     solution: {
-      iconEmoji: "✨",
-      title: "発注も請求書も、LINEの中で完結。\n紙の山をゼロにして、料理と接客に集中できます。",
-      body: "発注は「いつもの注文」ボタンで一瞬で完了。\n\n【経理もスマートに】\n紙の請求書管理はもう必要ありません。日々の納品書も、月次の請求書も、すべてアプリ内で確認・管理が可能。事務コストを大幅に削減し、オーナー様の時間を生み出します。",
+      title: "発注も請求書も、LINEの中で完結。紙の山をゼロにして、料理と接客に集中できます。",
+      description: "発注は「いつもの注文」ボタンで一瞬で完了。",
+      points: [
+        "経理もスマートに",
+        "日々の納品書も月次の請求書もアプリ内で確認・管理",
+        "事務コストを大幅に削減し、オーナー様の時間を生み出します",
+      ],
+      image: "/images/solution-operations.jpg",
     },
   },
 ];
@@ -66,12 +78,11 @@ const PainPointCard = ({ point, onClick, className }: { point: PainPoint; onClic
       onClick={onClick}
       className="group cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative h-full flex flex-col text-left border border-emerald-50"
     >
-      <div className="text-3xl mb-3">{point.iconEmoji}</div>
-      <h3 className="text-lg md:text-xl font-black text-slate-800 mb-4 leading-snug group-hover:text-emerald-600 transition-colors whitespace-pre-line">
+      <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 leading-snug group-hover:text-emerald-600 transition-colors">
         {point.title}
       </h3>
       <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8 flex-grow">
-        {point.subText}
+        {point.description}
       </p>
       <div className="mt-auto w-full bg-emerald-600 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 group-hover:bg-emerald-700 transition-colors shadow-md">
         ベジコベで解決する <ChevronRight className="w-5 h-5" />
@@ -125,7 +136,7 @@ export default function ProblemSectionV2() {
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <p className="text-emerald-50 text-sm md:text-base mb-4 opacity-90">
-            素晴らしい食材が近くにあるのに、使っていないのは「もったいない」。
+            素晴らしい食材が近くにあるのに、使えていないのは「もったいない」。
           </p>
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-4 drop-shadow-md">
             こだわりのあるオーナー様が直面する
@@ -176,9 +187,9 @@ export default function ProblemSectionV2() {
         </div>
       </div>
 
-      {/* Solution Modal */}
+      {/* Solution Modal - PainPointsSection design: image left, text right */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-3xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8 pb-20 md:pb-0 focus:outline-none">
+        <DialogContent className="max-w-[95vw] md:max-w-5xl w-full p-0 bg-transparent border-0 shadow-none overflow-visible flex items-center justify-center my-8 pb-20 md:pb-0 focus:outline-none">
           <div className="relative w-full">
             {/* PC arrows */}
             <button
@@ -210,33 +221,54 @@ export default function ProblemSectionV2() {
                 <ChevronRight className="w-6 h-6" />
               </button>
 
-              <div className="p-6 md:p-10">
-                {/* Problem header */}
-                <div className="mb-6 text-center">
-                  <span className="text-emerald-500 text-sm font-bold mb-1 block">
-                    現在のお悩み
-                  </span>
-                  <div className="text-2xl mb-2">{currentPoint.iconEmoji}</div>
-                  <h2 className="text-lg md:text-xl font-black text-slate-800 leading-tight whitespace-pre-line">
-                    {currentPoint.title}
-                  </h2>
+              <div className="flex flex-col md:flex-row min-h-[500px]">
+                {/* Image Area - left on desktop, top on mobile */}
+                <div className="w-full md:w-5/12 bg-white flex items-center justify-center p-6 pb-0 md:p-8 md:pr-0">
+                  <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
+                    <img
+                      src={currentPoint.solution.image}
+                      alt={currentPoint.solution.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
 
-                {/* Divider */}
-                <div className="border-t border-slate-100 pt-6">
-                  <div className="flex items-center gap-2 mb-4 justify-center">
-                    <span className="text-2xl">{currentPoint.solution.iconEmoji}</span>
-                    <span className="text-emerald-600 font-bold text-lg md:text-xl">
-                      ベジコベなら!
+                {/* Text Area - right on desktop, below on mobile */}
+                <div className="w-full md:w-7/12 p-6 md:p-10 flex flex-col justify-center">
+                  {/* Problem header */}
+                  <div className="mb-6 text-center md:text-left">
+                    <span className="text-emerald-500 text-sm font-bold mb-1 block">
+                      現在のお悩み
                     </span>
+                    <h2 className="text-xl md:text-2xl font-black text-slate-800 leading-tight">
+                      {currentPoint.title}
+                    </h2>
                   </div>
 
-                  <h3 className="text-base md:text-lg font-bold text-slate-800 mb-4 text-center whitespace-pre-line">
-                    {currentPoint.solution.title}
-                  </h3>
+                  {/* Solution */}
+                  <div className="border-t border-slate-100 pt-6">
+                    <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
+                      <span className="text-emerald-600 font-bold text-lg md:text-xl">
+                        ベジコベなら!
+                      </span>
+                    </div>
 
-                  <div className="text-slate-600 text-sm md:text-base leading-relaxed whitespace-pre-line">
-                    {currentPoint.solution.body}
+                    <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-4 text-center md:text-left">
+                      {currentPoint.solution.title}
+                    </h3>
+
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                      {currentPoint.solution.description}
+                    </p>
+
+                    <ul className="space-y-2">
+                      {currentPoint.solution.points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-emerald-500 shrink-0" strokeWidth={3} />
+                          <span className="text-slate-700 font-bold text-sm md:text-base">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
