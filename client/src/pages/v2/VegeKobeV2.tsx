@@ -13,6 +13,7 @@ import MissionSectionV2 from "@/components/v2/MissionSectionV2";
 import OnboardingFlowV2 from "@/components/v2/OnboardingFlowV2";
 import SupportSectionV2 from "@/components/v2/SupportSectionV2";
 import FAQSectionV2 from "@/components/v2/FAQSectionV2";
+import ContactSectionV2 from "@/components/v2/ContactSectionV2";
 import FooterCTASectionV2 from "@/components/v2/FooterCTASectionV2";
 import FooterV2 from "@/components/v2/FooterV2";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -65,7 +66,10 @@ export default function VegeKobeV2() {
           <FAQSectionV2 />
         </section>
 
-        {/* 11. フッター CTA */}
+        {/* 11. 埋め込みフォーム（コンバージョン） */}
+        <ContactSectionV2 />
+
+        {/* 12. フッター CTA */}
         <FooterCTASectionV2 />
       </main>
 
@@ -74,3 +78,4 @@ export default function VegeKobeV2() {
     </div>
   );
 }
+

@@ -4,16 +4,6 @@ import { trackFeatureTabClick, trackSectionScroll } from "@/lib/gtag";
 
 const features = [
   {
-    id: "farmer-story",
-    icon: Megaphone,
-    title: "農家ストーリー画面",
-    displayTitle: "あなたに合った「運命の生産者」が見つかります！",
-    description:
-      "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんときっと出会えます。",
-    image: "/images/feature-v2-farmer.jpg",
-    imageAlt: "農家ストーリー画面",
-  },
-  {
     id: "one-tap",
     icon: Smartphone,
     title: "いつもの注文ボタン",
@@ -22,6 +12,16 @@ const features = [
       "忙しい営業の後、スマホ画面をスクロールしてお気に入りの野菜を探す必要はありません。よく頼む野菜はワンタップで呼び出し可能。毎日のルーティン業務を極限までシンプルにしました。",
     image: "/images/feature-v2-onetap.jpg",
     imageAlt: "ワンタップ発注画面",
+  },
+  {
+    id: "farmer-story",
+    icon: Megaphone,
+    title: "農家ストーリー画面",
+    displayTitle: "あなたに合った「運命の生産者」が見つかります！",
+    description:
+      "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんときっと出会えます。",
+    image: "/images/feature-v2-farmer.jpg",
+    imageAlt: "農家ストーリー画面",
   },
   {
     id: "irregular",

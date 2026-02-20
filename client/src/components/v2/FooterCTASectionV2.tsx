@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { trackCTAClick } from "@/lib/gtag";
 
 export default function FooterCTASectionV2() {
   const handleCTAClick = () => {
-    window.open("https://www.jicoo.com/t/Q6dX269xuoEM/e/pqDziUpv", "_blank");
+    trackCTAClick("神戸のこだわり野菜を無料でお試し", "Footer CTA V2");
+    const formEl = document.getElementById("contact-form-section");
+    if (formEl) {
+      formEl.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -21,9 +26,14 @@ export default function FooterCTASectionV2() {
           </h2>
 
           {/* Description */}
-          <p className="text-base md:text-lg leading-relaxed mb-8 text-emerald-50">
+          <p className="text-base md:text-lg leading-relaxed mb-6 text-emerald-50">
             こだわりのあるオーナー様にだからこそ、<br />
             近くにある本当の美味しい野菜を使っていただきたいです。
+          </p>
+
+          {/* Micro Copy */}
+          <p className="text-white/90 text-sm font-bold mb-4">
+            ✅ 簡単申し込み、1分で完了
           </p>
 
           {/* CTA Button */}
@@ -31,16 +41,17 @@ export default function FooterCTASectionV2() {
             className="bg-white hover:bg-emerald-50 text-emerald-600 font-black text-base md:text-lg py-6 md:py-7 px-8 md:px-10 rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2 mx-auto"
             onClick={handleCTAClick}
           >
-            神戸のこだわり野菜を受け取る
+            神戸のこだわり野菜を無料でお試し
             <ArrowRight className="w-5 h-5" />
           </Button>
 
           {/* Note */}
           <p className="text-sm md:text-base mt-4 text-emerald-100">
-            ※ まずは無料お試し・ヒアリングから
+            ※ しつこい営業は一切行いません
           </p>
         </div>
       </div>
     </section>
   );
 }
+

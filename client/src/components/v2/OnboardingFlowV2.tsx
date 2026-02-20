@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { trackLineRegistration, trackCTAClick } from "@/lib/gtag";
+import { trackCTAClick } from "@/lib/gtag";
 import { ArrowRight } from "lucide-react";
 
 const steps = [
@@ -28,9 +28,11 @@ const steps = [
 
 export default function OnboardingFlowV2() {
   const handleCTAClick = () => {
-    trackLineRegistration("Onboarding Section V2");
-    trackCTAClick("予約フォーム", "Onboarding V2");
-    window.open("https://www.jicoo.com/t/Q6dX269xuoEM/e/pqDziUpv", "_blank");
+    trackCTAClick("神戸のこだわり野菜を無料でお試し", "Onboarding V2");
+    const formEl = document.getElementById("contact-form-section");
+    if (formEl) {
+      formEl.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -128,14 +130,17 @@ export default function OnboardingFlowV2() {
 
         {/* CTA Area */}
         <div className="text-center mt-16 md:mt-24">
+          <p className="text-slate-500 text-sm font-bold mb-4">
+            ✅ 簡単申し込み、1分で完了
+          </p>
           <Button
-            className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
+            className="bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
             onClick={handleCTAClick}
           >
-            無料でお試し配送を申し込む
+            神戸のこだわり野菜を無料でお試し
           </Button>
-          <p className="text-slate-500 text-sm mt-4">
-            しつこい営業は一切行いません。
+          <p className="text-slate-400 text-sm mt-4">
+            ※ しつこい営業は一切行いません。
           </p>
         </div>
       </div>
