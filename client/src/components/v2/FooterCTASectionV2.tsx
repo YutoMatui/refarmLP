@@ -31,23 +31,18 @@ export default function FooterCTASectionV2() {
             近くにある本当の美味しい野菜を使っていただきたいです。
           </p>
 
-          {/* Micro Copy */}
-          <p className="text-white/90 text-sm font-bold mb-4">
-            ✅ 簡単申し込み、1分で完了
-          </p>
-
           {/* CTA Button */}
           <Button
-            className="bg-white hover:bg-emerald-50 text-emerald-600 font-black text-base md:text-lg py-6 md:py-7 px-8 md:px-10 rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2 mx-auto"
+            className="max-w-[20rem] md:max-w-none mx-auto whitespace-normal leading-snug bg-white hover:bg-emerald-50 text-emerald-600 font-black text-base md:text-lg py-6 md:py-7 px-8 md:px-10 rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"
             onClick={handleCTAClick}
           >
             神戸のこだわり野菜を無料でお試し
             <ArrowRight className="w-5 h-5" />
           </Button>
 
-          {/* Note */}
-          <p className="text-sm md:text-base mt-4 text-emerald-100">
-            ※ しつこい営業は一切行いません
+          {/* Micro Copy */}
+          <p className="text-white/90 text-sm font-bold mt-4">
+            ✅ 簡単申し込み、1分で完了
           </p>
         </div>
       </div>

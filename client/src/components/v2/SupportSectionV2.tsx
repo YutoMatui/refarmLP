@@ -1,17 +1,17 @@
 const supportFeatures = [
   {
     image: "/images/support-line.png",
-    title: "LINEで即座に対応",
+    title: "LINE・電話で即対応",
     subtitle: "365日いつでも相談",
     description:
-      "発注ミスや配送トラブルも、LINE一本ですぐに解決。電話を待たされるストレスはありません。専任スタッフがスピーディーに対応します。",
+      "発注ミスや配送トラブルも、LINE・電話のどちらでもすぐにご相談可能。専任スタッフがスピーディーに対応します。",
   },
   {
     image: "/images/support-quality.png",
     title: "品質・鮮度保証",
     subtitle: "万が一の時も安心",
     description:
-      "届いた野菜の品質に問題があった場合は、すぐに代替品の手配や返金対応を行います。独自の品質基準をクリアした野菜のみをお届けします。",
+      "独自の品質基準をクリアした野菜のみをお届けし、万が一品質に問題があった場合は、すぐに代替品の手配や返金対応を行います。",
   },
   {
     image: "/images/support-menu.png",
@@ -32,7 +32,7 @@ export default function SupportSectionV2() {
             お客様の「困った」も
             <br className="md:hidden" />
             <span className="text-emerald-600 border-b-4 border-emerald-200">
-              LINEですぐに解決!
+              LINE・電話ですぐに解決!
             </span>
           </h2>
           <p className="text-lg text-slate-600 font-bold">

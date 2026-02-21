@@ -52,6 +52,11 @@ const farmers = [
 const allFarmers = [...farmers, ...farmers];
 
 export default function FarmersCarouselV2() {
+  const buildFallbackImage = (label: string) =>
+    `data:image/svg+xml;utf8,${encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500"><rect width="400" height="500" fill="#E8F5E9"/><text x="200" y="260" text-anchor="middle" font-size="32" font-family="sans-serif" fill="#2E7D32">${label}</text></svg>`
+    )}`;
+
   return (
     <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-b from-emerald-50 to-white overflow-hidden">
       <div className="container mx-auto px-4">
@@ -71,13 +76,13 @@ export default function FarmersCarouselV2() {
         <motion.div
           className="flex gap-4 md:gap-6 px-4"
           animate={{
-            x: [0, -1500], // Adjust distance based on card width
+            x: ["0%", "-50%"],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 40,
+              duration: 36,
               ease: "linear",
             },
           }}
@@ -96,8 +101,8 @@ export default function FarmersCarouselV2() {
                   className="w-full h-full object-cover object-top"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    if (!target.src.includes('placeholder')) {
-                      target.src = `https://via.placeholder.com/400x500/E8F5E9/2E7D32?text=${encodeURIComponent(farmer.name)}`;
+                    if (!target.src.startsWith("data:image/svg+xml")) {
+                      target.src = buildFallbackImage(farmer.name);
                     }
                   }}
                 />

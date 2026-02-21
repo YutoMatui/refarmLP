@@ -21,6 +21,58 @@ async function addToNotion(data: {
     return;
   }
 
+  const dbResponse = await fetch(`https://api.notion.com/v1/databases/${notionDatabaseId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${notionSecret}`,
+      "Notion-Version": "2022-06-28",
+    },
+  });
+
+  if (!dbResponse.ok) {
+    const error = await dbResponse.json();
+    console.error("[Notion] Database schema fetch error:", JSON.stringify(error));
+    throw new Error(`Notion DB schema error: ${JSON.stringify(error)}`);
+  }
+
+  const dbJson = await dbResponse.json();
+  const dbProperties = (dbJson.properties ?? {}) as Record<string, { type?: string; options?: Array<{ name: string }> }>;
+
+  const titleEntry = Object.entries(dbProperties).find(([, prop]) => prop?.type === "title");
+  if (!titleEntry) {
+    throw new Error("Notion database has no title property.");
+  }
+
+  const notionProperties: Record<string, unknown> = {
+    [titleEntry[0]]: {
+      title: [{ text: { content: data.shopName } }],
+    },
+  };
+
+  if (dbProperties["担当者名"]?.type === "rich_text") {
+    notionProperties["担当者名"] = {
+      rich_text: [{ text: { content: data.contactPerson } }],
+    };
+  }
+
+  if (dbProperties["電話番号"]?.type === "phone_number") {
+    notionProperties["電話番号"] = {
+      phone_number: data.phone,
+    };
+  }
+
+  if (dbProperties["メールアドレス"]?.type === "email") {
+    notionProperties["メールアドレス"] = {
+      email: data.email,
+    };
+  }
+
+  if (dbProperties["ステータス"]?.type === "select") {
+    notionProperties["ステータス"] = {
+      select: { name: "04_フォーム入力済み" },
+    };
+  }
+
   const response = await fetch("https://api.notion.com/v1/pages", {
     method: "POST",
     headers: {
@@ -30,28 +82,7 @@ async function addToNotion(data: {
     },
     body: JSON.stringify({
       parent: { database_id: notionDatabaseId },
-      properties: {
-        // タイトル（店名）
-        Name: {
-          title: [{ text: { content: data.shopName } }],
-        },
-        // 担当者名
-        担当者名: {
-          rich_text: [{ text: { content: data.contactPerson } }],
-        },
-        // 電話番号
-        電話番号: {
-          phone_number: data.phone,
-        },
-        // メールアドレス
-        メールアドレス: {
-          email: data.email,
-        },
-        // ステータス（SelectまたはStatus型）
-        ステータス: {
-          select: { name: "04_フォーム入力済み" },
-        },
-      },
+      properties: notionProperties,
     }),
   });
 
@@ -149,16 +180,16 @@ async function startServer() {
       await addToNotion({ shopName, contactPerson, phone, email });
 
       // 2. 自動返信メール送信
-      await sendAutoReplyEmail({ shopName, contactPerson, email });
+      try {
+        await sendAutoReplyEmail({ shopName, contactPerson, email });
+      } catch (mailError) {
+        console.error("[Resend] Non-blocking error:", mailError);
+      }
 
       return res.status(200).json({ success: true });
     } catch (error) {
       console.error("[/api/contact] Error:", error);
-      // Notion/Resendのエラーがあってもユーザー体験を壊さないためにエラーを握りつぶさず記録するが、
-      // 送信成功として返す（データが消えるよりも体験の連続性を優先する場合はtrueにする）
-      // 厳密にしたい場合は以下をコメントアウト解除:
-      // return res.status(500).json({ message: "サーバーエラーが発生しました。" });
-      return res.status(200).json({ success: true });
+      return res.status(500).json({ message: "サーバーエラーが発生しました。" });
     }
   });
   // ---- API Routes 終わり ----

@@ -17,18 +17,19 @@ export default function ContactSectionV2() {
             <div className="container mx-auto px-4">
                 {/* Section Title */}
                 <div className="text-center mb-10 md:mb-14">
-                    <span className="inline-block bg-orange-100 text-orange-600 text-sm font-bold px-4 py-2 rounded-full mb-4">
+                    <span className="inline-block bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-2 rounded-full mb-4">
                         無料お試し申し込み
                     </span>
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
                         神戸のこだわり野菜を
                         <br className="md:hidden" />
-                        <span className="text-orange-500">無料でお試し</span>
+                        <span className="text-emerald-600">無料でお試し</span>
                     </h2>
                     <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
                         フォームに入力するだけで、
                         <span className="font-bold text-slate-800">1000円分の野菜</span>
-                        を無料でお試しいただけます。
+                        を無料でお試しいただけます。<br />
+                        実際のアプリから好きな野菜を選んで、そのまま無料注文できます。
                         <br />
                         入会金・月額費用は一切かかりません。
                     </p>

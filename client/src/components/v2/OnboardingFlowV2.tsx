@@ -48,7 +48,7 @@ export default function OnboardingFlowV2() {
           </h2>
           <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto">
             お申し込みから
-            <span className="border-b-2 border-orange-400 font-bold text-slate-800">
+            <span className="border-b-2 border-emerald-400 font-bold text-slate-800">
               最短1週間
             </span>
             でお試し配送が可能です
@@ -60,7 +60,7 @@ export default function OnboardingFlowV2() {
           {steps.map((step) => (
             <div
               key={step.id}
-              className="flex items-center p-5 bg-orange-50/50 rounded-2xl border-b-2 border-dashed border-emerald-100 last:border-0 shadow-sm"
+              className="flex items-center p-5 bg-emerald-50/40 rounded-2xl border-b-2 border-dashed border-emerald-100 last:border-0 shadow-sm"
             >
               <div className="flex-shrink-0 mr-5">
                 <div className="w-20 h-20 rounded-full border-2 border-emerald-400 bg-white flex items-center justify-center shadow-md">
@@ -130,17 +130,14 @@ export default function OnboardingFlowV2() {
 
         {/* CTA Area */}
         <div className="text-center mt-16 md:mt-24">
-          <p className="text-slate-500 text-sm font-bold mb-4">
-            ✅ 簡単申し込み、1分で完了
-          </p>
           <Button
-            className="bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white font-black text-xl md:text-2xl py-8 px-16 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 animate-pulse hover:animate-none"
+            className="w-full max-w-[20rem] sm:max-w-[24rem] mx-auto whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-xl py-6 md:py-7 px-6 md:px-10 rounded-2xl shadow-2xl transition-all duration-300 hover:-translate-y-1"
             onClick={handleCTAClick}
           >
             神戸のこだわり野菜を無料でお試し
           </Button>
-          <p className="text-slate-400 text-sm mt-4">
-            ※ しつこい営業は一切行いません。
+          <p className="text-slate-500 text-sm font-bold mt-4">
+            ✅ 簡単申し込み、1分で完了
           </p>
         </div>
       </div>

@@ -37,7 +37,7 @@ const painPoints: PainPoint[] = [
         "万が一、天候などで目当ての野菜が採れない場合でも、提携する別の農家さんから代替野菜をご提案",
         "お店のメニューに穴をあけさせません",
       ],
-      image: "/images/problem-v2-1.jpg",
+      image: "/images/problem-v2-1.png",
     },
   },
   {
@@ -52,7 +52,7 @@ const painPoints: PainPoint[] = [
         "お店に合わせて「どう伝えれば注文されるか」をご提案",
         "飲食店の公式LINE運用代行でリピーター定着まで伴走",
       ],
-      image: "/images/problem-v2-2.jpg",
+      image: "/images/problem-v2-2.png",
     },
   },
   {
@@ -67,7 +67,7 @@ const painPoints: PainPoint[] = [
         "日々の納品書も月次の請求書もアプリ内で確認・管理",
         "事務コストを大幅に削減し、オーナー様の時間を生み出します",
       ],
-      image: "/images/problem-v2-3.jpg",
+      image: "/images/problem-v2-3.png",
     },
   },
 ];

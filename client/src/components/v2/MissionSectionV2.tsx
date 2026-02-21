@@ -5,7 +5,9 @@ export default function MissionSectionV2() {
         <div className="max-w-3xl mx-auto text-center">
           {/* Title */}
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-6 leading-tight">
-            一つ一つの野菜が持つ物語で食卓をもっと豊かに。
+            一つ一つの野菜が持つ物語で
+            <br />
+            食卓をもっと豊かに。
             <br />
             神戸の農業をもっと明るく。
           </h2>

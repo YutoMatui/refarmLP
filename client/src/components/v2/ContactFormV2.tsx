@@ -184,13 +184,10 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
 
                 {/* 送信ボタン + マイクロコピー */}
                 <div className="pt-2">
-                    <p className="text-center text-slate-500 text-sm font-bold mb-3">
-                        ✅ 簡単申し込み、1分で完了
-                    </p>
                     <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white font-black text-lg md:text-xl py-7 rounded-2xl shadow-xl shadow-orange-200 transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-lg py-6 rounded-2xl shadow-xl shadow-emerald-200 transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? (
                             <>
@@ -200,12 +197,15 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
                         ) : (
                             <>
                                 神戸のこだわり野菜を無料でお試し
-                                <ArrowRight className="w-5 h-5" />
+                                <ArrowRight className="w-5 h-5 shrink-0" />
                             </>
                         )}
                     </Button>
-                    <p className="text-center text-slate-400 text-xs mt-3">
-                        ※ しつこい営業は一切行いません
+                    <p className="text-center text-slate-500 text-sm font-bold mt-3">
+                        ✅ 簡単申し込み、1分で完了
+                    </p>
+                    <p className="text-center text-emerald-700/90 text-xs mt-2">
+                        1000円分の野菜は、実際のアプリ上でお好きなものを無料注文できます
                     </p>
                 </div>
             </form>
