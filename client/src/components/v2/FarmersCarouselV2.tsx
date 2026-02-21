@@ -82,7 +82,7 @@ export default function FarmersCarouselV2() {
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 24,
+              duration: 12,
               ease: "linear",
             },
           }}

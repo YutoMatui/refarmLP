@@ -44,7 +44,7 @@ export default function HeroSectionV2() {
             神戸の野菜を使うことが、
             <br />
             <span
-              className="text-[#ff7a00]"
+              className="text-[#ff9a1f]"
               style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.85), 0 0 1px rgba(0,0,0,1)" }}
             >
               神戸のお客さんに選ばれる

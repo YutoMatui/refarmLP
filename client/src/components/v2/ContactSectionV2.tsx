@@ -26,7 +26,6 @@ export default function ContactSectionV2() {
                         <span className="text-emerald-600">無料でお試し</span>
                     </h2>
                     <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-                        フォームに入力するだけで、
                         <span className="font-bold text-slate-800">1000円分の野菜</span>
                         を無料でお試しいただけます。<br />
                         実際のアプリから好きな野菜を選んで、そのまま無料注文できます。
