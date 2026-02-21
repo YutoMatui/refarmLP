@@ -5,6 +5,20 @@ type ContactPayload = {
   email?: string;
 };
 
+function normalizeText(input: unknown): string {
+  const value = String(input ?? "").trim();
+  if (!value) return "";
+  try {
+    const recovered = Buffer.from(value, "latin1").toString("utf8");
+    if (/[\u3040-\u30ff\u4e00-\u9fff]/.test(recovered)) {
+      return recovered.trim();
+    }
+  } catch {
+    // noop
+  }
+  return value;
+}
+
 function readJsonBody(req: any): Promise<ContactPayload> {
   return new Promise((resolve, reject) => {
     let body = "";
@@ -141,7 +155,10 @@ export default async function handler(req: any, res: any) {
       ? (req.body as ContactPayload)
       : await readJsonBody(req);
 
-    const { shopName, contactPerson, phone, email } = payload;
+    const shopName = normalizeText(payload.shopName);
+    const contactPerson = normalizeText(payload.contactPerson);
+    const phone = normalizeText(payload.phone);
+    const email = normalizeText(payload.email);
 
     if (!shopName || !contactPerson || !phone || !email) {
       return res.status(400).json({ message: "全ての項目を入力してください。" });

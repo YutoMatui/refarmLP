@@ -12,7 +12,7 @@ export default function HeroSectionV2() {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-center overflow-hidden pt-16 lg:pt-0">
+    <section className="relative min-h-[75svh] md:min-h-[100svh] flex items-center overflow-hidden pt-16 lg:pt-0">
       {/* Background Image - PC */}
       <div className="absolute inset-0 z-0 hidden md:block">
         <img
@@ -34,7 +34,7 @@ export default function HeroSectionV2() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8 lg:py-20 flex flex-col min-h-[100svh]">
+      <div className="relative z-10 container mx-auto px-4 py-8 lg:py-20 flex flex-col min-h-[75svh] md:min-h-[100svh]">
         <div className="flex flex-col items-center justify-start text-center pt-8 md:pt-20">
           {/* Main Copy */}
           <h1
@@ -44,8 +44,8 @@ export default function HeroSectionV2() {
             神戸の野菜を使うことが、
             <br />
             <span
-              className="text-orange-300"
-              style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.8), 0 0 1px rgba(0,0,0,1)" }}
+              className="text-[#ff7a00]"
+              style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.85), 0 0 1px rgba(0,0,0,1)" }}
             >
               神戸のお客さんに選ばれる
             </span>

@@ -6,6 +6,20 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function normalizeText(input: unknown): string {
+  const value = String(input ?? "").trim();
+  if (!value) return "";
+  try {
+    const recovered = Buffer.from(value, "latin1").toString("utf8");
+    if (/[\u3040-\u30ff\u4e00-\u9fff]/.test(recovered)) {
+      return recovered.trim();
+    }
+  } catch {
+    // noop
+  }
+  return value;
+}
+
 // ---- バックエンド処理 (Notion API + Resend) ----
 async function addToNotion(data: {
   shopName: string;
@@ -168,7 +182,10 @@ async function startServer() {
 
   // ---- API Routes ----
   app.post("/api/contact", async (req, res) => {
-    const { shopName, contactPerson, phone, email } = req.body;
+    const shopName = normalizeText(req.body?.shopName);
+    const contactPerson = normalizeText(req.body?.contactPerson);
+    const phone = normalizeText(req.body?.phone);
+    const email = normalizeText(req.body?.email);
 
     // Basic validation
     if (!shopName || !contactPerson || !phone || !email) {

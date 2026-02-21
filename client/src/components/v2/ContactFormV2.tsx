@@ -42,7 +42,7 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
         try {
             const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json; charset=UTF-8" },
                 body: JSON.stringify(data),
             });
 
@@ -203,9 +203,6 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
                     </Button>
                     <p className="text-center text-slate-500 text-sm font-bold mt-3">
                         ✅ 簡単申し込み、1分で完了
-                    </p>
-                    <p className="text-center text-emerald-700/90 text-xs mt-2">
-                        1000円分の野菜は、実際のアプリ上でお好きなものを無料注文できます
                     </p>
                 </div>
             </form>

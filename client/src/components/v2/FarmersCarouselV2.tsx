@@ -74,19 +74,19 @@ export default function FarmersCarouselV2() {
       {/* Marquee Wrapper */}
       <div className="relative flex overflow-hidden">
         <motion.div
-          className="flex gap-4 md:gap-6 px-4"
+          className="flex gap-4 md:gap-6"
           animate={{
-            x: ["0%", "-50%"],
+            x: [0, "-50%"],
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 36,
+              duration: 24,
               ease: "linear",
             },
           }}
-          style={{ width: "fit-content" }}
+          style={{ width: "max-content" }}
         >
           {allFarmers.map((farmer, i) => (
             <div
