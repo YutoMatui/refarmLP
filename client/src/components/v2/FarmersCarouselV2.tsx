@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const farmers = [
   {
@@ -52,6 +53,20 @@ const farmers = [
 const allFarmers = [...farmers, ...farmers];
 
 export default function FarmersCarouselV2() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [slideDistance, setSlideDistance] = useState(0);
+
+  useEffect(() => {
+    const updateDistance = () => {
+      if (!trackRef.current) return;
+      setSlideDistance(trackRef.current.scrollWidth / 2);
+    };
+
+    updateDistance();
+    window.addEventListener("resize", updateDistance);
+    return () => window.removeEventListener("resize", updateDistance);
+  }, []);
+
   const buildFallbackImage = (label: string) =>
     `data:image/svg+xml;utf8,${encodeURIComponent(
       `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500"><rect width="400" height="500" fill="#E8F5E9"/><text x="200" y="260" text-anchor="middle" font-size="32" font-family="sans-serif" fill="#2E7D32">${label}</text></svg>`
@@ -74,15 +89,16 @@ export default function FarmersCarouselV2() {
       {/* Marquee Wrapper */}
       <div className="relative flex overflow-hidden">
         <motion.div
+          ref={trackRef}
           className="flex gap-4 md:gap-6"
           animate={{
-            x: [0, "-50%"],
+            x: slideDistance > 0 ? [0, -slideDistance] : 0,
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 12,
+              duration: slideDistance > 0 ? slideDistance / 240 : 16,
               ease: "linear",
             },
           }}

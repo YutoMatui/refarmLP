@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import VegeKobeV2 from "./pages/v2/VegeKobeV2";
+import ThanksPageV2 from "./components/v2/ThanksPageV2";
 
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/2"} component={VegeKobeV2} />
+      <Route path={"/2/thanks"} component={ThanksPageV2} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

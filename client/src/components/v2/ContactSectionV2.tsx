@@ -1,13 +1,8 @@
-import { useState } from "react";
 import ContactFormV2 from "@/components/v2/ContactFormV2";
-import ThanksPageV2 from "@/components/v2/ThanksPageV2";
+import { useLocation } from "wouter";
 
 export default function ContactSectionV2() {
-    const [submitted, setSubmitted] = useState(false);
-
-    if (submitted) {
-        return <ThanksPageV2 />;
-    }
+    const [, setLocation] = useLocation();
 
     return (
         <section
@@ -36,7 +31,7 @@ export default function ContactSectionV2() {
 
                 {/* Form Card */}
                 <div className="bg-white rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 p-6 md:p-10 max-w-lg mx-auto">
-                    <ContactFormV2 onSuccess={() => setSubmitted(true)} />
+                    <ContactFormV2 onSuccess={() => setLocation("/2/thanks")} />
                 </div>
             </div>
         </section>
