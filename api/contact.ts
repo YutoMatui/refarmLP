@@ -37,19 +37,22 @@ function buildMailBody(data: { shopName: string; contactPerson: string; invite?:
     "https://drive.google.com/file/d/1MMkfhqfWHBs3UVv-8mROUD9UYAT3J9rp/view?usp=sharing";
   const inviteSectionText = data.invite
     ? `
-【初回ログイン情報】
-初回ログインURL：
-${data.invite.inviteUrl}
+【初回ログイン手順（3ステップ）】
+1. 公式LINEを友だち追加してください。
+2. 下記の連携URLを公式LINEのトークに送信し、トーク内に表示されたURLをタップしてください。
+   連携URL: ${data.invite.inviteUrl}
+3. ログイン画面で、下記の4桁パスワードを入力してください。
+   4桁パスワード: ${data.invite.accessCode}
 
-4桁パスワード：
-${data.invite.accessCode}
-
-※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。`
+※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。
+※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。`
     : `
-【お試し野菜お届けまでの3ステップ】
-1. 上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。
-2. 担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。
-3. アプリにログインし、お好きな野菜を選んでご注文ください。`;
+【初回ログイン手順（3ステップ）】
+1. 公式LINEを友だち追加してください。
+2. 連携URLの案内を担当者から公式LINEでお送りします。トーク内に表示されたURLをタップしてください。
+3. ログイン画面で、担当者から案内された4桁パスワードを入力してください。
+
+※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。`;
 
   const text = `${recipient}
 
@@ -83,22 +86,29 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
 
   const inviteSectionHtml = data.invite
     ? `
-        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン情報】</h2>
+        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン手順（3ステップ）】</h2>
+        <ol style="margin:0 0 14px;padding-left:20px;line-height:1.9;">
+          <li>公式LINEを友だち追加してください。</li>
+          <li>下記の連携URLを公式LINEのトークに送信し、トーク内に表示されたURLをタップしてください。</li>
+          <li>ログイン画面で、下記の4桁パスワードを入力してください。</li>
+        </ol>
         <div style="background:#ecfeff;border:1px solid #a5f3fc;border-radius:12px;padding:14px;margin:0 0 18px;">
-          <p style="margin:0 0 8px;font-size:13px;color:#155e75;">初回ログインURL</p>
+          <p style="margin:0 0 8px;font-size:13px;color:#155e75;">連携URL</p>
           <p style="margin:0 0 12px;word-break:break-all;"><a href="${data.invite.inviteUrl}" style="color:#0f766e;font-weight:700;">${data.invite.inviteUrl}</a></p>
           <p style="margin:0 0 6px;font-size:13px;color:#155e75;">4桁パスワード</p>
           <p style="margin:0;font-size:24px;letter-spacing:0.2em;font-weight:800;color:#0f766e;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;">${data.invite.accessCode}</p>
         </div>
         <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。</p>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。</p>
     `
     : `
-        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【お試し野菜お届けまでの3ステップ】</h2>
+        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン手順（3ステップ）】</h2>
         <ol style="margin:0 0 18px;padding-left:20px;line-height:1.9;">
-          <li>上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。</li>
-          <li>担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。</li>
-          <li>アプリにログインし、お好きな野菜を選んでご注文ください。（※ご注文時にお届け日時のご指定が可能です）</li>
+          <li>公式LINEを友だち追加してください。</li>
+          <li>連携URLの案内を担当者から公式LINEでお送りします。トーク内に表示されたURLをタップしてください。</li>
+          <li>ログイン画面で、担当者から案内された4桁パスワードを入力してください。</li>
         </ol>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。</p>
     `;
 
   const html = `
