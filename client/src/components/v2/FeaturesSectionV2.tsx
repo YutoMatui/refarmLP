@@ -9,17 +9,17 @@ const features = [
     title: "いつもの注文ボタン",
     displayTitle: "「いつもの注文」ボタンで、発注は一瞬で完了。",
     description:
-      "忙しい営業の後、スマホ画面をスクロールしてお気に入りの野菜を探す必要はありません。よく頼む野菜はワンタップで呼び出し可能。毎日のルーティン業務を極限までシンプルにしました。",
-    image: "/images/feature-v2-onetap.jpg",
+      "よく頼む野菜はすぐに注文可能です。毎日の発注業務の負担を減らしましょう。",
+    image: "/images/feature-v2-onetap.png",
     imageAlt: "ワンタップ発注画面",
   },
   {
     id: "farmer-story",
     icon: Megaphone,
     title: "農家ストーリー画面",
-    displayTitle: "あなたに合った「運命の生産者」が見つかります！",
+    displayTitle: "こだわりを知って伝えるまでをトータルサポート。",
     description:
-      "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんときっと出会えます。",
+      "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんがきっと見つかります。",
     image: "/images/feature-v2-farmer.jpg",
     imageAlt: "農家ストーリー画面",
   },
@@ -27,10 +27,10 @@ const features = [
     id: "irregular",
     icon: Truck,
     title: "規格外野菜リスト",
-    displayTitle: "「規格外野菜」で、コストを抑えてこだわりを。",
+    displayTitle: "規格外野菜で、コストを抑えてこだわりを。",
     description:
       "味や栄養価は全く変わらないのに、少し形が違うだけで市場に出ない野菜たち。これらを安価に仕入れることで、食材の品質は落とさずに、原価だけを抑えることが可能です。",
-    image: "/images/feature-v2-irregular.jpg",
+    image: "/images/feature-v2-irregular.png",
     imageAlt: "規格外野菜リスト",
   },
 ];

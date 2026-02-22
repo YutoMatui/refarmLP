@@ -6,15 +6,15 @@ export default function BenefitsSectionV2() {
       icon: Sparkles,
       number: "1",
       title: "【鮮度】",
-      catch: "朝受け取った野菜が、その日のうちに届く。",
+      catch: "畑から６時間以内に厨房まで届きます。",
       description:
-        "市場を通さない農家直送。圧倒的な鮮度が料理の味を底上げします。",
+        "市場を通さない農家直送だからこそ、圧倒的な鮮度が料理の味を底上げします。",
     },
     {
       icon: Leaf,
       number: "2",
-      title: "【安価（コスト）】",
-      catch: "「規格外野菜」の活用で、原価を賢く抑える。",
+      title: "【コスト】",
+      catch: "規格外野菜の活用で、原価を賢く抑える。",
       description:
         "味は一級品だが形が不揃いな野菜も提供。コストパフォーマンスの高い仕入れが可能です。",
     },
@@ -29,8 +29,8 @@ export default function BenefitsSectionV2() {
     {
       icon: Clock,
       number: "4",
-      title: "【事務作業削減】",
-      catch: "毎日の発注も、月次の請求書も、LINEひとつで。",
+      title: "【事務作業】",
+      catch: "毎日の発注も、月次の請求書管理も、LINEひとつで。",
       description:
         "電話やFAXは不要。請求書もLINEで自動送付され、事務作業の時間を大幅に削減できます。",
     },
@@ -40,7 +40,7 @@ export default function BenefitsSectionV2() {
       title: "【満足度アップ支援】",
       catch: "「こだわりの理由」をお客様に届けるまでをサポート。",
       description:
-        "良い食材を使うだけでは意味がない。農家の物語を伝えるPOP素材の提供や、飲食店の公式LINE運用もサポートし、リピーター定着と客単価アップまで伴走します。",
+        "良い食材を使うだけでなく、そのこだわりを伝える公式LINE運用もサポートし、リピーター定着と客単価アップまで伴走します。",
     },
   ];
 

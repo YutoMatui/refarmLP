@@ -98,7 +98,7 @@ export default function FarmersCarouselV2() {
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: slideDistance > 0 ? slideDistance / 140 : 40,
+              duration: slideDistance > 0 ? slideDistance / 100 : 40,
               ease: "linear",
             },
           }}
