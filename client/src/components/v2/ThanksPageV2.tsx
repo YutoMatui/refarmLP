@@ -40,15 +40,15 @@ export default function ThanksPageV2() {
                                     <span className="text-sm font-black text-emerald-700">次に必要なこと</span>
                                 </div>
                                 <p className="text-slate-700 font-bold leading-relaxed">
-                                    1000円分お試し野菜の受け取り・発注には、公式LINE登録が必要です。
+                                    お試し野菜の受け取り・発注には、公式LINE登録が必要です。
                                 </p>
                             </div>
 
                             <div className="mt-5 space-y-3">
                                 {[
-                                    "LINEの「友だち追加」を実行",
-                                    "担当者より専用アカウントをご案内",
-                                    "アプリでお試し野菜を注文開始",
+                                    "「公式LINEに登録する」をタップ",
+                                    "ベジコベアカウント発行のご案内",
+                                    "アプリでお試し野菜を注文",
                                 ].map((text, i) => (
                                     <div key={text} className="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-3.5">
                                         <span className="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center shrink-0">
@@ -81,7 +81,7 @@ export default function ThanksPageV2() {
                             </p>
 
                             <Link href="/2" className="block mt-6 text-center text-sm font-bold text-emerald-700 hover:text-emerald-800">
-                                LPに戻る
+                                前のページに戻る
                             </Link>
                         </aside>
                     </div>
