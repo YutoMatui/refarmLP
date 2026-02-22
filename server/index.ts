@@ -24,7 +24,7 @@ function buildMailBody(data: { shopName: string; contactPerson: string }) {
   const recipient = `${data.shopName} ${data.contactPerson}様`;
   const lineUrl = "https://lin.ee/UX0sUuD";
   const docUrl =
-    "https://drive.google.com/file/d/1KCB0ng3Pz8y-kZu9BX0piLVCdjVOF6jO/view?usp=drive_link";
+    "https://drive.google.com/file/d/1MMkfhqfWHBs3UVv-8mROUD9UYAT3J9rp/view?usp=sharing";
 
   const text = `${recipient}
 
@@ -64,7 +64,6 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
   <div style="margin:0;background:#f5fdf8;padding:24px 12px;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1f2937;">
     <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #d1fae5;border-radius:18px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#059669,#10b981);padding:24px;color:#ffffff;">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;opacity:.9;">VEGEKOBE AUTO MAIL</div>
         <h1 style="margin:10px 0 0;font-size:26px;line-height:1.4;font-weight:800;">お試し野菜のお申し込みありがとうございます</h1>
       </div>
       <div style="padding:24px;">
@@ -104,6 +103,52 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
           連絡先：090-9614-4516<br/>
           メール：refarmkobe@gmail.com
         </p>
+      </div>
+    </div>
+  </div>`;
+
+  return { text, html };
+}
+
+function buildAdminNotificationMailBody(data: {
+  shopName: string;
+  contactPerson: string;
+  phone: string;
+  email: string;
+}) {
+  const text = `フォーム入力がありました。
+
+店舗名: ${data.shopName}
+担当者名: ${data.contactPerson}
+電話番号: ${data.phone}
+メールアドレス: ${data.email}`;
+
+  const html = `
+  <div style="margin:0;background:#f8fafc;padding:24px 12px;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1f2937;">
+    <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
+      <div style="background:#111827;padding:16px 20px;color:#ffffff;">
+        <h1 style="margin:0;font-size:18px;line-height:1.4;font-weight:700;">フォーム入力通知</h1>
+      </div>
+      <div style="padding:20px;">
+        <p style="margin:0 0 14px;line-height:1.8;">LPフォームに新しい入力がありました。</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;width:160px;">店舗名</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.shopName}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">担当者名</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.contactPerson}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">電話番号</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.phone}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">メールアドレス</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.email}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>`;
@@ -246,6 +291,45 @@ async function sendAutoReplyEmail(data: {
 
   console.log(`[Gmail SMTP] Email sent to ${data.email}`);
 }
+
+async function sendAdminNotificationEmail(data: {
+  shopName: string;
+  contactPerson: string;
+  phone: string;
+  email: string;
+}) {
+  const gmailUser = process.env.GMAIL_USER || "refarmkobe@gmail.com";
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailAppPassword) {
+    throw new Error("GMAIL_APP_PASSWORD is not set.");
+  }
+
+  const nodemailerModuleName = "nodemailer";
+  const nodemailer = (await import(nodemailerModuleName)) as any;
+  const transporter = nodemailer.default.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: gmailUser,
+      pass: gmailAppPassword,
+    },
+  });
+
+  const { text, html } = buildAdminNotificationMailBody(data);
+
+  await transporter.sendMail({
+    from: `"ベジコベ" <${gmailUser}>`,
+    to: "refarmkobe@gmail.com",
+    subject: "【ベジコベLP】フォーム入力通知",
+    text,
+    html,
+    replyTo: data.email,
+  });
+
+  console.log("[Gmail SMTP] Admin notification sent to refarmkobe@gmail.com");
+}
 // ---- バックエンド処理 終わり ----
 
 async function startServer() {
@@ -273,6 +357,7 @@ async function startServer() {
 
       // 2. 自動返信メール送信
       await sendAutoReplyEmail({ shopName, contactPerson, email });
+      await sendAdminNotificationEmail({ shopName, contactPerson, phone, email });
 
       return res.status(200).json({ success: true });
     } catch (error) {

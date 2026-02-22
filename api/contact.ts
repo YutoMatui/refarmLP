@@ -1,9 +1,20 @@
 type ContactPayload = {
   shopName?: string;
   contactPerson?: string;
+  address?: string;
   phone?: string;
   email?: string;
 };
+
+type RefarmInviteInfo = {
+  inviteUrl: string;
+  accessCode: string;
+  expiresAt?: string;
+  restaurantId?: number;
+  created?: boolean;
+};
+
+type RefarmInvitePayload = Required<Pick<ContactPayload, "shopName" | "contactPerson" | "address" | "phone" | "email">>;
 
 function normalizeText(input: unknown): string {
   const value = String(input ?? "").trim();
@@ -19,11 +30,26 @@ function normalizeText(input: unknown): string {
   return value;
 }
 
-function buildMailBody(data: { shopName: string; contactPerson: string }) {
+function buildMailBody(data: { shopName: string; contactPerson: string; invite?: RefarmInviteInfo | null }) {
   const recipient = `${data.shopName} ${data.contactPerson}様`;
   const lineUrl = "https://lin.ee/UX0sUuD";
   const docUrl =
-    "https://drive.google.com/file/d/1KCB0ng3Pz8y-kZu9BX0piLVCdjVOF6jO/view?usp=drive_link";
+    "https://drive.google.com/file/d/1MMkfhqfWHBs3UVv-8mROUD9UYAT3J9rp/view?usp=sharing";
+  const inviteSectionText = data.invite
+    ? `
+【初回ログイン情報】
+初回ログインURL：
+${data.invite.inviteUrl}
+
+4桁パスワード：
+${data.invite.accessCode}
+
+※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。`
+    : `
+【お試し野菜お届けまでの3ステップ】
+1. 上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。
+2. 担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。
+3. アプリにログインし、お好きな野菜を選んでご注文ください。`;
 
   const text = `${recipient}
 
@@ -33,11 +59,7 @@ function buildMailBody(data: { shopName: string; contactPerson: string }) {
 
 ▼公式LINEのご登録はこちら（1タップで完了します）
 ${lineUrl}
-
-【お試し野菜お届けまでの3ステップ】
-1. 上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。
-2. 担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。
-3. アプリにログインし、お好きな野菜を選んでご注文ください。
+${inviteSectionText}
 
 【料金・ご請求に関する重要なお知らせ】
 初回のお試しについて:
@@ -59,11 +81,30 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
 連絡先：090-9614-4516
 メール：refarmkobe@gmail.com`;
 
+  const inviteSectionHtml = data.invite
+    ? `
+        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン情報】</h2>
+        <div style="background:#ecfeff;border:1px solid #a5f3fc;border-radius:12px;padding:14px;margin:0 0 18px;">
+          <p style="margin:0 0 8px;font-size:13px;color:#155e75;">初回ログインURL</p>
+          <p style="margin:0 0 12px;word-break:break-all;"><a href="${data.invite.inviteUrl}" style="color:#0f766e;font-weight:700;">${data.invite.inviteUrl}</a></p>
+          <p style="margin:0 0 6px;font-size:13px;color:#155e75;">4桁パスワード</p>
+          <p style="margin:0;font-size:24px;letter-spacing:0.2em;font-weight:800;color:#0f766e;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;">${data.invite.accessCode}</p>
+        </div>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。</p>
+    `
+    : `
+        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【お試し野菜お届けまでの3ステップ】</h2>
+        <ol style="margin:0 0 18px;padding-left:20px;line-height:1.9;">
+          <li>上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。</li>
+          <li>担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。</li>
+          <li>アプリにログインし、お好きな野菜を選んでご注文ください。（※ご注文時にお届け日時のご指定が可能です）</li>
+        </ol>
+    `;
+
   const html = `
   <div style="margin:0;background:#f5fdf8;padding:24px 12px;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1f2937;">
     <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #d1fae5;border-radius:18px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#059669,#10b981);padding:24px;color:#ffffff;">
-        <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;opacity:.9;">VEGEKOBE AUTO MAIL</div>
         <h1 style="margin:10px 0 0;font-size:26px;line-height:1.4;font-weight:800;">お試し野菜のお申し込みありがとうございます</h1>
       </div>
       <div style="padding:24px;">
@@ -75,13 +116,7 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
           <div style="font-size:13px;color:#065f46;margin-bottom:8px;">▼公式LINEのご登録はこちら（1タップで完了します）</div>
           <a href="${lineUrl}" style="display:inline-block;background:#06c755;color:#fff;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 14px;">公式LINEに登録する</a>
         </div>
-
-        <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【お試し野菜お届けまでの3ステップ】</h2>
-        <ol style="margin:0 0 18px;padding-left:20px;line-height:1.9;">
-          <li>上記URLより、ベジコベ公式LINEの「友だち追加」をお願いします。</li>
-          <li>担当者よりLINEのメッセージにて、「発注システムへの初回ログインURL・パスワード」をお送りいたします。</li>
-          <li>アプリにログインし、お好きな野菜を選んでご注文ください。（※ご注文時にお届け日時のご指定が可能です）</li>
-        </ol>
+        ${inviteSectionHtml}
 
         <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【料金・ご請求に関する重要なお知らせ】</h2>
         <p style="margin:0 0 8px;font-weight:700;">初回のお試しについて</p>
@@ -103,6 +138,101 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
           連絡先：090-9614-4516<br/>
           メール：refarmkobe@gmail.com
         </p>
+      </div>
+    </div>
+  </div>`;
+
+  return { text, html };
+}
+
+function buildAdminNotificationMailBody(data: {
+  shopName: string;
+  contactPerson: string;
+  address: string;
+  phone: string;
+  email: string;
+  refarmResult?: RefarmInviteInfo | null;
+  refarmError?: string | null;
+}) {
+  const refarmStatus = data.refarmResult
+    ? `成功
+連携URL: ${data.refarmResult.inviteUrl}
+4桁パスワード: ${data.refarmResult.accessCode}
+対象Restaurant ID: ${data.refarmResult.restaurantId ?? "N/A"}`
+    : `失敗
+理由: ${data.refarmError ?? "不明なエラー"}`;
+
+  const text = `フォーム入力がありました。
+
+店舗名: ${data.shopName}
+担当者名: ${data.contactPerson}
+所在地: ${data.address}
+電話番号: ${data.phone}
+メールアドレス: ${data.email}
+
+refarm連携: ${refarmStatus}`;
+
+  const refarmStatusHtml = data.refarmResult
+    ? `
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">refarm連携</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;color:#065f46;font-weight:700;">成功</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">連携URL</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;word-break:break-all;">${data.refarmResult.inviteUrl}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">4桁パスワード</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;font-family:ui-monospace,monospace;font-weight:700;">${data.refarmResult.accessCode}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">Restaurant ID</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.refarmResult.restaurantId ?? "N/A"}</td>
+          </tr>
+    `
+    : `
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">refarm連携</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;color:#b91c1c;font-weight:700;">失敗</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">失敗理由</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.refarmError ?? "不明なエラー"}</td>
+          </tr>
+    `;
+
+  const html = `
+  <div style="margin:0;background:#f8fafc;padding:24px 12px;font-family:'Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1f2937;">
+    <div style="max-width:680px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
+      <div style="background:#111827;padding:16px 20px;color:#ffffff;">
+        <h1 style="margin:0;font-size:18px;line-height:1.4;font-weight:700;">フォーム入力通知</h1>
+      </div>
+      <div style="padding:20px;">
+        <p style="margin:0 0 14px;line-height:1.8;">LPフォームに新しい入力がありました。</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;width:160px;">店舗名</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.shopName}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">担当者名</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.contactPerson}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">所在地</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.address}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">電話番号</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.phone}</td>
+          </tr>
+          <tr>
+            <th style="text-align:left;padding:8px;border:1px solid #e5e7eb;background:#f9fafb;">メールアドレス</th>
+            <td style="padding:8px;border:1px solid #e5e7eb;">${data.email}</td>
+          </tr>
+          ${refarmStatusHtml}
+        </table>
       </div>
     </div>
   </div>`;
@@ -155,11 +285,13 @@ async function addToNotion(data: Required<ContactPayload>) {
     throw new Error("Notion database has no title property.");
   }
 
-  const findPropertyByType = (type: string, preferredNames: string[]) => {
+  const usedProperties = new Set<string>([titleEntry[0]]);
+  const findPropertyByType = (type: string, preferredNames: string[], allowFallback = true) => {
     for (const name of preferredNames) {
-      if (dbProperties[name]?.type === type) return name;
+      if (dbProperties[name]?.type === type && !usedProperties.has(name)) return name;
     }
-    return Object.entries(dbProperties).find(([, prop]) => prop?.type === type)?.[0];
+    if (!allowFallback) return undefined;
+    return Object.entries(dbProperties).find(([name, prop]) => prop?.type === type && !usedProperties.has(name))?.[0];
   };
 
   const notionProperties: Record<string, unknown> = {
@@ -170,24 +302,37 @@ async function addToNotion(data: Required<ContactPayload>) {
 
   const contactProperty = findPropertyByType("rich_text", ["担当者名", "ご担当者名", "担当者", "Contact Person"]);
   if (contactProperty) {
+    usedProperties.add(contactProperty);
     notionProperties[contactProperty] = {
       rich_text: [{ text: { content: data.contactPerson } }],
     };
   }
+
+  const addressProperty = findPropertyByType("rich_text", ["所在地", "住所", "Address"], false);
+  if (addressProperty) {
+    usedProperties.add(addressProperty);
+    notionProperties[addressProperty] = {
+      rich_text: [{ text: { content: data.address } }],
+    };
+  }
+
   const phoneProperty = findPropertyByType("phone_number", ["電話番号", "TEL", "電話", "Phone"]);
   if (phoneProperty) {
+    usedProperties.add(phoneProperty);
     notionProperties[phoneProperty] = {
       phone_number: data.phone,
     };
   }
   const emailProperty = findPropertyByType("email", ["メールアドレス", "Email", "E-mail"]);
   if (emailProperty) {
+    usedProperties.add(emailProperty);
     notionProperties[emailProperty] = {
       email: data.email,
     };
   }
   const statusProperty = findPropertyByType("select", ["ステータス", "Status"]);
   if (statusProperty) {
+    usedProperties.add(statusProperty);
     notionProperties[statusProperty] = {
       select: { name: "04_フォーム入力済み" },
     };
@@ -212,7 +357,60 @@ async function addToNotion(data: Required<ContactPayload>) {
   }
 }
 
-async function sendAutoReplyEmail(data: Required<Pick<ContactPayload, "shopName" | "contactPerson" | "email">>) {
+async function registerRestaurantAndIssueInvite(payload: RefarmInvitePayload): Promise<RefarmInviteInfo> {
+  const baseUrl = process.env.REFARM_API_BASE_URL;
+  const apiKey = process.env.REFARM_LP_API_KEY;
+
+  if (!baseUrl) {
+    throw new Error("REFARM_API_BASE_URL is not set.");
+  }
+  if (!apiKey) {
+    throw new Error("REFARM_LP_API_KEY is not set.");
+  }
+
+  const response = await fetch(`${baseUrl.replace(/\/$/, "")}/api/integrations/lp/register_and_invite`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-lp-api-key": apiKey,
+    },
+    body: JSON.stringify({
+      shop_name: payload.shopName,
+      contact_person: payload.contactPerson,
+      address: payload.address,
+      phone: payload.phone,
+      email: payload.email,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Refarm integration failed (${response.status}): ${errorText}`);
+  }
+
+  const json = (await response.json()) as {
+    invite_url: string;
+    access_code: string;
+    expires_at?: string;
+    restaurant_id?: number;
+    created?: boolean;
+  };
+
+  return {
+    inviteUrl: json.invite_url,
+    accessCode: json.access_code,
+    expiresAt: json.expires_at,
+    restaurantId: json.restaurant_id,
+    created: json.created,
+  };
+}
+
+async function sendAutoReplyEmail(data: {
+  shopName: string;
+  contactPerson: string;
+  email: string;
+  invite?: RefarmInviteInfo | null;
+}) {
   const gmailUser = process.env.GMAIL_USER || "refarmkobe@gmail.com";
   const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 
@@ -243,6 +441,48 @@ async function sendAutoReplyEmail(data: Required<Pick<ContactPayload, "shopName"
   });
 }
 
+async function sendAdminNotificationEmail(
+  data: {
+    shopName: string;
+    contactPerson: string;
+    address: string;
+    phone: string;
+    email: string;
+    refarmResult?: RefarmInviteInfo | null;
+    refarmError?: string | null;
+  },
+) {
+  const gmailUser = process.env.GMAIL_USER || "refarmkobe@gmail.com";
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+
+  if (!gmailAppPassword) {
+    throw new Error("GMAIL_APP_PASSWORD is not set.");
+  }
+
+  const nodemailerModuleName = "nodemailer";
+  const nodemailer = (await import(nodemailerModuleName)) as any;
+  const transporter = nodemailer.default.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: gmailUser,
+      pass: gmailAppPassword,
+    },
+  });
+
+  const { text, html } = buildAdminNotificationMailBody(data);
+
+  await transporter.sendMail({
+    from: `"ベジコベ" <${gmailUser}>`,
+    to: "refarmkobe@gmail.com",
+    subject: "【ベジコベLP】フォーム入力通知",
+    text,
+    html,
+    replyTo: data.email,
+  });
+}
+
 export default async function handler(req: any, res: any) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -256,15 +496,42 @@ export default async function handler(req: any, res: any) {
 
     const shopName = normalizeText(payload.shopName);
     const contactPerson = normalizeText(payload.contactPerson);
+    const address = normalizeText(payload.address);
     const phone = normalizeText(payload.phone);
     const email = normalizeText(payload.email);
 
-    if (!shopName || !contactPerson || !phone || !email) {
+    if (!shopName || !contactPerson || !address || !phone || !email) {
       return res.status(400).json({ message: "全ての項目を入力してください。" });
     }
 
-    await addToNotion({ shopName, contactPerson, phone, email });
-    await sendAutoReplyEmail({ shopName, contactPerson, email });
+    await addToNotion({ shopName, contactPerson, address, phone, email });
+
+    let refarmInvite: RefarmInviteInfo | null = null;
+    let refarmError: string | null = null;
+
+    try {
+      refarmInvite = await registerRestaurantAndIssueInvite({
+        shopName,
+        contactPerson,
+        address,
+        phone,
+        email,
+      });
+    } catch (error) {
+      refarmError = error instanceof Error ? error.message : "不明なエラー";
+      console.error("[api/contact] Refarm integration failed:", error);
+    }
+
+    await sendAutoReplyEmail({ shopName, contactPerson, email, invite: refarmInvite });
+    await sendAdminNotificationEmail({
+      shopName,
+      contactPerson,
+      address,
+      phone,
+      email,
+      refarmResult: refarmInvite,
+      refarmError,
+    });
 
     return res.status(200).json({ success: true });
   } catch (error) {

@@ -9,6 +9,7 @@ import { trackCTAClick } from "@/lib/gtag";
 const formSchema = z.object({
     shopName: z.string().min(1, "店名を入力してください"),
     contactPerson: z.string().min(1, "担当者名を入力してください"),
+    address: z.string().min(1, "所在地を入力してください"),
     phone: z
         .string()
         .min(10, "正しい電話番号を入力してください")
@@ -116,6 +117,33 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
                         <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1">
                             <AlertCircle className="w-3.5 h-3.5" />
                             {errors.contactPerson.message}
+                        </p>
+                    )}
+                </div>
+
+                {/* 電話番号 */}
+                <div>
+                    <label
+                        htmlFor="address"
+                        className="block text-sm font-bold text-slate-700 mb-1.5"
+                    >
+                        所在地 <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        id="address"
+                        type="text"
+                        placeholder="例：神戸市中央区○○町1-2-3"
+                        autoComplete="street-address"
+                        {...register("address")}
+                        className={`w-full px-4 py-3.5 rounded-xl border-2 bg-white text-slate-800 placeholder-slate-400 text-base outline-none transition-all focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 ${errors.address
+                                ? "border-red-400 focus:ring-red-400 focus:border-red-400"
+                                : "border-slate-200"
+                            }`}
+                    />
+                    {errors.address && (
+                        <p className="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            {errors.address.message}
                         </p>
                     )}
                 </div>
