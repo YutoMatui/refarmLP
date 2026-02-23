@@ -385,7 +385,7 @@ function readJsonBody(req: any): Promise<ContactPayload> {
   });
 }
 
-async function addToNotion(data: Required<ContactPayload>) {
+async function addToNotion(data: Required<Pick<ContactPayload, "shopName" | "contactPerson" | "address" | "phone" | "email">>) {
   const notionSecret = process.env.NOTION_SECRET;
   const notionDatabaseId = process.env.NOTION_DATABASE_ID;
 
