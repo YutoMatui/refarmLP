@@ -41,7 +41,7 @@ export default function HeroSectionV2() {
             className="font-black text-white leading-tight mb-8"
             style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.7)" }}
           >
-            <span className="block whitespace-nowrap text-[clamp(1.9rem,7.8vw,4.5rem)]">
+            <span className="block whitespace-nowrap text-[clamp(1.7rem,7.1vw,4.1rem)]">
               畑から6時間以内の神戸野菜で
             </span>
             <br />
