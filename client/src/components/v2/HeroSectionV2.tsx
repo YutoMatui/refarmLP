@@ -41,8 +41,8 @@ export default function HeroSectionV2() {
             className="font-black text-white leading-tight mb-8"
             style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.7)" }}
           >
-            <span className="block whitespace-nowrap text-[clamp(1.75rem,7.2vw,4.2rem)]">
-              畑から6時間以内の神戸野菜で、
+            <span className="block whitespace-nowrap text-[clamp(1rem,5.1vw,4.2rem)]">
+              畑から6時間以内の神戸野菜で
             </span>
             <br />
             <span className="text-[#ff9a1f] text-[clamp(1.9rem,7.8vw,4.5rem)]">
@@ -59,13 +59,13 @@ export default function HeroSectionV2() {
 
           {/* Price Bubble */}
           <div className="relative mb-5">
-            <div className="absolute left-1/2 -top-3 h-0 w-0 -translate-x-1/2 border-l-[10px] border-r-[10px] border-b-[12px] border-l-transparent border-r-transparent border-b-white/95" />
             <div className="inline-block rounded-2xl border-2 border-white/80 bg-white/95 px-6 py-3 shadow-xl">
               <p className="text-sm md:text-base font-black text-slate-800">
                 初期・月額費用は
                 <span className="text-emerald-700 text-lg md:text-xl ml-1">ずっと￥0！</span>
               </p>
             </div>
+            <div className="absolute left-1/2 -bottom-3 h-0 w-0 -translate-x-1/2 border-l-[10px] border-r-[10px] border-t-[12px] border-l-transparent border-r-transparent border-t-white/95" />
           </div>
 
           <div className="mb-8 rounded-2xl border border-emerald-200/70 bg-white/92 px-5 py-4 shadow-lg">
