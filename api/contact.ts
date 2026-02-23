@@ -44,15 +44,15 @@ function buildMailBody(data: { shopName: string; contactPerson: string; invite?:
 3. ログイン画面で、下記の4桁パスワードを入力してください。
    4桁パスワード: ${data.invite.accessCode}
 
-※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。
-※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。`
+※上記URLは発行から7日で有効期限が切れます。
+※期限切れの場合は、公式LINEに店名を入れてお問い合わせください。担当者がご案内します。`
     : `
 【初回ログイン手順（3ステップ）】
 1. 公式LINEを友だち追加してください。
 2. 連携URLの案内を担当者から公式LINEでお送りします。トーク内に表示されたURLをタップしてください。
 3. ログイン画面で、担当者から案内された4桁パスワードを入力してください。
 
-※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。`;
+※手順が分からない場合は、公式LINEに店名を入れてお問い合わせください。担当者が公式LINEでご案内します。`;
 
   const text = `${recipient}
 
@@ -98,8 +98,8 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
           <p style="margin:0 0 6px;font-size:13px;color:#155e75;">4桁パスワード</p>
           <p style="margin:0;font-size:24px;letter-spacing:0.2em;font-weight:800;color:#0f766e;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;">${data.invite.accessCode}</p>
         </div>
-        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※上記URLは発行から7日程度で有効期限が切れる場合があります。期限切れの場合は本メールに返信してください。</p>
-        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。</p>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※上記URLは発行から7日で有効期限が切れます。期限切れの場合は、公式LINEに店名を入れてお問い合わせください。担当者がご案内します。</p>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに店名を入れてお問い合わせください。担当者が公式LINEでご案内します。</p>
     `
     : `
         <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン手順（3ステップ）】</h2>
@@ -108,7 +108,7 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
           <li>連携URLの案内を担当者から公式LINEでお送りします。トーク内に表示されたURLをタップしてください。</li>
           <li>ログイン画面で、担当者から案内された4桁パスワードを入力してください。</li>
         </ol>
-        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに「飲食店名」を送信してください。担当者が公式LINEでご案内します。</p>
+        <p style="margin:0 0 18px;font-size:13px;line-height:1.8;color:#0f172a;">※手順が分からない場合は、公式LINEに店名を入れてお問い合わせください。担当者が公式LINEでご案内します。</p>
     `;
 
   const html = `

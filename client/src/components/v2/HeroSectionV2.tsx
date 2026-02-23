@@ -41,22 +41,42 @@ export default function HeroSectionV2() {
             className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-8"
             style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.7)" }}
           >
-            神戸の野菜を使うことが、
+            畑から6時間以内の神戸野菜で、
             <br />
-            <span
-              className="text-[#ff9a1f]"
-              style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.85), 0 0 1px rgba(0,0,0,1)" }}
-            >
-              神戸のお客さんに選ばれる
+            <span className="text-[#ff9a1f]">
+              神戸のお客様に選ばれる
             </span>
             <br />
-            理由になります
+            店づくりを。
           </h1>
 
-          {/* Sub Copy / Badge */}
-          <p className="text-white text-lg md:text-2xl font-black mb-10 drop-shadow-md bg-black/35 inline-block px-8 py-3 rounded-full border border-white/30 whitespace-pre-wrap">
-            個人飲食店限定{"\n"}地産地消プラットフォーム
+          {/* Sub Copy */}
+          <p className="text-white/95 text-sm md:text-base font-bold mb-6 drop-shadow-md bg-black/35 inline-block px-5 py-2 rounded-full border border-white/30">
+            LINEアプリを使った、こだわりが見える地産地消プラットフォーム
           </p>
+
+          {/* Price Bubble */}
+          <div className="relative mb-5">
+            <div className="inline-block rounded-2xl border-2 border-white/80 bg-white/95 px-6 py-3 shadow-xl">
+              <p className="text-sm md:text-base font-black text-slate-800">
+                初期・月額費用は
+                <span className="text-emerald-700 text-lg md:text-xl ml-1">ずっと￥0！</span>
+              </p>
+            </div>
+            <div className="absolute left-1/2 -bottom-3 h-0 w-0 -translate-x-1/2 border-l-[10px] border-r-[10px] border-t-[12px] border-l-transparent border-r-transparent border-t-white/95" />
+          </div>
+
+          <div className="mb-8 rounded-2xl border border-emerald-200/70 bg-white/92 px-5 py-4 shadow-lg">
+            <p className="text-sm md:text-base font-bold text-slate-800 mb-2">
+              さらに今ならリスクなしでお試し！
+            </p>
+            <p className="text-sm md:text-base font-black text-emerald-700">
+              初回お試し野菜 1,000円分無料
+            </p>
+            <p className="text-sm md:text-base font-black text-emerald-700">
+              初回お届け 送料無料
+            </p>
+          </div>
 
           {/* CTA */}
           <div className="flex flex-col items-center justify-center gap-3 w-full max-w-sm mb-12">
@@ -64,7 +84,7 @@ export default function HeroSectionV2() {
               className="w-full max-w-[20rem] sm:max-w-[24rem] whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base sm:text-lg md:text-xl py-6 md:py-7 px-6 rounded-2xl shadow-2xl shadow-emerald-900/35 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
               onClick={handleCTAClick}
             >
-              神戸のこだわり野菜を無料でお試し
+              まずは無料でお試しする
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6 shrink-0" />
             </Button>
             <p className="text-white font-bold text-sm md:text-base drop-shadow-sm">

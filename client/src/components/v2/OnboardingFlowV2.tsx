@@ -5,23 +5,23 @@ import { ArrowRight } from "lucide-react";
 const steps = [
   {
     id: 1,
-    title: "予約フォームから申し込み",
-    subtitle: "お申し込み",
-    description: "予約フォームより、30分程度のヒアリングの日程をご予約いただきます。",
+    title: "公式LINE登録",
+    subtitle: "LINE登録",
+    description: "まずは公式LINEを友だち追加。\n初回連携とお試し注文の案内を受け取れます。",
     icon: "/images/icons/step-1-apply.png",
   },
   {
     id: 2,
-    title: "ヒアリング・アカウント発行",
-    subtitle: "ヒアリング",
-    description: "お店のこだわりやご要望をお伺いし、最適な農家をご提案いたします。\nその場でお試し用のお野菜をご注文いただきけます。",
+    title: "お試し注文",
+    subtitle: "お試し注文",
+    description: "LINEの案内に沿ってアプリ連携後、\n初回お試し野菜（1,000円分無料）をご注文ください。",
     icon: "/images/icons/step-2-consult.png",
   },
   {
     id: 3,
-    title: "1,000円分のお試し野菜配送（無料）",
-    subtitle: "お試し配送",
-    description: "実際に神戸産の新鮮野菜をお届けいたします。\n品質・鮮度をご確認いただき、ご満足いただけましたらそのままご継続いただけます。",
+    title: "お届け",
+    subtitle: "お届け",
+    description: "神戸のこだわり野菜をお店へお届け。\n初回納品時に使い方もしっかりフォローします。",
     icon: "/images/icons/step-3-setup.png",
   },
 ];

@@ -47,7 +47,7 @@ export default function ThanksPageV2() {
                             <div className="mt-5 space-y-3">
                                 {[
                                     "「公式LINEに登録する」をタップ",
-                                    "ベジコベアカウント発行のご案内",
+                                    "メールで届く連携URLを公式LINEトークに送ってタップ",
                                     "アプリでお試し野菜を注文",
                                 ].map((text, i) => (
                                     <div key={text} className="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-3.5">
@@ -78,6 +78,9 @@ export default function ThanksPageV2() {
                             </Button>
                             <p className="text-xs text-slate-500 mt-3 leading-relaxed">
                                 ※ LINEアプリが開きます。「友だち追加」を押してください。
+                            </p>
+                            <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                                ※ 連携URLは、メールをご確認のうえLINEトーク内で開くとスムーズです。
                             </p>
 
                             <Link href="/2" className="block mt-6 text-center text-sm font-bold text-emerald-700 hover:text-emerald-800">
