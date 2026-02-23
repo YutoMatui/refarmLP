@@ -39,7 +39,7 @@ function buildMailBody(data: { shopName: string; contactPerson: string; invite?:
     ? `
 【初回ログイン手順（3ステップ）】
 1. 公式LINEを友だち追加してください。
-2. 下記の連携URLを公式LINEのトークに送信し、トーク内に表示されたURLをタップしてください。
+2. 下記の連携URLを公式LINEのトークに貼り付けて送信した後、そのままURLをタップしてください。（LINEからのみアクセス可能なURLのためです）
    連携URL: ${data.invite.inviteUrl}
 3. ログイン画面で、下記の4桁パスワードを入力してください。
    4桁パスワード: ${data.invite.accessCode}
@@ -89,7 +89,7 @@ ${recipient}のお店づくりを、美味しい神戸の野菜を通じて全�
         <h2 style="margin:0 0 10px;font-size:17px;color:#065f46;">【初回ログイン手順（3ステップ）】</h2>
         <ol style="margin:0 0 14px;padding-left:20px;line-height:1.9;">
           <li>公式LINEを友だち追加してください。</li>
-          <li>下記の連携URLを公式LINEのトークに送信し、トーク内に表示されたURLをタップしてください。</li>
+          <li>下記の連携URLを公式LINEのトークに貼り付けて送信した後、そのままURLをタップしてください。（LINEからのみアクセス可能なURLのためです）</li>
           <li>ログイン画面で、下記の4桁パスワードを入力してください。</li>
         </ol>
         <div style="background:#ecfeff;border:1px solid #a5f3fc;border-radius:12px;padding:14px;margin:0 0 18px;">
