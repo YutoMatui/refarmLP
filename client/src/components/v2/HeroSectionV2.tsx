@@ -41,7 +41,7 @@ export default function HeroSectionV2() {
             className="font-black text-white leading-tight mb-8"
             style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.7)" }}
           >
-            <span className="block whitespace-nowrap text-[clamp(1.02rem,3.95vw,2.9rem)]">
+            <span className="block whitespace-nowrap text-[clamp(1.75rem,7.2vw,4.2rem)]">
               畑から6時間以内の神戸野菜で、
             </span>
             <br />
@@ -86,7 +86,7 @@ export default function HeroSectionV2() {
               className="w-full max-w-[20rem] sm:max-w-[24rem] whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base sm:text-lg md:text-xl py-6 md:py-7 px-6 rounded-2xl shadow-2xl shadow-emerald-900/35 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
               onClick={handleCTAClick}
             >
-              まずは無料でお試しする
+              神戸のこだわり野菜を無料でお試し
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6 shrink-0" />
             </Button>
             <p className="text-white font-bold text-sm md:text-base drop-shadow-sm">
