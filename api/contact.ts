@@ -1,9 +1,17 @@
+import { createHash } from "crypto";
+
 type ContactPayload = {
   shopName?: string;
   contactPerson?: string;
   address?: string;
   phone?: string;
   email?: string;
+  meta?: {
+    eventId?: string;
+    eventSourceUrl?: string;
+    fbp?: string;
+    fbc?: string;
+  };
 };
 
 type RefarmInviteInfo = {
@@ -15,6 +23,116 @@ type RefarmInviteInfo = {
 };
 
 type RefarmInvitePayload = Required<Pick<ContactPayload, "shopName" | "contactPerson" | "address" | "phone" | "email">>;
+
+function sha256(value: string): string {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function normalizeEmail(value: string): string {
+  return value.trim().toLowerCase();
+}
+
+function normalizePhone(value: string): string {
+  return value.replace(/\D/g, "");
+}
+
+function extractPrefectureAndCity(address: string): { prefecture?: string; city?: string } {
+  const normalized = address.trim();
+  if (!normalized) return {};
+
+  const prefMatch = normalized.match(/^(東京都|北海道|(?:京都|大阪)府|.{2,3}県)/);
+  const prefecture = prefMatch?.[1];
+  const withoutPref = prefecture ? normalized.slice(prefecture.length) : normalized;
+  const cityMatch = withoutPref.match(/^(.+?[市区町村])/);
+  const city = cityMatch?.[1];
+
+  return { prefecture, city };
+}
+
+function getFirstHeaderValue(value: string | string[] | undefined): string | undefined {
+  if (!value) return undefined;
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function resolveClientIp(req: any): string | undefined {
+  const forwardedFor = getFirstHeaderValue(req.headers?.["x-forwarded-for"]);
+  if (forwardedFor) return forwardedFor.split(",")[0]?.trim();
+  return getFirstHeaderValue(req.headers?.["x-real-ip"]) || req.socket?.remoteAddress;
+}
+
+async function sendMetaConversionEvent(data: {
+  shopName: string;
+  contactPerson: string;
+  address: string;
+  phone: string;
+  email: string;
+  eventId: string;
+  eventSourceUrl?: string;
+  fbp?: string;
+  fbc?: string;
+  clientUserAgent?: string;
+  clientIpAddress?: string;
+}) {
+  const pixelId = process.env.META_PIXEL_ID;
+  const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
+
+  if (!pixelId || !accessToken) return;
+
+  const apiVersion = process.env.META_GRAPH_API_VERSION || "v22.0";
+  const testEventCode = process.env.META_CAPI_TEST_EVENT_CODE;
+  const siteUrl = process.env.SITE_URL;
+  const { prefecture, city } = extractPrefectureAndCity(data.address);
+
+  const userData: Record<string, unknown> = {
+    client_user_agent: data.clientUserAgent,
+    client_ip_address: data.clientIpAddress,
+    em: [sha256(normalizeEmail(data.email))],
+    ph: [sha256(normalizePhone(data.phone))],
+    st: prefecture ? [sha256(prefecture)] : undefined,
+    ct: city ? [sha256(city)] : undefined,
+    fbp: data.fbp || undefined,
+    fbc: data.fbc || undefined,
+  };
+
+  const payload: Record<string, unknown> = {
+    data: [
+      {
+        event_name: "CompleteRegistration",
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: data.eventId,
+        action_source: "website",
+        event_source_url: data.eventSourceUrl || siteUrl,
+        user_data: userData,
+        custom_data: {
+          content_name: "Form Submit Button Click",
+          content_category: "LP Conversion",
+          value: 1,
+          currency: "JPY",
+          shop_name: data.shopName,
+          contact_person: data.contactPerson,
+        },
+      },
+    ],
+  };
+
+  if (testEventCode) {
+    payload.test_event_code = testEventCode;
+  }
+
+  const endpoint = `https://graph.facebook.com/${apiVersion}/${pixelId}/events?access_token=${accessToken}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Meta CAPI error (${response.status}): ${errorText}`);
+  }
+}
 
 function normalizeText(input: unknown): string {
   const value = String(input ?? "").trim();
@@ -514,6 +632,15 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ message: "全ての項目を入力してください。" });
     }
 
+    const eventId =
+      normalizeText(payload.meta?.eventId) ||
+      `evt_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+    const eventSourceUrl = normalizeText(payload.meta?.eventSourceUrl);
+    const clientUserAgent = getFirstHeaderValue(req.headers?.["user-agent"]);
+    const clientIpAddress = resolveClientIp(req);
+    const fbp = normalizeText(payload.meta?.fbp);
+    const fbc = normalizeText(payload.meta?.fbc);
+
     await addToNotion({ shopName, contactPerson, address, phone, email });
 
     let refarmInvite: RefarmInviteInfo | null = null;
@@ -542,6 +669,24 @@ export default async function handler(req: any, res: any) {
       refarmResult: refarmInvite,
       refarmError,
     });
+
+    try {
+      await sendMetaConversionEvent({
+        shopName,
+        contactPerson,
+        address,
+        phone,
+        email,
+        eventId,
+        eventSourceUrl: eventSourceUrl || undefined,
+        fbp: fbp || undefined,
+        fbc: fbc || undefined,
+        clientUserAgent,
+        clientIpAddress,
+      });
+    } catch (error) {
+      console.error("[api/contact] Meta CAPI send failed:", error);
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {

@@ -3,10 +3,31 @@ import { Button } from "@/components/ui/button";
 import { trackLineRegistration } from "@/lib/gtag";
 import { trackLineClick } from "@/lib/fbpixel";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 const LINE_URL = "https://lin.ee/UX0sUuD";
 
 export default function ThanksPageV2() {
+    useEffect(() => {
+        if (typeof window === "undefined" || typeof window.fbq === "undefined") return;
+        const eventId = sessionStorage.getItem("meta_complete_registration_event_id");
+        window.fbq(
+            "track",
+            "CompleteRegistration",
+            {
+                content_name: "Thanks Page View",
+                content_category: "LP Conversion",
+                value: 1,
+                currency: "JPY",
+                source: "Thanks Page V2",
+            },
+            eventId ? ({ eventID: eventId } as Record<string, unknown>) : undefined
+        );
+        if (eventId) {
+            sessionStorage.removeItem("meta_complete_registration_event_id");
+        }
+    }, []);
+
     const handleLineClick = () => {
         trackLineRegistration("Thanks Page V2");
         trackLineClick("Thanks Page V2");

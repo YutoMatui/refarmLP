@@ -47,7 +47,7 @@ export default function HeroSectionV2() {
             <span className="block text-[#ff9a1f] text-[clamp(1.9rem,7.8vw,4.5rem)]">
               神戸のお客様に選ばれる
             </span>
-            <span className="block text-[clamp(1.75rem,7.2vw,4.2rem)]">店づくりを。</span>
+            <span className="block text-[clamp(1.75rem,7.2vw,4.2rem)]">お店づくりを。</span>
           </h1>
 
           {/* Sub Copy */}

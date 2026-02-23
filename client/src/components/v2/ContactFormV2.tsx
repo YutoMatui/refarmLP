@@ -23,6 +23,20 @@ interface ContactFormV2Props {
     onSuccess?: () => void;
 }
 
+function getCookieValue(name: string): string | undefined {
+    if (typeof document === "undefined") return undefined;
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${escaped}=([^;]+)`));
+    return match?.[1];
+}
+
+function createEventId(): string {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+        return crypto.randomUUID();
+    }
+    return `evt_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
 export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -39,12 +53,21 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
         setIsSubmitting(true);
         setError(null);
         trackCTAClick("お試し申し込みフォーム送信", "ContactForm V2");
+        const eventId = createEventId();
 
         try {
             const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json; charset=UTF-8" },
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    ...data,
+                    meta: {
+                        eventId,
+                        eventSourceUrl: window.location.href,
+                        fbp: getCookieValue("_fbp"),
+                        fbc: getCookieValue("_fbc"),
+                    },
+                }),
             });
 
             if (!response.ok) {
@@ -52,6 +75,9 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
                 throw new Error(errorData.message || "送信に失敗しました。");
             }
 
+            if (typeof window !== "undefined") {
+                sessionStorage.setItem("meta_complete_registration_event_id", eventId);
+            }
             onSuccess?.();
         } catch (err: unknown) {
             setError(

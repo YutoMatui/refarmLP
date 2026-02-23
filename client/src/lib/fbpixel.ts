@@ -1,14 +1,10 @@
-// client/src/lib/fbpixel.ts
+﻿// client/src/lib/fbpixel.ts
 export const FB_PIXEL_ID = '1860893351213953';
 
 // Declare global types for fbq
 declare global {
     interface Window {
-        fbq: (
-            command: 'track' | 'trackCustom' | 'init',
-            eventName: string,
-            parameters?: Record<string, any>
-        ) => void;
+        fbq: (...args: any[]) => void;
         _fbq: any;
     }
 }
