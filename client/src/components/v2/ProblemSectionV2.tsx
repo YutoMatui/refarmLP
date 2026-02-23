@@ -231,8 +231,8 @@ export default function ProblemSectionV2() {
               </button>
 
               <div className="flex flex-col md:flex-row min-h-[500px]">
-                {/* Image Area - left on desktop, top on mobile */}
-                <div className="w-full md:w-5/12 bg-white flex items-center justify-center p-6 pb-0 md:p-8 md:pr-0">
+                {/* Image Area - left on desktop */}
+                <div className="hidden md:flex w-full md:w-5/12 bg-white items-center justify-center p-6 pb-0 md:p-8 md:pr-0">
                   <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden shadow-md relative">
                     <img
                       src={currentPoint.solution.image}
@@ -278,6 +278,17 @@ export default function ProblemSectionV2() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Image Area - mobile: place after bullet points */}
+                    <div className="md:hidden mt-6">
+                      <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-md relative">
+                        <img
+                          src={currentPoint.solution.image}
+                          alt={currentPoint.solution.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
