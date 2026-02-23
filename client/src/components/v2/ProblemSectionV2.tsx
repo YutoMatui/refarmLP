@@ -266,6 +266,17 @@ export default function ProblemSectionV2() {
                       {currentPoint.solution.title}
                     </h3>
 
+                    {/* Image Area - mobile: place right below solution title */}
+                    <div className="md:hidden mb-6">
+                      <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-md relative">
+                        <img
+                          src={currentPoint.solution.image}
+                          alt={currentPoint.solution.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+
                     <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
                       {currentPoint.solution.description}
                     </p>
@@ -279,16 +290,6 @@ export default function ProblemSectionV2() {
                       ))}
                     </ul>
 
-                    {/* Image Area - mobile: place after bullet points */}
-                    <div className="md:hidden mt-6">
-                      <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-md relative">
-                        <img
-                          src={currentPoint.solution.image}
-                          alt={currentPoint.solution.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

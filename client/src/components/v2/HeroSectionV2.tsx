@@ -38,18 +38,16 @@ export default function HeroSectionV2() {
         <div className="flex flex-col items-center justify-start text-center pt-8 md:pt-20">
           {/* Main Copy */}
           <h1
-            className="font-black text-white leading-tight mb-8"
+            className="font-black text-white leading-[1.03] mb-8"
             style={{ textShadow: "2px 2px 8px rgba(0,0,0,0.7)" }}
           >
             <span className="block whitespace-nowrap text-[clamp(1.7rem,7.1vw,4.1rem)]">
               畑から6時間以内の神戸野菜で
             </span>
-            <br />
-            <span className="text-[#ff9a1f] text-[clamp(1.9rem,7.8vw,4.5rem)]">
+            <span className="block text-[#ff9a1f] text-[clamp(1.9rem,7.8vw,4.5rem)]">
               神戸のお客様に選ばれる
             </span>
-            <br />
-            <span className="text-[clamp(1.75rem,7.2vw,4.2rem)]">店づくりを。</span>
+            <span className="block text-[clamp(1.75rem,7.2vw,4.2rem)]">店づくりを。</span>
           </h1>
 
           {/* Sub Copy */}
