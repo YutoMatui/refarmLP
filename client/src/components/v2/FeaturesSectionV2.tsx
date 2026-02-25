@@ -4,6 +4,16 @@ import { trackFeatureTabClick, trackSectionScroll } from "@/lib/gtag";
 
 const features = [
   {
+    id: "irregular",
+    icon: Truck,
+    title: "規格外野菜リスト",
+    displayTitle: "規格外野菜で、コストを抑えてこだわりを。",
+    description:
+      "味や栄養価は全く変わらないのに、少し形が違うだけで市場に出ない野菜たち。これらを安価に仕入れることで、食材の品質は落とさずに、原価だけを抑えることが可能です。",
+    image: "/images/feature-v2-irregular.png",
+    imageAlt: "規格外野菜リスト",
+  },
+  {
     id: "one-tap",
     icon: Smartphone,
     title: "いつもの注文ボタン",
@@ -22,16 +32,6 @@ const features = [
       "生産者のこだわりや栽培風景を、文章だけでなく写真や動画で余すことなく掲載。「誰が作ったか」だけでなく「どんな想いで作ったか」まで分かるので、あなたのお店のコンセプトに合う農家さんがきっと見つかります。",
     image: "/images/feature-v2-farmer.jpg",
     imageAlt: "農家ストーリー画面",
-  },
-  {
-    id: "irregular",
-    icon: Truck,
-    title: "規格外野菜リスト",
-    displayTitle: "規格外野菜で、コストを抑えてこだわりを。",
-    description:
-      "味や栄養価は全く変わらないのに、少し形が違うだけで市場に出ない野菜たち。これらを安価に仕入れることで、食材の品質は落とさずに、原価だけを抑えることが可能です。",
-    image: "/images/feature-v2-irregular.png",
-    imageAlt: "規格外野菜リスト",
   },
 ];
 

@@ -32,38 +32,38 @@ export default function VegeKobeV2() {
         {/* 1. ファーストビュー */}
         <HeroSectionV2 />
 
-        {/* 2. 比較訴求 + 導入店舗の声 */}
-        <ValueProofSectionV2 />
-
-        {/* 3. 私たちについて */}
+        {/* 2. 私たちについて */}
         <AboutSectionV2 />
 
-        {/* 4. 問題提起 + 解決策カルーセル */}
+        {/* 3. 問題提起 + 解決策カルーセル */}
         <ProblemSectionV2 />
 
-        {/* 5. アプリ機能紹介 */}
+        {/* 4. アプリ機能紹介 */}
         <FeaturesSectionV2 />
 
-        {/* 6. 選ばれる理由 */}
+        {/* 5. 選ばれる理由 */}
         <section id="benefits">
           <BenefitsSectionV2 />
         </section>
 
-        {/* 7. 提携農家 */}
+        {/* 6. 提携農家 */}
         <section id="farmers">
           <FarmersCarouselV2 />
         </section>
 
-        {/* 8. ミッション */}
+        {/* 7. ミッション */}
         <MissionSectionV2 />
 
-        {/* 9. 導入の流れ */}
+        {/* 8. 導入の流れ */}
         <section id="flow">
           <OnboardingFlowV2 />
         </section>
 
-        {/* 10. サポート */}
+        {/* 9. サポート */}
         <SupportSectionV2 />
+
+        {/* 10. 比較訴求 + 導入店舗の声 */}
+        <ValueProofSectionV2 />
 
         {/* 11. FAQ */}
         <section id="faq">

@@ -54,11 +54,8 @@ export default function HeroSectionV2() {
 
           {/* Sub Copy */}
           <p className="text-white/95 text-sm md:text-base font-bold mb-6 drop-shadow-md bg-black/35 inline-block px-5 py-2 rounded-full border border-white/30">
-            LINEアプリを使った神戸限定 地産地消プラットフォーム
-          </p>
-
-          <p className="text-white font-bold text-sm md:text-lg mb-6 drop-shadow-sm">
-            スーパーと同価格で、デパ地下級のこだわり野菜を仕入れられます。
+            <span className="block">LINEアプリを使った</span>
+            <span className="block">神戸限定 地産地消プラットフォーム</span>
           </p>
 
           {/* Price Bubble */}
