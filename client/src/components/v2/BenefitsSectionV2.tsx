@@ -13,10 +13,10 @@ export default function BenefitsSectionV2() {
     {
       icon: Leaf,
       number: "2",
-      title: "【コスト】",
-      catch: "規格外野菜の活用で、原価を賢く抑える。",
+      title: "【価値】",
+      catch: "スーパーと同価格でも、品質と安心感で差がつく。",
       description:
-        "味は一級品だが形が不揃いな野菜も提供。コストパフォーマンスの高い仕入れが可能です。",
+        "価格を下げるのではなく、鮮度・生産者情報・地域性まで含めた仕入れ価値を高められます。",
     },
     {
       icon: Recycle,
