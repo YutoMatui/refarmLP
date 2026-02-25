@@ -72,7 +72,7 @@ export default function HeroSectionV2() {
           {/* CTA */}
           <div className="flex flex-col items-center justify-center gap-3 w-full max-w-sm mb-12">
             <Button
-              className="w-full max-w-[20rem] sm:max-w-[24rem] whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base sm:text-lg md:text-xl py-6 md:py-7 px-6 rounded-2xl shadow-2xl shadow-emerald-900/35 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full max-w-[20rem] sm:max-w-[24rem] md:max-w-[34rem] whitespace-normal md:whitespace-nowrap leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base sm:text-lg md:text-xl py-6 md:py-7 px-6 rounded-2xl shadow-2xl shadow-emerald-900/35 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
               onClick={handleCTAClick}
             >
               LINEで神戸野菜の仕入れを始める

@@ -33,7 +33,7 @@ export default function FooterCTASectionV2() {
 
           {/* CTA Button */}
           <Button
-            className="max-w-[20rem] md:max-w-none mx-auto whitespace-normal leading-snug bg-white hover:bg-emerald-50 text-emerald-600 font-black text-base md:text-lg py-6 md:py-7 px-8 md:px-10 rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"
+            className="max-w-[20rem] md:max-w-[34rem] mx-auto whitespace-normal md:whitespace-nowrap leading-snug bg-white hover:bg-emerald-50 text-emerald-600 font-black text-base md:text-lg py-6 md:py-7 px-8 md:px-10 rounded-2xl shadow-xl transition-all hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"
             onClick={handleCTAClick}
           >
             神戸のこだわり野菜を無料でお試し

@@ -131,7 +131,7 @@ export default function OnboardingFlowV2() {
         {/* CTA Area */}
         <div className="text-center mt-16 md:mt-24">
           <Button
-            className="w-full max-w-[20rem] sm:max-w-[24rem] mx-auto whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-xl py-6 md:py-7 px-6 md:px-10 rounded-2xl shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            className="w-full max-w-[20rem] sm:max-w-[24rem] md:max-w-[34rem] mx-auto whitespace-normal md:whitespace-nowrap leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-xl py-6 md:py-7 px-6 md:px-10 rounded-2xl shadow-2xl transition-all duration-300 hover:-translate-y-1"
             onClick={handleCTAClick}
           >
             神戸のこだわり野菜を無料でお試し

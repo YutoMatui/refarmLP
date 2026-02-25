@@ -76,14 +76,14 @@ export default function ValueProofSectionV2() {
                       <img
                         src="/images/carrot-comparison-normal.png"
                         alt="通常の仕入れの野菜イメージ"
-                        className="w-full h-40 object-cover rounded-xl"
+                        className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-xl mx-auto"
                       />
                     </td>
                     <td className="p-4 border-b border-l border-slate-200 bg-emerald-50/40">
                       <img
                         src="/images/carrot-comparison-refarm.png"
                         alt="りふぁーむで届く野菜イメージ"
-                        className="w-full h-40 object-cover rounded-xl"
+                        className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-xl mx-auto"
                       />
                     </td>
                   </tr>

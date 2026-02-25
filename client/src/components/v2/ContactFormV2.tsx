@@ -241,7 +241,7 @@ export default function ContactFormV2({ onSuccess }: ContactFormV2Props) {
                     <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full whitespace-normal leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-lg py-6 rounded-2xl transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full whitespace-normal md:whitespace-nowrap leading-snug bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-black text-base md:text-lg py-6 rounded-2xl transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {isSubmitting ? (
                             <>
