@@ -51,19 +51,19 @@ export default function VegeKobeV2() {
           <FarmersCarouselV2 />
         </section>
 
-        {/* 7. ミッション */}
+        {/* 7. 比較訴求 + 導入店舗の声 */}
+        <ValueProofSectionV2 />
+
+        {/* 8. ミッション */}
         <MissionSectionV2 />
 
-        {/* 8. 導入の流れ */}
+        {/* 9. 導入の流れ */}
         <section id="flow">
           <OnboardingFlowV2 />
         </section>
 
-        {/* 9. サポート */}
+        {/* 10. サポート */}
         <SupportSectionV2 />
-
-        {/* 10. 比較訴求 + 導入店舗の声 */}
-        <ValueProofSectionV2 />
 
         {/* 11. FAQ */}
         <section id="faq">

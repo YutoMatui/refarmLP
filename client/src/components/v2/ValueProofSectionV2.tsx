@@ -7,12 +7,12 @@ const comparisonRows = [
   {
     label: "生産者情報",
     normal: "全国どこから届くか不明",
-    refarm: "農家さんの実際の顔写真と名前が見える",
+    refarm: "神戸のこだわり農家からだけ届き、顔写真と名前が見える",
   },
   {
     label: "鮮度",
     normal: "収穫から数日経過",
-    refarm: "圧倒的な鮮度（最短6時間）",
+    refarm: "圧倒的な鮮度（6時間以内）",
   },
   {
     label: "満足度・ファン化",
@@ -25,17 +25,17 @@ const testimonials = [
   {
     shop: "神戸市中央区 / ビストロオーナー",
     comment:
-      "生産者の顔と名前まで案内できるようになり、お客様に驚かれました。旬野菜メニューの注文が増え、リピート獲得につながりました。",
+      "「どこの農家さんが作った野菜か」をメニューに添えるだけで、お客様の反応が全く違います。「美味しい！」の先に会話が生まれ、当店のこだわりがしっかり伝わるようになり、結果的に常連さんの獲得に繋がっています。",
   },
   {
     shop: "神戸市灘区 / 創作和食店 店主",
     comment:
-      "有機人参を同じ540円で仕入れても鮮度が違い、お客様に驚かれました。野菜の話題で会話が増え、リピート獲得につながりました。",
+      "以前と同じ仕入れ価格帯なのに、箱を開けた時の香りと鮮度の違いに驚きました。少し形が不揃いな規格外野菜でも味は一級品なので、原価を抑えつつ料理のクオリティを上げられるのが本当にありがたいです。",
   },
   {
     shop: "神戸市東灘区 / カフェレストラン シェフ",
     comment:
-      "畑から最短6時間で届くため仕込み品質が安定し、お客様に驚かれました。再来店率が上がり、リピート獲得につながりました。",
+      "畑から6時間以内で届くので、野菜の持ちが良く廃棄ロスが激減しました。なにより、営業後の疲れた時間でもLINEから30秒でサクッと発注でき、請求書も1つにまとまるので、スタッフの業務負担が劇的に減りましたね。",
   },
 ];
 
@@ -51,9 +51,6 @@ export default function ValueProofSectionV2() {
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-4">
               同じ540円でも、価値はここまで変わる
             </h2>
-            <p className="text-slate-700 font-bold text-sm md:text-lg">
-              安さで選ばない本当にいいものを求めている方に選ばれています。
-            </p>
           </div>
 
           <div className="rounded-3xl bg-white border border-slate-200 shadow-sm mb-14 overflow-hidden">
@@ -74,19 +71,17 @@ export default function ValueProofSectionV2() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-5 bg-slate-50 font-bold text-slate-700 border-b border-slate-200">
-                      有機人参1kgの比較写真
-                    </td>
+                    <td className="p-5 bg-slate-50 font-bold text-slate-700 border-b border-slate-200">比較写真</td>
                     <td className="p-4 border-b border-l border-slate-200">
                       <img
-                        src="/images/before-service.png"
+                        src="/images/carrot-comparison-normal.png"
                         alt="通常の仕入れの野菜イメージ"
                         className="w-full h-40 object-cover rounded-xl"
                       />
                     </td>
                     <td className="p-4 border-b border-l border-slate-200 bg-emerald-50/40">
                       <img
-                        src="/images/after-service.png"
+                        src="/images/carrot-comparison-refarm.png"
                         alt="りふぁーむで届く野菜イメージ"
                         className="w-full h-40 object-cover rounded-xl"
                       />
